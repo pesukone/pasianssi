@@ -1,19 +1,26 @@
 package fi.jussi.pasianssi.kortit;
 
 import java.util.Stack;
+import java.util.LinkedList;
 
 public class Korttipino {
-    private Stack<Kortti> kortit;
+    private Stack<Kortti> kaannetytKortit;
+    private LinkedList<Kortti> nakyvatKortit;
     
     public Korttipino() {
-        this.kortit = new Stack();
+        this.kaannetytKortit = new Stack();
+        this.nakyvatKortit = new LinkedList();
     }
     
     public void siirraKortti(Korttipino kohde) {
-        kohde.lisaaKortti(this.kortit.pop());
+        kohde.lisaaNakyvaKortti(this.nakyvatKortit.removeLast());
     }
     
-    public void lisaaKortti(Kortti kortti) {
-        this.kortit.push(kortti);
+    public void lisaaNakyvaKortti(Kortti kortti) {
+        this.nakyvatKortit.add(kortti);
+    }
+    
+    public void lisaaKaannettyKortti(Kortti kortti) {
+        this.kaannetytKortit.push(kortti);
     }
 }
