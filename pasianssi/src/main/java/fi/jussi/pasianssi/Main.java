@@ -1,5 +1,6 @@
 package fi.jussi.pasianssi;
 
+import fi.jussi.pasianssi.logiikka.Pakantayttaja;
 import fi.jussi.pasianssi.kortit.*;
 
 public class Main {

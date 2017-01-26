@@ -25,7 +25,7 @@ public class KorttiTest {
     
     @Before
     public void setUp() {
-        this.kortti = new Kortti(Maa.HERTTA, 5);
+        kortti = new Kortti(Maa.HERTTA, 5);
     }
     
     @After
@@ -34,13 +34,11 @@ public class KorttiTest {
 
     @Test
     public void kortillaMaa() {
-        assertEquals(this.kortti.getMaa(), Maa.HERTTA);
+        assertEquals(kortti.getMaa(), Maa.HERTTA);
     }
     
     @Test
     public void kortillaArvo() {
-        assertEquals(this.kortti.getArvo(), 5);
+        assertEquals(kortti.getArvo(), 5);
     }
-    
-    
 }

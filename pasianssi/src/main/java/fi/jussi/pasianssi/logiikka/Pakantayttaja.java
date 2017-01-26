@@ -1,6 +1,8 @@
-package fi.jussi.pasianssi;
+package fi.jussi.pasianssi.logiikka;
 
-import fi.jussi.pasianssi.kortit.*;
+import fi.jussi.pasianssi.kortit.Kortti;
+import fi.jussi.pasianssi.kortit.Korttipakka;
+import fi.jussi.pasianssi.kortit.Maa;
 
 public class Pakantayttaja {
     

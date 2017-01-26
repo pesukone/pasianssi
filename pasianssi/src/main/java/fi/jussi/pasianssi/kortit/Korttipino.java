@@ -23,4 +23,8 @@ public class Korttipino {
     public void lisaaKaannettyKortti(Kortti kortti) {
         this.kaannetytKortit.push(kortti);
     }
+    
+    public boolean eiNakyviaKortteja() {
+        return this.nakyvatKortit.isEmpty();
+    }
 }
