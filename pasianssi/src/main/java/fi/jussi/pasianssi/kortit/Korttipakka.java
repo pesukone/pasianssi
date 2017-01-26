@@ -1,5 +1,6 @@
 package fi.jussi.pasianssi.kortit;
 
+import java.util.Collections;
 import java.util.Stack;
 
 public class Korttipakka {
@@ -9,7 +10,27 @@ public class Korttipakka {
         this.kortit = new Stack();
     }
     
+    public void lisaaKortti(Kortti kortti) {
+        this.kortit.push(kortti);
+    }
+    
     public Kortti nostaKortti() {
         return this.kortit.pop();
+    }
+    
+    public void sekoita() {
+        Collections.shuffle(this.kortit);
+    }
+    
+    public boolean tyhja() {
+        return this.kortit.empty();
+    }
+    
+    public int korttienMaara() {
+        return this.kortit.size();
+    }
+    
+    public Kortti paalimmainen() {
+        return this.kortit.peek();
     }
 }

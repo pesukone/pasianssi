@@ -5,8 +5,11 @@ import fi.jussi.pasianssi.kortit.*;
 public class Main {
     
     public static void main(String[] args) {
-        Kortti kortti = new Kortti(Maa.HERTTA, 10);
+        Korttipakka pakka = new Korttipakka();
+        Pakantayttaja.tayta52KortinPakka(pakka);
+        pakka.sekoita();
         
-        System.out.println(kortti);
+        System.out.println(pakka.nostaKortti());
+        System.out.println(pakka.nostaKortti());
     }
 }

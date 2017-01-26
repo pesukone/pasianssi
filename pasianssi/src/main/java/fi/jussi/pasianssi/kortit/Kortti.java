@@ -3,12 +3,10 @@ package fi.jussi.pasianssi.kortit;
 public class Kortti {
     private Maa maa;
     private int arvo;
-    private boolean kuvaAlas;
       
     public Kortti(Maa maa, int arvo) {
         this.maa = maa;
         this.arvo = arvo;
-        this.kuvaAlas = true;
     }
     
     public Maa getMaa() {
