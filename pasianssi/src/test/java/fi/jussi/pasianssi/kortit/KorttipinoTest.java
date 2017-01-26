@@ -8,7 +8,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class KorttipinoTest {
-    Korttipino ensimmainen;
+    Korttipino pino;
     Korttipino toinen;
     
     public KorttipinoTest() {
@@ -24,7 +24,7 @@ public class KorttipinoTest {
     
     @Before
     public void setUp() {
-        ensimmainen = new Korttipino();
+        pino = new Korttipino();
         toinen = new Korttipino();
     }
     
@@ -34,11 +34,34 @@ public class KorttipinoTest {
     
     @Test
     public void korttiaVoiSiirtaaPinostaToiseen() {
-        ensimmainen.lisaaNakyvaKortti(new Kortti(Maa.RUUTU, 8));
-        ensimmainen.lisaaNakyvaKortti(new Kortti(Maa.RISTI, 4));
+        pino.lisaaNakyvaKortti(new Kortti(Maa.RUUTU, 8));
+        pino.lisaaNakyvaKortti(new Kortti(Maa.RISTI, 4));
         
-        ensimmainen.siirraKortti(toinen);
+        pino.siirraKortti(toinen);
         
         assertFalse(toinen.eiNakyviaKortteja());
     }
+	
+	@Test
+	public void näkyvanKortinVoiLisata() {
+		pino.lisaaNakyvaKortti(new Kortti(Maa.HERTTA, 10));
+		
+		assertFalse(pino.eiNakyviaKortteja());
+	}
+	
+	@Test
+	public void alustettuPinoOnTyhja() {
+		assertTrue(pino.tyhja());
+	}
+	
+	@Test
+	public void pinoJossaKaannettyKorttiEiTyhja() {
+		pino.lisaaKaannettyKortti(new Kortti(Maa.RISTI, 2));
+		assertFalse(pino.tyhja());
+	}
+	
+	@Test
+	public void pinoJossaNakyvaKorttiEiTyhja() {
+		pino.lisaaNakyvaKortti(new Kortti(Maa.RUUTU, 12));
+	}
 }

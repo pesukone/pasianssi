@@ -63,5 +63,9 @@ public class KorttipakkaTest {
         
         assertTrue(pakka.tyhja());
     }
-    
+	
+	@Test
+	public void pakkaJossaOnKorttiEiOleTyhja() {
+		assertFalse(pakka.tyhja());
+	}
 }
