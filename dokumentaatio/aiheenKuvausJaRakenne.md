@@ -27,3 +27,5 @@
 	- pelaaja ei pysty siirtämään yhtään korttia tai nostamaan niitä lisää pakasta
 	- pelaajalle mahdollisilla siirroilla ei ole mahdollista tyhjentää pöytää korteista
 
+
+![Alt text](luokkakaavio.png "Määrittelyvaiheen luokkakaavio")
