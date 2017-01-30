@@ -6,11 +6,16 @@ import fi.jussi.pasianssi.kortit.Maa;
 
 public class Pakantayttaja {
     
-    public static void tayta52KortinPakka(Korttipakka pakka) {
+    public static void alustaPeruskorttipakka(Korttipakka pakka) {
         luoMaanKortit(pakka, Maa.HERTTA);
         luoMaanKortit(pakka, Maa.PATA);
         luoMaanKortit(pakka, Maa.RISTI);
         luoMaanKortit(pakka, Maa.RUUTU);
+    }
+    
+    public static void alustaTuplakorttipakka(Korttipakka pakka) {
+        alustaPeruskorttipakka(pakka);
+        alustaPeruskorttipakka(pakka);
     }
     
     private static void luoMaanKortit(Korttipakka pakka, Maa maa) {

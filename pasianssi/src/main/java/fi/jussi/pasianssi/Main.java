@@ -7,10 +7,10 @@ public class Main {
     
     public static void main(String[] args) {
         Korttipakka pakka = new Korttipakka();
-        Pakantayttaja.tayta52KortinPakka(pakka);
+        Pakantayttaja.alustaPeruskorttipakka(pakka);
         pakka.sekoita();
         
-        System.out.println(pakka.nostaKortti());
-        System.out.println(pakka.nostaKortti());
+        System.out.println(pakka.nosta());
+        System.out.println(pakka.nosta());
     }
 }

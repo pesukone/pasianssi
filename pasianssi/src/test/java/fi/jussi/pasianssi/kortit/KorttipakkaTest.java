@@ -25,7 +25,7 @@ public class KorttipakkaTest {
     @Before
     public void setUp() {
         pakka = new Korttipakka();
-        Pakantayttaja.tayta52KortinPakka(pakka);
+        Pakantayttaja.alustaPeruskorttipakka(pakka);
     }
     
     @After
@@ -44,7 +44,7 @@ public class KorttipakkaTest {
     @Test
     public void nostettuKorttiPoistetaanPakasta() {
         int koko = pakka.korttienMaara();
-        Kortti paalimmainen = pakka.nostaKortti();
+        Kortti paalimmainen = pakka.nosta();
         
         assertEquals(pakka.korttienMaara(), koko - 1);
     }
@@ -54,6 +54,7 @@ public class KorttipakkaTest {
         Kortti paalimmainen = pakka.paalimmainen();
         pakka.sekoita();
         
+        // Ei huomioi tapausta, jossa päälimmäinen kortti päätyy taas päälimmäiseksi!
         assertNotSame(pakka.paalimmainen(), paalimmainen);
     }
     

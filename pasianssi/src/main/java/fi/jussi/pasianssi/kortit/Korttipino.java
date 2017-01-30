@@ -28,7 +28,7 @@ public class Korttipino {
         return this.nakyvatKortit.isEmpty();
     }
 	
-	public boolean tyhja() {
-		return this.kaannetytKortit.empty() && this.nakyvatKortit.isEmpty();
-	}
+    public boolean tyhja() {
+	return this.kaannetytKortit.empty() && this.nakyvatKortit.isEmpty();
+    }
 }

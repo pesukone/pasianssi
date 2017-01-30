@@ -14,7 +14,7 @@ public class Korttipakka {
         this.kortit.push(kortti);
     }
     
-    public Kortti nostaKortti() {
+    public Kortti nosta() {
         return this.kortit.pop();
     }
     
