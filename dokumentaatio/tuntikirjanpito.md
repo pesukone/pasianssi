@@ -9,4 +9,5 @@ Päivä | Tunnit | Kuvaus
 26.01.2017 | 1h | Kirjoitettu testejä korttipakkaluokalle
 26.01.2017 | 1h | Säädetty pit ja checkstyle toimimaan, tehty korttipinoluokka
 30.01.2017 | 2h | Tehty pasianssipelin alustustoimintoja
+31.01.2017 | 1h | Toteutettu ja testattu korttien jakamista pöydälle
 ... | ... | ...

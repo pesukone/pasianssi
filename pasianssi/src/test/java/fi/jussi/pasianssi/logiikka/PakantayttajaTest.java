@@ -11,7 +11,8 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class PakantayttajaTest {
-    
+    Korttipakka pakka;
+	
     public PakantayttajaTest() {
     }
     
@@ -25,6 +26,7 @@ public class PakantayttajaTest {
     
     @Before
     public void setUp() {
+		pakka = new Korttipakka();
     }
     
     @After
@@ -33,7 +35,6 @@ public class PakantayttajaTest {
 
     @Test
     public void taytetyssaPakassa13KaikkienMaidenKortteja() {
-        Korttipakka pakka = new Korttipakka();
         Pakantayttaja.alustaPeruskorttipakka(pakka);
         
         int herttoja = 0;
@@ -61,7 +62,46 @@ public class PakantayttajaTest {
                     break;
             }
         }
-        
-        assertTrue(herttoja == ruutuja && herttoja == patoja && herttoja == risteja && herttoja == 13);
+		
+		assertEquals(herttoja, ruutuja);
+		assertEquals(ruutuja, patoja);
+		assertEquals(patoja, risteja);
+		assertEquals(risteja, 13);
     }
+	
+	@Test
+	public void tuplapakassa26KaikkienMaidenKortteja() {
+		Pakantayttaja.alustaTuplakorttipakka(pakka);
+		
+		int herttoja = 0;
+		int ruutuja = 0;
+		int patoja = 0;
+		int risteja = 0;
+		
+		while (!pakka.tyhja()) {
+			Maa maa = pakka.nosta().getMaa();
+			
+			switch (maa) {
+				case HERTTA:
+					herttoja++;
+					break;
+				case RUUTU:
+					ruutuja++;
+					break;
+				case PATA:
+					patoja++;
+					break;
+				case RISTI:
+					risteja++;
+					break;
+				default:
+					break;
+			}
+		}
+		
+		assertEquals(herttoja, ruutuja);
+		assertEquals(ruutuja, patoja);
+		assertEquals(patoja, risteja);
+		assertEquals(risteja, 26);
+	}
 }

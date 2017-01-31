@@ -42,7 +42,20 @@ public class PasianssinAloitusTest {
         List<Korttipino> pinot = pasianssi.getPinot();
         
         for (Korttipino pino : pinot) {
-            for ()
+            kortteja += pino.getKaannetyt().size();
+			kortteja += pino.getNakyvat().size();
         }
+		
+		assertEquals(54, kortteja);
     }
+	
+	@Test
+	public void pakassa50Korttia() {
+		int kortteja = 0;
+		Korttipakka pakka = pasianssi.getPakka();
+		
+		kortteja += pakka.korttienMaara();
+		
+		assertEquals(50, kortteja);
+	}
 }
