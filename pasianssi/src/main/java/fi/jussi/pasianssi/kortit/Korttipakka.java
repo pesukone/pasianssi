@@ -26,7 +26,7 @@ public class Korttipakka {
         return this.kortit.empty();
     }
     
-    public int korttienMaara() {
+    public int korttimaara() {
         return this.kortit.size();
     }
     

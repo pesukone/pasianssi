@@ -1,6 +1,7 @@
 package fi.jussi.pasianssi.kortit;
 
 import java.util.List;
+import fi.jussi.pasianssi.logiikka.Pakantayttaja;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -42,20 +43,30 @@ public class PasianssinAloitusTest {
         List<Korttipino> pinot = pasianssi.getPinot();
         
         for (Korttipino pino : pinot) {
-            kortteja += pino.getKaannetyt().size();
-			kortteja += pino.getNakyvat().size();
+            kortteja += pino.korttimaara();
         }
 		
-		assertEquals(54, kortteja);
+	assertEquals(54, kortteja);
     }
 	
-	@Test
-	public void pakassa50Korttia() {
-		int kortteja = 0;
-		Korttipakka pakka = pasianssi.getPakka();
-		
-		kortteja += pakka.korttienMaara();
-		
-		assertEquals(50, kortteja);
-	}
+    @Test
+    public void pakassa50Korttia() {
+	int kortteja = 0;
+	Korttipakka pakka = pasianssi.getPakka();
+	
+	kortteja += pakka.korttimaara();
+	
+	assertEquals(50, kortteja);
+    }
+    
+    @Test
+    public void pakkaSekoitettuPelinAlussa() {
+        Korttipakka ensimmainen = pasianssi.getPakka();
+        
+        pasianssi = new Pasianssi();
+        Korttipakka toinen = pasianssi.getPakka();
+        
+        // Ei huomioi tapausta, jossa päälimmäinen sekoitetaan uudestaan päälimmäiseksi
+        assertNotSame(ensimmainen.paalimmainen(), toinen.paalimmainen());
+    }
 }

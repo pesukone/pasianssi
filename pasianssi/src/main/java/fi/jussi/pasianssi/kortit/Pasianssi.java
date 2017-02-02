@@ -29,26 +29,21 @@ public class Pasianssi {
     }
     
 
-	// refaktoroidaan sitten joskus
+    // refaktoroidaan sitten joskus omaan luokkaan
     private void taytaPinot() {
-		for (int i = 0; i < 4; i++) {
-			for (int j = 0; j < 10; j++) {
-				this.pinot.get(j).lisaaKaannettyKortti(this.pakka.nosta());
-			}
-		}
+	for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 10; j++) {
+		this.pinot.get(j).lisaaKaannettyKortti(this.pakka.nosta());
+            }
+	}
 		
-		for (int i = 0; i < 4; i++) {
-			this.pinot.get(i).lisaaKaannettyKortti(this.pakka.nosta());
-		}
+	for (int i = 0; i < 4; i++) {
+            this.pinot.get(i).lisaaKaannettyKortti(this.pakka.nosta());
+	}
 		
-		for (int i = 0; i < 10; i++) {
-			this.pinot.get(i).lisaaNakyvaKortti(this.pakka.nosta());
-		}
-    }
-    
-    public void aloitaPeli() {
-        Pakantayttaja.alustaTuplakorttipakka(this.pakka);
-        this.pakka.sekoita();
+	for (int i = 0; i < 10; i++) {
+            this.pinot.get(i).lisaaNakyvaKortti(this.pakka.nosta());
+	}
     }
     
     public void nosta10Korttia() {

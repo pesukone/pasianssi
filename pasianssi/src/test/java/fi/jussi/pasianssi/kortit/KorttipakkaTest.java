@@ -34,19 +34,19 @@ public class KorttipakkaTest {
 
     @Test
     public void korttiLisataanPakkaan() {
-        int koko = pakka.korttienMaara();
+        int koko = pakka.korttimaara();
         Kortti lisattava = new Kortti(Maa.HERTTA, 4);
         pakka.lisaaKortti(lisattava);
         
-        assertEquals(pakka.korttienMaara(), koko + 1);
+        assertEquals(pakka.korttimaara(), koko + 1);
     }
     
     @Test
     public void nostettuKorttiPoistetaanPakasta() {
-        int koko = pakka.korttienMaara();
+        int koko = pakka.korttimaara();
         Kortti paalimmainen = pakka.nosta();
         
-        assertEquals(pakka.korttienMaara(), koko - 1);
+        assertEquals(pakka.korttimaara(), koko - 1);
     }
     
     @Test

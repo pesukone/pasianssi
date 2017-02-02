@@ -29,14 +29,18 @@ public class Korttipino {
     }
 	
     public boolean tyhja() {
-		return (this.kaannetytKortit.empty() && this.nakyvatKortit.isEmpty());
+	return (this.kaannetytKortit.empty() && this.nakyvatKortit.isEmpty());
     }
 	
-	public Stack<Kortti> getKaannetyt() {
-		return this.kaannetytKortit;
-	}
+    public Stack<Kortti> getKaannetyt() {
+	return this.kaannetytKortit;
+    }
 	
-	public LinkedList<Kortti> getNakyvat() {
-		return this.nakyvatKortit;
-	}
+    public LinkedList<Kortti> getNakyvat() {
+	return this.nakyvatKortit;
+    }
+    
+    public int korttimaara() {
+        return this.kaannetytKortit.size() + this.nakyvatKortit.size();
+    }
 }
