@@ -32,19 +32,19 @@ public class Pasianssi {
 
     // refaktoroidaan sitten joskus omaan luokkaan
     private void taytaPinot() {
-	for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 10; j++) {
-		this.pinot.get(j).lisaaKaannettyKortti(this.pakka.nosta());
-            }
-	}
+		for (int i = 0; i < 4; i++) {
+			for (int j = 0; j < 10; j++) {
+				this.pinot.get(j).lisaaKaannettyKortti(this.pakka.nosta());
+			}
+		}
 		
-	for (int i = 0; i < 4; i++) {
-            this.pinot.get(i).lisaaKaannettyKortti(this.pakka.nosta());
-	}
+		for (int i = 0; i < 4; i++) {
+			this.pinot.get(i).lisaaKaannettyKortti(this.pakka.nosta());
+		}
 		
-	for (int i = 0; i < 10; i++) {
-            this.pinot.get(i).lisaaNakyvaKortti(this.pakka.nosta());
-	}
+		for (int i = 0; i < 10; i++) {
+			this.pinot.get(i).lisaaNakyvaKortti(this.pakka.nosta());
+		}
     }
     
     public boolean nosta10Korttia() {
@@ -52,7 +52,7 @@ public class Pasianssi {
             Korttipino pino = this.pinot.get(i);
 			Kortti nostettava;
 			
-			try{
+			try {
 				nostettava = this.pakka.nosta();
 			} catch (EmptyStackException e) {
 				return false;
