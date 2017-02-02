@@ -3,6 +3,7 @@ package fi.jussi.pasianssi.kortit;
 import fi.jussi.pasianssi.logiikka.Pakantayttaja;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.EmptyStackException;
 
 public class Pasianssi {
     private Korttipakka pakka;
@@ -46,11 +47,21 @@ public class Pasianssi {
 	}
     }
     
-    public void nosta10Korttia() {
+    public boolean nosta10Korttia() {
         for (int i = 0; i < 10; i++) {
             Korttipino pino = this.pinot.get(i);
-            pino.lisaaNakyvaKortti(this.pakka.nosta());
+			Kortti nostettava;
+			
+			try{
+				nostettava = this.pakka.nosta();
+			} catch (EmptyStackException e) {
+				return false;
+			}
+			
+			pino.lisaaNakyvaKortti(nostettava);
         }
+		
+		return true;
     }
     
     public List<Korttipino> getPinot() {
