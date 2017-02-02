@@ -39,14 +39,14 @@ public class KorttipinoTest {
         
         pino.siirraKortti(toinen);
         
-        assertFalse(toinen.eiNakyviaKortteja());
+        assertEquals(toinen.korttimaara(), 1);
     }
 	
 	@Test
 	public void näkyvanKortinVoiLisata() {
 		pino.lisaaNakyvaKortti(new Kortti(Maa.HERTTA, 10));
 		
-		assertFalse(pino.eiNakyviaKortteja());
+		assertEquals(pino.korttimaara(), 1);
 	}
 	
 	@Test
@@ -63,5 +63,15 @@ public class KorttipinoTest {
 	@Test
 	public void pinoJossaNakyvaKorttiEiTyhja() {
 		pino.lisaaNakyvaKortti(new Kortti(Maa.RUUTU, 12));
+	}
+	
+	@Test
+	public void josNakyvatKortitLoppuvatKaannetaanKaannettyKortti() {
+		pino.lisaaKaannettyKortti(new Kortti(Maa.RISTI, 3));
+		pino.lisaaNakyvaKortti(new Kortti(Maa.RUUTU, 4));
+		
+		pino.siirraKortti(toinen);
+		
+		assertEquals(pino.getNakyvat().size(), 1);
 	}
 }
