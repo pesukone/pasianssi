@@ -8,6 +8,6 @@ Javalla toteutettu Spider-pasianssi
 
 [Tuntikirjanpito](dokumentaatio/tuntikirjanpito.md)
 
-[pit-raportti](https://htmlpreview.github.io/?https://github.com/pesukone/pasianssi/blob/master/documentaatio/pit/uusin)
+[pit-raportti](https://htmlpreview.github.io/?https://github.com/pesukone/pasianssi/blob/master/dokumentaatio/pit/uusin)
 
 [checkstyle-raportti](https://htmlpreview.github.io/?https://github.com/pesukone/pasianssi/blob/master/dokumentaatio/checkstyle/uusin)
