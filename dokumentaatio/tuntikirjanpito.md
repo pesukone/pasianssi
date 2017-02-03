@@ -13,4 +13,5 @@ Päivä | Tunnit | Kuvaus
 02.02.2017 | 2h | Tehty testejä, generoitu raportteja
 03.02.2017 | 1h | Muutettu luokkakaaviota, korjattu raportteja
 03.02.2017 | 2h | Linkitetty raportit README.md:hen ja kirjoitettu bash-skripti niiden päivittämiseen
+03.02.2017 | 1h | Korjattu linkkejä, koska github tai htmlpreview ei ymmärrä, mikä symbolinen linkkki on
 ... | ... | ...
