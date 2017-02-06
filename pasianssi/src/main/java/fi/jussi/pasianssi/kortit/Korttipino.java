@@ -12,7 +12,7 @@ public class Korttipino {
         this.nakyvatKortit = new LinkedList();
     }
     
-    public boolean siirraKortti(Kortti kortti, Korttipino kohde) {
+    public boolean siirraKortti(Korttipino kohde) {
         kohde.lisaaNakyvaKortti(this.nakyvatKortit.removeLast());
         
         if (this.eiNakyviaKortteja()) {
