@@ -1,7 +1,6 @@
 package fi.jussi.pasianssi.kortit;
 
 import java.util.List;
-import fi.jussi.pasianssi.logiikka.Pakantayttaja;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
