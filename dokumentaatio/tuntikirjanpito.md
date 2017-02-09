@@ -16,5 +16,6 @@ Päivä | Tunnit | Kuvaus
 03.02.2017 | 1h | Korjattu linkkejä, koska github tai htmlpreview ei ymmärrä, mikä symbolinen linkkki on
 06.02.2017 | 2h | Toteutettu korttipino itsetehdyllä linkitetyllä listalla ja testattu listaa
 06.02.2017 | 1h | Opeteltu JavaFX:ää
-09.02.2017 | 2h | Opeteltu lisää JavaFX:ää ja tehty ikkuna, jossa staattinen kortti
+09.02.2017 | 1h | Opeteltu lisää JavaFX:ää ja tehty ikkuna, jossa staattinen kortti
+09.02.2017 | 1h | Pinoiltu kortteja käyttöliittymässä
 ... | ... | ...
