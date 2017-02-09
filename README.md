@@ -11,3 +11,5 @@ Javalla toteutettu Spider-pasianssi
 [pit-raportti](https://htmlpreview.github.io/?https://github.com/pesukone/pasianssi/blob/master/dokumentaatio/pit/uusin/index.html)
 
 [checkstyle-raportti](https://htmlpreview.github.io/?https://github.com/pesukone/pasianssi/blob/master/dokumentaatio/checkstyle/uusin/checkstyle.html)
+
+[pelikortit](https://code.google.com/archive/p/vector-playing-cards/)
