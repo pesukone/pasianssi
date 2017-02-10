@@ -1,29 +1,33 @@
 package fi.jussi.pasianssi.kortit;
 
 import java.util.Stack;
-import java.util.LinkedList;
 
 public class Korttipino {
     private Stack<Kortti> kaannetytKortit;
-    private LinkedList<Kortti> nakyvatKortit;
+    private NakyvaKortti nakyvatKortit;
     
     public Korttipino() {
         this.kaannetytKortit = new Stack();
-        this.nakyvatKortit = new LinkedList();
     }
     
-    public boolean siirraKortti(Korttipino kohde) {
-        kohde.lisaaNakyvaKortti(this.nakyvatKortit.removeLast());
-        
+    public void siirraKortti(NakyvaKortti kortti, Korttipino kohde) {
+		if (kohde.eiNakyviaKortteja()) {
+			kohde.setNakyvat(kortti);
+		} else {
+			kortti.siirra(kohde.getNakyvat());
+		}
+		
         if (this.eiNakyviaKortteja()) {
             this.kaannaKorttiNakyviin();
-	}
-        
-        return true;
+		}
     }
 	
     public void lisaaNakyvaKortti(Kortti kortti) {
-        this.nakyvatKortit.add(kortti);
+		if (this.nakyvatKortit == null) {
+			this.nakyvatKortit = new NakyvaKortti(kortti);
+		} else {
+			this.nakyvatKortit.lisaa(kortti);
+		}
     }
     
     public void lisaaKaannettyKortti(Kortti kortti) {
@@ -31,28 +35,32 @@ public class Korttipino {
     }
     
     public boolean tyhja() {
-	return (this.kaannetytKortit.empty() && this.nakyvatKortit.isEmpty());
+		return (this.kaannetytKortit.empty() && this.nakyvatKortit == null);
     }
 	
     public Stack<Kortti> getKaannetyt() {
-	return this.kaannetytKortit;
+		return this.kaannetytKortit;
     }
 	
-    public LinkedList<Kortti> getNakyvat() {
-	return this.nakyvatKortit;
+    public NakyvaKortti getNakyvat() {
+		return this.nakyvatKortit;
     }
+	
+	public void setNakyvat(NakyvaKortti kortti) {
+		this.nakyvatKortit = kortti;
+	}
     
     public int korttimaara() {
-        return this.kaannetytKortit.size() + this.nakyvatKortit.size();
+        return this.kaannetytKortit.size() + this.nakyvatKortit.seuraaviaKortteja();
     }
 	
     private void kaannaKorttiNakyviin() {
-	if (!this.kaannetytKortit.isEmpty()) {
-		this.nakyvatKortit.add(this.kaannetytKortit.pop());
-	}
+		if (!this.kaannetytKortit.isEmpty()) {
+			this.nakyvatKortit.lisaa(this.kaannetytKortit.pop());
+		}
     }
 	
     private boolean eiNakyviaKortteja() {
-        return this.nakyvatKortit.isEmpty();
+        return this.nakyvatKortit == null;
     }
 }

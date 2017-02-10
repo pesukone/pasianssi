@@ -37,7 +37,7 @@ public class KorttipinoTest {
         pino.lisaaNakyvaKortti(new Kortti(Maa.RUUTU, 8));
         pino.lisaaNakyvaKortti(new Kortti(Maa.RISTI, 4));
         
-        pino.siirraKortti(toinen);
+        pino.siirraKortti(pino.getNakyvat().hanta(), toinen);
         
         assertEquals(toinen.korttimaara(), 1);
     }
@@ -70,8 +70,8 @@ public class KorttipinoTest {
 		pino.lisaaKaannettyKortti(new Kortti(Maa.RISTI, 3));
 		pino.lisaaNakyvaKortti(new Kortti(Maa.RUUTU, 4));
 		
-		pino.siirraKortti(toinen);
+		pino.siirraKortti(pino.getNakyvat().paa(), toinen);
 		
-		assertEquals(pino.getNakyvat().size(), 1);
+		assertEquals(pino.getNakyvat().seuraaviaKortteja(), 1);
 	}
 }

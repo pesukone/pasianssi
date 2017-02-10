@@ -43,8 +43,7 @@
             <configuration>
                 <targetClasses>
                     <param>fi.jussi.pasianssi.kortit.*</param>
-		    <param>fi.jussi.pasianssi.Pakantayttaja.java</param>
-		    <param>fi.jussi.pasianssi.Pasianssi.java</param>
+		    <param>fi.jussi.pasianssi.logiikka.*</param>
                 </targetClasses>
                 <targetTests>
                     <param>fi.jussi.pasianssi.kortit*</param>

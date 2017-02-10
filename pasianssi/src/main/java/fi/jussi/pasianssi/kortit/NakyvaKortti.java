@@ -50,6 +50,18 @@ public class NakyvaKortti {
         
         return hanta;
     }
+	
+	public int seuraaviaKortteja() {
+		int maara = 0;
+		NakyvaKortti iteroitava = this;
+		
+		while (iteroitava != null) {
+			iteroitava = iteroitava.seuraava;
+			maara++;
+		}
+		
+		return maara;
+	}
     
     public NakyvaKortti getSeuraava() {
         return this.seuraava;
