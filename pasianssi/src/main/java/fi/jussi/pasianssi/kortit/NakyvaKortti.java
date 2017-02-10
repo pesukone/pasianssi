@@ -3,6 +3,7 @@ package fi.jussi.pasianssi.kortit;
 /**
  * Linkitettynä listana toteutettu joukko kortteja. Kortin ja kaikki siitä
  * seuraavat kortit voi siirtää toisen korttilistan perälle.
+ * @see fi.jussi.pasianssi.kortit.Korttipino
  */
 public class NakyvaKortti {
     private Kortti kortti;

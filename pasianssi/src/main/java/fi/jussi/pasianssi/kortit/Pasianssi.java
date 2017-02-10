@@ -8,6 +8,8 @@ import java.util.EmptyStackException;
 /**
  * Pasianssipeliä kuvaava luokka. Pelissä on {@link fi.jussi.pasianssi.kortit.Korttipakka}
  * ja kymmenen {@link fi.jussi.pasianssi.kortit.Korttipino}a.
+ * @see fi.jussi.pasianssi.kortit.Korttipakka
+ * @see fi.jussi.pasianssi.kortit.Korttipino
  */
 public class Pasianssi {
     private Korttipakka pakka;

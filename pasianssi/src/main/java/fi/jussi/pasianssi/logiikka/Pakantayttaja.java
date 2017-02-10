@@ -4,6 +4,11 @@ import fi.jussi.pasianssi.kortit.Kortti;
 import fi.jussi.pasianssi.kortit.Korttipakka;
 import fi.jussi.pasianssi.kortit.Maa;
 
+
+/**
+ * Luokka tarjoaa korttipakan täyttämiseen liittyviä apumetodeja.
+ * @see fi.jussi.pasianssi.kortit.Korttipakka
+ */
 public class Pakantayttaja {
     
     public static void alustaPeruskorttipakka(Korttipakka pakka) {
