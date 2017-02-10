@@ -5,6 +5,10 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.EmptyStackException;
 
+/**
+ * Pasianssipeliä kuvaava luokka. Pelissä on {@link fi.jussi.pasianssi.kortit.Korttipakka}
+ * ja kymmenen {@link fi.jussi.pasianssi.kortit.Korttipino}a.
+ */
 public class Pasianssi {
     private Korttipakka pakka;
     private List<Korttipino> pinot;

@@ -2,6 +2,14 @@ package fi.jussi.pasianssi.kortit;
 
 import java.util.Stack;
 
+/**
+ * Näkyvien ja käännettyjen korttien pino pasianssissa. Pohjimmaisten
+ * korttien kuvapuolet voivat olla alaspäin. Kortit, joiden kuvapuolet ovat
+ * ylöspäin, kuvataan linkitettynä listana. Kortit, joiden kuvapuolet ovat
+ * alaspäin, kuvataan pinona.
+ * @see fi.jussi.pasianssi.kortit.NakyvaKortti
+ * @see java.util.Stack
+ */
 public class Korttipino {
     private Stack<Kortti> kaannetytKortit;
     private NakyvaKortti nakyvatKortit;
@@ -23,7 +31,7 @@ public class Korttipino {
     }
 	
     public void lisaaNakyvaKortti(Kortti kortti) {
-		if (this.nakyvatKortit == null) {
+		if (this.eiNakyviaKortteja()) {
 			this.nakyvatKortit = new NakyvaKortti(kortti);
 		} else {
 			this.nakyvatKortit.lisaa(kortti);

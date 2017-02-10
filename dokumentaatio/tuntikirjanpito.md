@@ -19,4 +19,5 @@ Päivä | Tunnit | Kuvaus
 09.02.2017 | 1h | Opeteltu lisää JavaFX:ää ja tehty ikkuna, jossa staattinen kortti
 09.02.2017 | 1h | Pinoiltu kortteja käyttöliittymässä
 10.02.2017 | 1h | Otettu uusi korttipinototeutus käyttöön
+10.02.2017 | 2h | Päivitetty luokkakaavio ja aloitettu Javadoc:in kirjoittaminen.
 ... | ... | ...
