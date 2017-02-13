@@ -2,11 +2,15 @@ package fi.jussi.pasianssi.kali;
 
 import fi.jussi.pasianssi.kortit.Kortti;
 import fi.jussi.pasianssi.kortit.NakyvaKortti;
+import fi.jussi.pasianssi.kortit.Korttipino;
 import fi.jussi.pasianssi.kortit.Pasianssi;
 import javafx.application.Application;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.Group;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
@@ -18,7 +22,7 @@ public class Kayttoliittyma extends Application {
     @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Spider-pasianssi");
-        Group root = new Group();
+        BorderPane root = new BorderPane();
         Scene scene = new Scene(root, 1280, 720, Color.GREEN);
 		
         Image image = new Image("file:resources/img/risti10.png");
@@ -37,17 +41,31 @@ public class Kayttoliittyma extends Application {
         u9.setImage(new Image("file:resources/img/ruutu9.png"));
         u9.setFitWidth(120);
         u9.setPreserveRatio(true);
+        
+        ImageView pk = new ImageView();
+        pk.setImage(new Image("file:resources/img/pata13.png"));
+        pk.setFitWidth(120);
+        pk.setPreserveRatio(true);
 		
         AnchorPane pino = new AnchorPane();
-		
+	AnchorPane toinen = new AnchorPane();
+        AnchorPane kolmas = new AnchorPane();
+        
         pino.getChildren().add(r10);
         pino.getChildren().add(pa);
-        pino.getChildren().add(u9);
+        toinen.getChildren().add(u9);
+        kolmas.getChildren().add(pk);
 		
         AnchorPane.setTopAnchor(pa, 35.0);
-        AnchorPane.setTopAnchor(u9, 70.0);
-		
-        root.getChildren().add(pino);
+	
+        HBox pinot = new HBox(10.0);
+        pinot.setAlignment(Pos.CENTER);
+        
+        pinot.getChildren().add(pino);
+        pinot.getChildren().add(toinen);
+        pinot.getChildren().add(kolmas);
+        
+        root.setTop(pinot);
 		
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -69,6 +87,10 @@ public class Kayttoliittyma extends Application {
         return palautettava;
     }
     
+    /*private AnchorPane piirraKorttipino(Korttipino pino) {
+        
+    }*/
+    
     private Image kortinKuva(Kortti kortti) {
         String maa;
         
@@ -86,6 +108,15 @@ public class Kayttoliittyma extends Application {
         
         return new Image("file:resources/img/" + maa + kortti.getArvo() + ".png");
     }
+    
+    /*private HBox piirraKorttipinot() {
+        HBox pinot = new HBox(10.0);
+        pinot.setAlignment(Pos.CENTER);
+        
+        for (int i = 0; i < 10; i++) {
+            pinot.getChildren().add(new AnchorPane());
+        }
+    }*/
     
     public void setPasianssi(Pasianssi pasianssi) {
         this.pasianssi = pasianssi;

@@ -21,4 +21,5 @@ Päivä | Tunnit | Kuvaus
 10.02.2017 | 1h | Otettu uusi korttipinototeutus käyttöön
 10.02.2017 | 2h | Päivitetty luokkakaavio ja aloitettu Javadoc:in kirjoittaminen.
 13.02.2017 | 2h | Säädetty pasianssi käli-luokan oliomuuttujaksi
+13.02.2017 | 1h | Koitettu korjata korttipinon siirtometodia
 ... | ... | ...

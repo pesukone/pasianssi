@@ -20,11 +20,14 @@ public class Korttipino {
     
     public void siirraKortti(NakyvaKortti kortti, Korttipino kohde) {
 	if (kohde.eiNakyviaKortteja()) {
-            kohde.setNakyvat(kortti);
+            kohde.setNakyvat(new NakyvaKortti(kortti.getKortti()));
+            if (kortti.getSeuraava() != null) {
+                kortti.getSeuraava().siirra(kohde.getNakyvat());
+            }
 	} else {
             kortti.siirra(kohde.getNakyvat());
 	}
-		
+	
         if (this.eiNakyviaKortteja()) {
             this.kaannaKorttiNakyviin();
 	}
@@ -61,13 +64,13 @@ public class Korttipino {
     public int korttimaara() {
         return this.kaannetytKortit.size() + this.nakyvatKortit.seuraaviaKortteja();
     }
-	
+    
     private void kaannaKorttiNakyviin() {
 	if (!this.kaannetytKortit.isEmpty()) {
             this.nakyvatKortit.lisaa(this.kaannetytKortit.pop());
         }
     }
-	
+    
     private boolean eiNakyviaKortteja() {
         return this.nakyvatKortit == null;
     }
