@@ -2,11 +2,15 @@ package fi.jussi.pasianssi;
 
 import fi.jussi.pasianssi.logiikka.*;
 import fi.jussi.pasianssi.kortit.*;
+import fi.jussi.pasianssi.kali.*;
+import javafx.application.Application;
 
 public class Main {
     
     public static void main(String[] args) {
-        NakyvaKortti kortti = new NakyvaKortti(new Kortti(Maa.HERTTA, 3));
-        System.out.println(kortti.getSeuraava());
+        Pasianssi pasianssi = new Pasianssi();
+        Kayttoliittyma kali = new Kayttoliittyma();
+        kali.setPasianssi(pasianssi);
+        Application.launch(Kayttoliittyma.class, args);
     }
 }

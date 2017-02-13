@@ -38,43 +38,43 @@ public class Pasianssi {
 
     // refaktoroidaan sitten joskus omaan luokkaan
     private void taytaPinot() {
-		for (int i = 0; i < 4; i++) {
-			for (int j = 0; j < 10; j++) {
-				this.pinot.get(j).lisaaKaannettyKortti(this.pakka.nosta());
-			}
-		}
+	for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 10; j++) {
+		this.pinot.get(j).lisaaKaannettyKortti(this.pakka.nosta());
+            }
+	}
 		
-		for (int i = 0; i < 4; i++) {
-			this.pinot.get(i).lisaaKaannettyKortti(this.pakka.nosta());
-		}
+	for (int i = 0; i < 4; i++) {
+            this.pinot.get(i).lisaaKaannettyKortti(this.pakka.nosta());
+	}
 		
-		for (int i = 0; i < 10; i++) {
-			this.pinot.get(i).lisaaNakyvaKortti(this.pakka.nosta());
-		}
+	for (int i = 0; i < 10; i++) {
+            this.pinot.get(i).lisaaNakyvaKortti(this.pakka.nosta());
+	}
     }
     
     public boolean nosta10Korttia() {
         for (int i = 0; i < 10; i++) {
             Korttipino pino = this.pinot.get(i);
-			Kortti nostettava;
+            Kortti nostettava;
 			
-			try {
-				nostettava = this.pakka.nosta();
-			} catch (EmptyStackException e) {
-				return false;
-			}
+            try {
+                nostettava = this.pakka.nosta();
+            } catch (EmptyStackException e) {
+                return false;
+            }
 			
-			pino.lisaaNakyvaKortti(nostettava);
+            pino.lisaaNakyvaKortti(nostettava);
         }
 		
-		return true;
+	return true;
     }
     
     public List<Korttipino> getPinot() {
         return this.pinot;
     }
 	
-	public Korttipakka getPakka() {
-		return this.pakka;
-	}
+    public Korttipakka getPakka() {
+        return this.pakka;
+    }
 }

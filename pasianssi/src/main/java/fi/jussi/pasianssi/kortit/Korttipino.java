@@ -19,23 +19,23 @@ public class Korttipino {
     }
     
     public void siirraKortti(NakyvaKortti kortti, Korttipino kohde) {
-		if (kohde.eiNakyviaKortteja()) {
-			kohde.setNakyvat(kortti);
-		} else {
-			kortti.siirra(kohde.getNakyvat());
-		}
+	if (kohde.eiNakyviaKortteja()) {
+            kohde.setNakyvat(kortti);
+	} else {
+            kortti.siirra(kohde.getNakyvat());
+	}
 		
         if (this.eiNakyviaKortteja()) {
             this.kaannaKorttiNakyviin();
-		}
+	}
     }
 	
     public void lisaaNakyvaKortti(Kortti kortti) {
-		if (this.eiNakyviaKortteja()) {
-			this.nakyvatKortit = new NakyvaKortti(kortti);
-		} else {
-			this.nakyvatKortit.lisaa(kortti);
-		}
+	if (this.eiNakyviaKortteja()) {
+            this.nakyvatKortit = new NakyvaKortti(kortti);
+	} else {
+            this.nakyvatKortit.lisaa(kortti);
+	}
     }
     
     public void lisaaKaannettyKortti(Kortti kortti) {
@@ -43,29 +43,29 @@ public class Korttipino {
     }
     
     public boolean tyhja() {
-		return (this.kaannetytKortit.empty() && this.nakyvatKortit == null);
+	return (this.kaannetytKortit.empty() && this.nakyvatKortit == null);
     }
 	
     public Stack<Kortti> getKaannetyt() {
-		return this.kaannetytKortit;
+	return this.kaannetytKortit;
     }
 	
     public NakyvaKortti getNakyvat() {
-		return this.nakyvatKortit;
+	return this.nakyvatKortit;
     }
 	
-	public void setNakyvat(NakyvaKortti kortti) {
-		this.nakyvatKortit = kortti;
-	}
+    public void setNakyvat(NakyvaKortti kortti) {
+	this.nakyvatKortit = kortti;
+    }
     
     public int korttimaara() {
         return this.kaannetytKortit.size() + this.nakyvatKortit.seuraaviaKortteja();
     }
 	
     private void kaannaKorttiNakyviin() {
-		if (!this.kaannetytKortit.isEmpty()) {
-			this.nakyvatKortit.lisaa(this.kaannetytKortit.pop());
-		}
+	if (!this.kaannetytKortit.isEmpty()) {
+            this.nakyvatKortit.lisaa(this.kaannetytKortit.pop());
+        }
     }
 	
     private boolean eiNakyviaKortteja() {

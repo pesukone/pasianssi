@@ -8,11 +8,10 @@ public class Kortti {
     private Maa maa;
     private int arvo;
     
-	/**
-	 * @param maa	Pelikortin {@link fi.jussi.pasianssi.kortit.Maa}
-	 * @param arvo	Pelikortin arvo
-	 */
-	
+    /**
+     * @param maa	Pelikortin {@link fi.jussi.pasianssi.kortit.Maa}
+     * @param arvo	Pelikortin arvo
+     */	
     public Kortti(Maa maa, int arvo) {
         if (arvo < 1 || arvo > 13) {
             throw(new IllegalArgumentException());
