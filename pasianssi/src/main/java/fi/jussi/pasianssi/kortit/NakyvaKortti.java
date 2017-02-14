@@ -4,6 +4,7 @@ package fi.jussi.pasianssi.kortit;
  * Linkitettynä listana toteutettu joukko kortteja. Kortin ja kaikki siitä
  * seuraavat kortit voi siirtää toisen korttilistan perälle.
  * @see fi.jussi.pasianssi.kortit.Korttipino
+ * @see fi.jussi.pasianssi.kortit.Kortti
  */
 public class NakyvaKortti {
     private Kortti kortti;
@@ -16,6 +17,11 @@ public class NakyvaKortti {
         this.edellinen = null;
     }
     
+	/**
+	 * Metodi liittää parametrinä annetun korttilistan metodia kutsuvan listan
+	 * perään.
+	 * @param lisattava		listaan lisättävä korttilista
+	 */
     public void lisaa(NakyvaKortti lisattava) {
         NakyvaKortti pino = this;
         
@@ -27,16 +33,29 @@ public class NakyvaKortti {
         lisattava.setEdellinen(pino);
     }
     
+	/**
+	 * Metodi luo listan perään uuden solmun, jonka korttimuuttuja annetaan
+	 * metodille parametrinä.
+	 * @param kortti	listaan lisättävä kortti
+	 */
     public void lisaa(Kortti kortti) {
         NakyvaKortti lisattava = new NakyvaKortti(kortti);
         this.lisaa(lisattava);
     }
     
+	/**
+	 * Metodi siirtää listan solmun parametrina annetun korttilistan perälle.
+	 * @param kohde		lista, johon solmu siirretään
+	 */
     public void siirra(NakyvaKortti kohde) {
         this.getEdellinen().setSeuraava(null);
         kohde.lisaa(this);
     }
     
+	/**
+	 * Metodi palauttaa viitteen listan ensimmäiseen solmuun.
+	 * @return	listan ensimmäinen solmu
+	 */
     public NakyvaKortti paa() {
         NakyvaKortti paa = this;
         while (this.getEdellinen() != null) {
@@ -46,6 +65,10 @@ public class NakyvaKortti {
         return paa;
     }
     
+	/**
+	 * Metodi palauttaa viitteen listan viimeiseen solmuun.
+	 * @return	listan viimeinen solmu
+	 */
     public NakyvaKortti hanta() {
         NakyvaKortti hanta = this;
         while (hanta.getSeuraava() != null) {
@@ -55,6 +78,10 @@ public class NakyvaKortti {
         return hanta;
     }
 	
+	/**
+	 * Metodi kertoo, kuinka monta korttia listalla on nykyisen solmun jälkeen.
+	 * @return	korttien määrä
+	 */
     public int seuraaviaKortteja() {
 		int maara = 0;
 		NakyvaKortti iteroitava = this;

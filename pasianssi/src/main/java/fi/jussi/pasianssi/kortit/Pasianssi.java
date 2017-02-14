@@ -22,7 +22,7 @@ public class Pasianssi {
         this.alustaPakka();
         this.taytaPinot();
     }
-    
+
     private void alustaPinot() {
         for (int i = 0; i < 10; i++) {
             Korttipino pino = new Korttipino();
@@ -53,6 +53,11 @@ public class Pasianssi {
 		}
     }
     
+	/**
+	 * Metodi, jolla pasianssin pakasta voi nostaa yhden kortin jokaiseen
+	 * korttipinoon.
+	 * @return	nostaminen onnistui
+	 */
     public boolean nosta10Korttia() {
         for (int i = 0; i < 10; i++) {
             Korttipino pino = this.pinot.get(i);
@@ -67,7 +72,7 @@ public class Pasianssi {
             pino.lisaaNakyvaKortti(nostettava);
         }
 		
-	return true;
+		return true;
     }
     
     public List<Korttipino> getPinot() {

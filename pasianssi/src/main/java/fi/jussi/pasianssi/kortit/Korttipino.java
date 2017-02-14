@@ -18,6 +18,12 @@ public class Korttipino {
         this.kaannetytKortit = new Stack();
     }
     
+	/**
+	 * Metodi siirtää pöydällä olevan näkyvän kortin ja sitä seuraavat kortit
+	 * toiseen korttipinoon.
+	 * @param kortti	siirrettävä kortti
+	 * @param kohde		korttipino, jonka perään kortti/kortit siirretään
+	 */
     public void siirraKortti(NakyvaKortti kortti, Korttipino kohde) {
 		if (kohde.eiNakyviaKortteja()) {
 			kohde.setNakyvat(new NakyvaKortti(kortti.getKortti()));
@@ -33,6 +39,10 @@ public class Korttipino {
 		}
     }
 	
+	/**
+	 * Metodi lisää korttipinoon kortin, jonka kuvapuoli on näkyvissä.
+	 * @param kortti	pinoon lisättävä kortti
+	 */
     public void lisaaNakyvaKortti(Kortti kortti) {
 		if (this.eiNakyviaKortteja()) {
             this.nakyvatKortit = new NakyvaKortti(kortti);
@@ -41,6 +51,11 @@ public class Korttipino {
 		}
     }
     
+	/**
+	 * Metodi lisää korttipinoon kortin, jonka kuvapuoli on käännetty alaspäin.
+	 * Kutsutaan pasianssipelin alustamisen yhteydessä.
+	 * @param kortti	pinoon lisättävä kortti
+	 */
     public void lisaaKaannettyKortti(Kortti kortti) {
         this.kaannetytKortit.push(kortti);
     }
