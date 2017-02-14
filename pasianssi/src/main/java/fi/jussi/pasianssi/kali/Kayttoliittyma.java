@@ -1,6 +1,7 @@
 package fi.jussi.pasianssi.kali;
 
 import fi.jussi.pasianssi.kortit.Kortti;
+import fi.jussi.pasianssi.kortit.Maa;
 import fi.jussi.pasianssi.kortit.NakyvaKortti;
 import fi.jussi.pasianssi.kortit.Korttipino;
 import fi.jussi.pasianssi.kortit.Pasianssi;
@@ -25,7 +26,7 @@ public class Kayttoliittyma extends Application {
         BorderPane root = new BorderPane();
         Scene scene = new Scene(root, 1280, 720, Color.GREEN);
 		
-        Image image = new Image("file:resources/img/risti10.png");
+		Image image = kortinKuva(new Kortti(Maa.RISTI, 10));
 		
         ImageView r10 = new ImageView();
         r10.setImage(image);
@@ -48,7 +49,7 @@ public class Kayttoliittyma extends Application {
         pk.setPreserveRatio(true);
 		
         AnchorPane pino = new AnchorPane();
-	AnchorPane toinen = new AnchorPane();
+		AnchorPane toinen = new AnchorPane();
         AnchorPane kolmas = new AnchorPane();
         
         pino.getChildren().add(r10);
@@ -106,7 +107,8 @@ public class Kayttoliittyma extends Application {
             default:        throw new IllegalArgumentException();
         }
         
-        return new Image("file:resources/img/" + maa + kortti.getArvo() + ".png");
+		String polku = maa + kortti.getArvo() + ".png";
+        return new Image(getClass().getClassLoader().getResourceAsStream(polku));
     }
     
     /*private HBox piirraKorttipinot() {

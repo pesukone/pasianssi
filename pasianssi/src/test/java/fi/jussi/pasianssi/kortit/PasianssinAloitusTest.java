@@ -45,17 +45,17 @@ public class PasianssinAloitusTest {
             kortteja += pino.korttimaara();
         }
 		
-	assertEquals(54, kortteja);
+		assertEquals(54, kortteja);
     }
 	
     @Test
     public void pakassa50Korttia() {
-	int kortteja = 0;
-	Korttipakka pakka = pasianssi.getPakka();
+		int kortteja = 0;
+		Korttipakka pakka = pasianssi.getPakka();
 	
-	kortteja += pakka.korttimaara();
+		kortteja += pakka.korttimaara();
 	
-	assertEquals(50, kortteja);
+		assertEquals(50, kortteja);
     }
     
     @Test

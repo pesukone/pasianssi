@@ -56,12 +56,12 @@ public class NakyvaKortti {
     }
 	
     public int seuraaviaKortteja() {
-	int maara = 0;
-	NakyvaKortti iteroitava = this;
+		int maara = 0;
+		NakyvaKortti iteroitava = this;
 		
-	while (iteroitava != null) {
-            iteroitava = iteroitava.seuraava;
-            maara++;
+		while (iteroitava != null) {
+			iteroitava = iteroitava.seuraava;
+			maara++;
         }
 		
         return maara;

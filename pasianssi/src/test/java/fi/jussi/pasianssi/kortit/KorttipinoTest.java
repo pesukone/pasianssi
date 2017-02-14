@@ -15,11 +15,11 @@ public class KorttipinoTest {
     }
     
     @BeforeClass
-    public static void setUpClass() {
+		public static void setUpClass() {
     }
     
     @AfterClass
-    public static void tearDownClass() {
+		public static void tearDownClass() {
     }
     
     @Before
@@ -29,7 +29,7 @@ public class KorttipinoTest {
     }
     
     @After
-    public void tearDown() {
+		public void tearDown() {
     }
     
     @Test
@@ -43,26 +43,26 @@ public class KorttipinoTest {
     }
 	
     @Test
-    public void näkyvanKortinVoiLisata() {
-	pino.lisaaNakyvaKortti(new Kortti(Maa.HERTTA, 10));
+		public void nakyvanKortinVoiLisata() {
+		pino.lisaaNakyvaKortti(new Kortti(Maa.HERTTA, 10));
 		
-	assertEquals(pino.korttimaara(), 1);
+		assertEquals(pino.korttimaara(), 1);
     }
 	
     @Test
-    public void alustettuPinoOnTyhja() {
-	assertTrue(pino.tyhja());
+		public void alustettuPinoOnTyhja() {
+		assertTrue(pino.tyhja());
     }
 	
     @Test
     public void pinoJossaKaannettyKorttiEiTyhja() {
     	pino.lisaaKaannettyKortti(new Kortti(Maa.RISTI, 2));
-	assertFalse(pino.tyhja());
+		assertFalse(pino.tyhja());
     }
 	
     @Test
-    public void pinoJossaNakyvaKorttiEiTyhja() {
-	pino.lisaaNakyvaKortti(new Kortti(Maa.RUUTU, 12));
+		public void pinoJossaNakyvaKorttiEiTyhja() {
+		pino.lisaaNakyvaKortti(new Kortti(Maa.RUUTU, 12));
     }
 	
     @Test
