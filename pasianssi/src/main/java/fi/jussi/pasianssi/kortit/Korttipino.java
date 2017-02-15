@@ -25,18 +25,20 @@ public class Korttipino {
      * @param kohde		korttipino, jonka perään kortti/kortit siirretään
     */
     public void siirraKortti(NakyvaKortti kortti, Korttipino kohde) {
-		if (kohde.eiNakyviaKortteja()) {
-			kohde.setNakyvat(new NakyvaKortti(kortti.getKortti()));
-            if (kortti.getSeuraava() != null) {
-                kortti.getSeuraava().siirra(kohde.getNakyvat());
-            }
-		} else {
+        if (kohde.eiNakyviaKortteja()) {
+			kohde.setNakyvat(kortti);
+            kortti.setEdellinen(null);
+        } else {
             kortti.siirra(kohde.getNakyvat());
-		}
+        }
+        
+        if (kortti.equals(this.nakyvatKortit)) {
+            this.nakyvatKortit = null;
+        }
 	
         if (this.eiNakyviaKortteja()) {
             this.kaannaKorttiNakyviin();
-		}
+        }
     }
 	
     /**
@@ -82,7 +84,7 @@ public class Korttipino {
     
     private void kaannaKorttiNakyviin() {
 	if (!this.kaannetytKortit.isEmpty()) {
-            this.nakyvatKortit.lisaa(this.kaannetytKortit.pop());
+            this.lisaaNakyvaKortti(this.kaannetytKortit.pop());
         }
     }
     

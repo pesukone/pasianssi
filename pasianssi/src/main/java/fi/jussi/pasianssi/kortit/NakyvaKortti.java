@@ -48,7 +48,11 @@ public class NakyvaKortti {
      * @param kohde		lista, johon solmu siirretään
      */
     public void siirra(NakyvaKortti kohde) {
-        this.getEdellinen().setSeuraava(null);
+        if (this.getEdellinen() != null) {
+            this.getEdellinen().setSeuraava(null);
+            this.setEdellinen(null);
+        }
+        
         kohde.lisaa(this);
     }
     

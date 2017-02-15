@@ -50,8 +50,17 @@ public class KorttipinoTest {
     }
 	
     @Test
-		public void alustettuPinoOnTyhja() {
+	public void alustettuPinoOnTyhja() {
 		assertTrue(pino.tyhja());
+    }
+        
+    @Test
+    public void kaannettyKorttiLisataanPinoon() {
+        Kortti kortti = new Kortti(Maa.HERTTA, 3);
+        pino.lisaaKaannettyKortti(kortti);
+        
+        assertEquals(pino.getKaannetyt().peek().getMaa(), kortti.getMaa());
+        assertEquals(pino.getKaannetyt().peek().getArvo(), kortti.getArvo());
     }
 	
     @Test
@@ -61,8 +70,17 @@ public class KorttipinoTest {
     }
 	
     @Test
-		public void pinoJossaNakyvaKorttiEiTyhja() {
+	public void pinoJossaNakyvaKorttiEiTyhja() {
 		pino.lisaaNakyvaKortti(new Kortti(Maa.RUUTU, 12));
+    }
+    
+    @Test
+    public void josAinoaKorttiSiirretaanNakyviaEiOle() {
+        Kortti siirrettava = new Kortti(Maa.PATA, 13);
+        pino.lisaaNakyvaKortti(siirrettava);
+        pino.siirraKortti(pino.getNakyvat(), toinen);
+        
+        assertEquals(pino.getNakyvat(), null);
     }
 	
     @Test
@@ -71,7 +89,7 @@ public class KorttipinoTest {
     	pino.lisaaKaannettyKortti(kaannetty);
     	pino.lisaaNakyvaKortti(new Kortti(Maa.RUUTU, 4));
 	
-    	pino.siirraKortti(pino.getNakyvat().paa(), toinen);
+    	pino.siirraKortti(pino.getNakyvat(), toinen);
 	
     	assertEquals(pino.getNakyvat().getKortti().getMaa(), kaannetty.getMaa());
         assertEquals(pino.getNakyvat().getKortti().getArvo(), kaannetty.getArvo());
