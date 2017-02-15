@@ -1,7 +1,6 @@
 package fi.jussi.pasianssi.apu;
 
 import java.util.List;
-import fi.jussi.pasianssi.kortit.Pasianssi;
 import fi.jussi.pasianssi.kortit.Korttipino;
 import fi.jussi.pasianssi.kortit.Korttipakka;
 

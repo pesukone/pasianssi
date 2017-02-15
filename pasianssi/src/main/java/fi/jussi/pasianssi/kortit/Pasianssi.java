@@ -1,6 +1,5 @@
 package fi.jussi.pasianssi.kortit;
 
-import fi.jussi.pasianssi.apu.Pakantayttaja;
 import fi.jussi.pasianssi.apu.Pasianssinalustaja;
 import java.util.List;
 import java.util.ArrayList;
