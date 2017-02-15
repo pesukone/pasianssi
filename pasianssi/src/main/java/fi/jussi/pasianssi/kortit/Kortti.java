@@ -9,6 +9,7 @@ public class Kortti {
     private int arvo;
     
     /**
+	 * Konstruktori konstruktoi.
      * @param maa	Pelikortin {@link fi.jussi.pasianssi.kortit.Maa}
      * @param arvo	Pelikortin arvo
      */	

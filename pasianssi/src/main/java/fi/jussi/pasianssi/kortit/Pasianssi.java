@@ -16,12 +16,15 @@ public class Pasianssi {
     private Korttipakka pakka;
     private List<Korttipino> pinot;
     
+	/**
+	 * Konstruktori konstruktoi.
+	 */
     public Pasianssi() {
         this.pakka = new Korttipakka();
         this.pinot = new ArrayList();
-        Pasianssinalustaja.alustaPinot(this);
-        Pasianssinalustaja.alustaPakka(this);
-        Pasianssinalustaja.taytaPinot(this);
+        Pasianssinalustaja.alustaPinot(this.pinot);
+        Pasianssinalustaja.alustaPakka(this.pakka);
+        Pasianssinalustaja.taytaPinot(this.pinot, this.pakka);
     }
     
     /**

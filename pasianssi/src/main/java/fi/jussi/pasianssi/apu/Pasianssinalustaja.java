@@ -1,5 +1,6 @@
 package fi.jussi.pasianssi.apu;
 
+import java.util.List;
 import fi.jussi.pasianssi.kortit.Pasianssi;
 import fi.jussi.pasianssi.kortit.Korttipino;
 import fi.jussi.pasianssi.kortit.Korttipakka;
@@ -10,33 +11,45 @@ import fi.jussi.pasianssi.kortit.Korttipakka;
  */
 public class Pasianssinalustaja {
 	
-	public static void alustaPinot(Pasianssi pasianssi) {
+	/**
+	 * Metodia luo pasianssipeliä alustaessa tyhjät
+	 * {@link fi.jussi.pasianssi.kortit.Korttipino}t.
+	 * @param pinot	pasianssin korttipinot
+	 */
+	public static void alustaPinot(List<Korttipino> pinot) {
 		for (int i = 0; i < 10; i++) {
             Korttipino pino = new Korttipino();
-            pasianssi.getPinot().add(pino);
+            pinot.add(pino);
         }
 	}
 	
-	public static void alustaPakka(Pasianssi pasianssi) {
-		Pakantayttaja.alustaTuplakorttipakka(pasianssi.getPakka());
-		pasianssi.getPakka().sekoita();
+	/**
+	 * Metodi täyttää pasianssin pakan 104 kortilla ja sekoittaa sen.
+	 * @param pakka	pasianssin korttipakka
+	 */
+	public static void alustaPakka(Korttipakka pakka) {
+		Pakantayttaja.alustaTuplakorttipakka(pakka);
+		pakka.sekoita();
 	}
 	
-	public static void taytaPinot(Pasianssi pasianssi) {
-		Korttipakka pakka = pasianssi.getPakka();
-		
+	/**
+	 * Metodi täyttää pasianssin korttipinot alkuasetelman mukaisiksi.
+	 * @param pinot pasianssin korttipinot
+	 * @param pakka pasianssin korttipakka
+	 */
+	public static void taytaPinot(List<Korttipino> pinot, Korttipakka pakka) {
 		for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 10; j++) {
-				pasianssi.getPinot().get(j).lisaaKaannettyKortti(pakka.nosta());
+				pinot.get(j).lisaaKaannettyKortti(pakka.nosta());
             }
 		}
 		
 		for (int i = 0; i < 4; i++) {
-            pasianssi.getPinot().get(i).lisaaKaannettyKortti(pakka.nosta());
+            pinot.get(i).lisaaKaannettyKortti(pakka.nosta());
 		}
 		
 		for (int i = 0; i < 10; i++) {
-            pasianssi.getPinot().get(i).lisaaNakyvaKortti(pakka.nosta());
+            pinot.get(i).lisaaNakyvaKortti(pakka.nosta());
 		}
 	}
 }

@@ -14,6 +14,9 @@ import java.util.Stack;
 public class Korttipakka {
     private Stack<Kortti> kortit;
     
+	/**
+	 * Konstruktori konstruktoi.
+	 */
     public Korttipakka() {
         this.kortit = new Stack();
     }
@@ -41,10 +44,18 @@ public class Korttipakka {
         Collections.shuffle(this.kortit);
     }
     
+	/**
+	 * Metodi kertoo, onko korttipakka tyhjä.
+	 * @return korttipakka on tyhjä
+	 */
     public boolean tyhja() {
         return this.kortit.empty();
     }
     
+	/**
+	 * Metodi kertoo, kuinka monta korttia pakassa on.
+	 * @return korttimäärä
+	 */
     public int korttimaara() {
         return this.kortit.size();
     }

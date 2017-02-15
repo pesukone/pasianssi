@@ -24,4 +24,5 @@ Päivä | Tunnit | Kuvaus
 13.02.2017 | 1h | Koitettu korjata korttipinon siirtometodia
 14.02.2017 | 1h | Vaihdettu korttikuvien lataamistoteutus inputstreamiin
 15.02.2017 | 1h | Piirretty sekvenssikaavio korttien nostamisesta pakasta
+15.02.2017 | 1h | Refaktoroitu, testailtu ja korjailtu javadocia
 ... | ... | ...

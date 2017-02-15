@@ -11,6 +11,10 @@ public class NakyvaKortti {
     private NakyvaKortti seuraava;
     private NakyvaKortti edellinen;
     
+	/**
+	 * Konstruktori asettaa solmun kortiksi parametrinä annetun kortin.
+	 * @param kortti kortti, joka asetetaan solmun parametriksi
+	 */
     public NakyvaKortti(Kortti kortti) {
         this.kortti = kortti;
         this.seuraava = null;
