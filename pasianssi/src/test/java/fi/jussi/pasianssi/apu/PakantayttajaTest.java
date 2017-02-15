@@ -1,5 +1,6 @@
-package fi.jussi.pasianssi.logiikka;
+package fi.jussi.pasianssi.apu;
 
+import fi.jussi.pasianssi.apu.Pakantayttaja;
 import fi.jussi.pasianssi.kortit.Korttipakka;
 import fi.jussi.pasianssi.kortit.Maa;
 import org.junit.After;

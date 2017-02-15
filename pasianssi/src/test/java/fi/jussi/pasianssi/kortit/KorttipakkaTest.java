@@ -1,6 +1,6 @@
 package fi.jussi.pasianssi.kortit;
 
-import fi.jussi.pasianssi.logiikka.Pakantayttaja;
+import fi.jussi.pasianssi.apu.Pakantayttaja;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

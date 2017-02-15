@@ -1,4 +1,4 @@
-package fi.jussi.pasianssi.logiikka;
+package fi.jussi.pasianssi.apu;
 
 import fi.jussi.pasianssi.kortit.Kortti;
 import fi.jussi.pasianssi.kortit.Korttipakka;

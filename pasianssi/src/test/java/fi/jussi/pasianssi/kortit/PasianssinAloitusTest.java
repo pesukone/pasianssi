@@ -68,4 +68,11 @@ public class PasianssinAloitusTest {
         // Ei huomioi tapausta, jossa päälimmäinen sekoitetaan uudestaan päälimmäiseksi
         assertNotSame(ensimmainen.paalimmainen(), toinen.paalimmainen());
     }
+	
+	@Test
+	public void ensimmaisessaNeljassaPinossa5KaannettyaKorttia() {
+		for (int i = 0; i < 4; i++) {
+			assertEquals(pasianssi.getPinot().get(i).getKaannetyt().size(), 5);
+		}
+	}
 }

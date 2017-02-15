@@ -1,6 +1,5 @@
 package fi.jussi.pasianssi;
 
-import fi.jussi.pasianssi.logiikka.*;
 import fi.jussi.pasianssi.kortit.*;
 import fi.jussi.pasianssi.kali.*;
 import javafx.application.Application;

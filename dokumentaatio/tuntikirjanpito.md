@@ -23,4 +23,5 @@ Päivä | Tunnit | Kuvaus
 13.02.2017 | 2h | Säädetty pasianssi käli-luokan oliomuuttujaksi
 13.02.2017 | 1h | Koitettu korjata korttipinon siirtometodia
 14.02.2017 | 1h | Vaihdettu korttikuvien lataamistoteutus inputstreamiin
+15.02.2017 | 1h | Piirretty sekvenssikaavio korttien nostamisesta pakasta
 ... | ... | ...

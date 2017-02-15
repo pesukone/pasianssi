@@ -1,6 +1,7 @@
 package fi.jussi.pasianssi.kortit;
 
-import fi.jussi.pasianssi.logiikka.Pakantayttaja;
+import fi.jussi.pasianssi.apu.Pakantayttaja;
+import fi.jussi.pasianssi.apu.Pasianssinalustaja;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.EmptyStackException;
@@ -18,39 +19,9 @@ public class Pasianssi {
     public Pasianssi() {
         this.pakka = new Korttipakka();
         this.pinot = new ArrayList();
-        this.alustaPinot();
-        this.alustaPakka();
-        this.taytaPinot();
-    }
-
-    private void alustaPinot() {
-        for (int i = 0; i < 10; i++) {
-            Korttipino pino = new Korttipino();
-            this.pinot.add(pino);
-        }
-    }
-    
-    private void alustaPakka() {
-        Pakantayttaja.alustaTuplakorttipakka(this.pakka);
-        this.pakka.sekoita();
-    }
-    
-
-    // refaktoroidaan sitten joskus omaan luokkaan
-    private void taytaPinot() {
-		for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 10; j++) {
-				this.pinot.get(j).lisaaKaannettyKortti(this.pakka.nosta());
-            }
-		}
-		
-		for (int i = 0; i < 4; i++) {
-            this.pinot.get(i).lisaaKaannettyKortti(this.pakka.nosta());
-		}
-		
-		for (int i = 0; i < 10; i++) {
-            this.pinot.get(i).lisaaNakyvaKortti(this.pakka.nosta());
-		}
+        Pasianssinalustaja.alustaPinot(this);
+        Pasianssinalustaja.alustaPakka(this);
+        Pasianssinalustaja.taytaPinot(this);
     }
     
     /**
