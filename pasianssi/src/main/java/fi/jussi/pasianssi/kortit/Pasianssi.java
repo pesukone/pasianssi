@@ -53,11 +53,11 @@ public class Pasianssi {
 		}
     }
     
-	/**
-	 * Metodi, jolla pasianssin pakasta voi nostaa yhden kortin jokaiseen
-	 * korttipinoon.
-	 * @return	nostaminen onnistui
-	 */
+    /**
+     * Metodi, jolla pasianssin pakasta voi nostaa yhden kortin jokaiseen
+     * korttipinoon.
+     * @return	nostaminen onnistui
+     */
     public boolean nosta10Korttia() {
         for (int i = 0; i < 10; i++) {
             Korttipino pino = this.pinot.get(i);

@@ -18,25 +18,25 @@ public class Korttipakka {
         this.kortit = new Stack();
     }
     
-	/**
-	 * Metodi lisää korttiolion pakkaan.
-	 * @param kortti	lisättävä kortti
-	 */
+    /**
+     * Metodi lisää korttiolion pakkaan.
+     * @param kortti	lisättävä kortti
+     */
     public void lisaaKortti(Kortti kortti) {
         this.kortit.push(kortti);
     }
     
-	/**
-	 * Metodi poistaa päälimmäisen kortin pakasta.
-	 * @return	poistettu kortti
-	 */
+    /**
+     * Metodi poistaa päälimmäisen kortin pakasta.
+     * @return	poistettu kortti
+     */
     public Kortti nosta() {
         return this.kortit.pop();
     }
     
-	/**
-	 * Metodi sekoittaa korttipakan.
-	 */
+    /**
+     * Metodi sekoittaa korttipakan.
+     */
     public void sekoita() {
         Collections.shuffle(this.kortit);
     }
@@ -49,10 +49,10 @@ public class Korttipakka {
         return this.kortit.size();
     }
     
-	/**
-	 * Metodi palauttaa pakan päälimmäisen korttiolion poistamatta sitä pakasta.
-	 * @return	päälimmäinen kortti
-	 */
+    /**
+     * Metodi palauttaa pakan päälimmäisen korttiolion poistamatta sitä pakasta.
+     * @return	päälimmäinen kortti
+     */
     public Kortti paalimmainen() {
         return this.kortit.peek();
     }
