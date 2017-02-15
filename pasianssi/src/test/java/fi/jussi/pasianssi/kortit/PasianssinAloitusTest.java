@@ -75,4 +75,18 @@ public class PasianssinAloitusTest {
 			assertEquals(pasianssi.getPinot().get(i).getKaannetyt().size(), 5);
 		}
 	}
+	
+	@Test
+	public void lopuissaKuudessaPinossa4KaannettyaKorttia() {
+		for (int i = 4; i < 10; i++) {
+			assertEquals(pasianssi.getPinot().get(i).getKaannetyt().size(), 4);
+		}
+	}
+	
+	@Test
+	public void jokaPinossaYksiNakyvaKortti() {
+		for (int i = 0; i < 10; i++) {
+			assertEquals(pasianssi.getPinot().get(i).getNakyvat().seuraaviaKortteja(), 1);
+		}
+	}
 }
