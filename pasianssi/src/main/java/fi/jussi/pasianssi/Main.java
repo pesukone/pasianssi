@@ -9,7 +9,7 @@ public class Main {
     public static void main(String[] args) {
         Pasianssi pasianssi = new Pasianssi();
         Kayttoliittyma kali = new Kayttoliittyma();
-        kali.setPasianssi(pasianssi);
+        Kayttoliittyma.setPasianssi(pasianssi);
         Application.launch(Kayttoliittyma.class, args);
     }
 }

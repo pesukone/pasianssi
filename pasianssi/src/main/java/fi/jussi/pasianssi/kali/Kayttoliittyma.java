@@ -5,6 +5,7 @@ import fi.jussi.pasianssi.kortit.Maa;
 import fi.jussi.pasianssi.kortit.NakyvaKortti;
 import fi.jussi.pasianssi.kortit.Korttipino;
 import fi.jussi.pasianssi.kortit.Pasianssi;
+import java.util.List;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -18,15 +19,15 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class Kayttoliittyma extends Application {
-    private Pasianssi pasianssi;
+    private static Pasianssi pasianssi;
     
     @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Spider-pasianssi");
         BorderPane root = new BorderPane();
         Scene scene = new Scene(root, 1280, 720, Color.GREEN);
-		
-		Image image = kortinKuva(new Kortti(Maa.RISTI, 10));
+        
+		/*Image image = kortinKuva(new Kortti(Maa.RISTI, 10));
 		
         ImageView r10 = new ImageView();
         r10.setImage(image);
@@ -64,9 +65,9 @@ public class Kayttoliittyma extends Application {
         
         pinot.getChildren().add(pino);
         pinot.getChildren().add(toinen);
-        pinot.getChildren().add(kolmas);
+        pinot.getChildren().add(kolmas);*/
         
-        root.setTop(pinot);
+        root.setTop(this.piirraKorttipinot());
 		
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -76,7 +77,7 @@ public class Kayttoliittyma extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-	launch(args);
+        launch(args);
     }
     
     private ImageView piirraKortti(NakyvaKortti kortti) {
@@ -88,9 +89,24 @@ public class Kayttoliittyma extends Application {
         return palautettava;
     }
     
-    /*private AnchorPane piirraKorttipino(Korttipino pino) {
+    private AnchorPane piirraKorttipino(Korttipino pino) {
+        AnchorPane pane = new AnchorPane();
         
-    }*/
+        NakyvaKortti nakyva = pino.getNakyvat();
+        
+        if (nakyva == null) {
+            return pane;
+        }
+        
+        while (nakyva != null) {
+            ImageView korttikuva = piirraKortti(nakyva);
+            pane.getChildren().add(korttikuva);
+            AnchorPane.setTopAnchor(korttikuva, pane.getChildren().size() * 35.0);
+            nakyva = nakyva.getSeuraava();
+        }
+        
+        return pane;
+    }
     
     private Image kortinKuva(Kortti kortti) {
         String maa;
@@ -111,16 +127,21 @@ public class Kayttoliittyma extends Application {
         return new Image(getClass().getClassLoader().getResourceAsStream(polku));
     }
     
-    /*private HBox piirraKorttipinot() {
-        HBox pinot = new HBox(10.0);
-        pinot.setAlignment(Pos.CENTER);
+    private HBox piirraKorttipinot() {
+        HBox laatikko = new HBox(5.0);
+        laatikko.setAlignment(Pos.CENTER);
         
-        for (int i = 0; i < 10; i++) {
-            pinot.getChildren().add(new AnchorPane());
+        
+        List<Korttipino> pinot = pasianssi.getPinot();
+            
+        for (Korttipino pino : pinot) {
+            laatikko.getChildren().add(piirraKorttipino(pino));
         }
-    }*/
+        
+        return laatikko;
+    }
     
-    public void setPasianssi(Pasianssi pasianssi) {
-        this.pasianssi = pasianssi;
+    public static void setPasianssi(Pasianssi pasianssi) {
+        Kayttoliittyma.pasianssi = pasianssi;
     }
 }
