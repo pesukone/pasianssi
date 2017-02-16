@@ -26,4 +26,5 @@ Päivä | Tunnit | Kuvaus
 15.02.2017 | 1h | Piirretty sekvenssikaavio korttien nostamisesta pakasta
 15.02.2017 | 1h | Refaktoroitu, testailtu ja korjailtu javadocia
 16.02.2017 | 1h | Tehty sekvenssikaavio kortin siirtämisestä
+16.02.2017 | 2h | Korjattu käyttöliittymän pasianssioliomuuttuja, sekä tehty käyttöliittymämetodit näkyvien korttien piirtämiselle
 ... | ... | ...
