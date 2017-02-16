@@ -38,7 +38,7 @@ public class Kayttoliittyma extends Application {
         launch(args);
     }
     
-    private ImageView piirraKortti(NakyvaKortti kortti) {
+    private ImageView piirraNakyvaKortti(NakyvaKortti kortti) {
         ImageView palautettava = new ImageView();
         palautettava.setImage(kortinKuva(kortti.getKortti()));
         palautettava.setFitWidth(120);
@@ -46,10 +46,26 @@ public class Kayttoliittyma extends Application {
         
         return palautettava;
     }
+	
+	private ImageView piirraKaannettyKortti() {
+		ImageView palautettava = new ImageView();
+		palautettava.setImage(new Image(getClass().getClassLoader().getResourceAsStream("black_joker.png")));
+		palautettava.setFitWidth(120);
+		palautettava.setPreserveRatio(true);
+		
+		return palautettava;
+	}
     
     private AnchorPane piirraKorttipino(Korttipino pino) {
         AnchorPane pane = new AnchorPane();
         
+		for (int i = 0; i < pino.getKaannetyt().size(); i++) {
+			ImageView kortti = piirraKaannettyKortti();
+			pane.getChildren().add(kortti);
+			
+			AnchorPane.setTopAnchor(kortti, (pane.getChildren().size() - 1) * 35.0);
+		}
+
         NakyvaKortti nakyva = pino.getNakyvat();
         
         if (nakyva == null) {
@@ -57,9 +73,9 @@ public class Kayttoliittyma extends Application {
         }
         
         while (nakyva != null) {
-            ImageView korttikuva = piirraKortti(nakyva);
+            ImageView korttikuva = piirraNakyvaKortti(nakyva);
             pane.getChildren().add(korttikuva);
-            AnchorPane.setTopAnchor(korttikuva, pane.getChildren().size() * 35.0);
+            AnchorPane.setTopAnchor(korttikuva, (pane.getChildren().size() - 1) * 35.0);
             nakyva = nakyva.getSeuraava();
         }
         
