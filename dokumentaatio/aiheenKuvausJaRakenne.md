@@ -29,3 +29,5 @@
 
 
 ![Alt text](luokkakaavio.png "Määrittelyvaiheen luokkakaavio")
+![Alt text](pelaajaNostaa.png "Pelaaja nostaa 10 korttia pinosta")
+![Alt text](pelaajaSiirtaaKortinPinostaToiseen.png "Pelaaja siirtää kortin pinosta toiseen")
