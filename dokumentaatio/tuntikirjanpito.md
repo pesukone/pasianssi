@@ -25,4 +25,5 @@ Päivä | Tunnit | Kuvaus
 14.02.2017 | 1h | Vaihdettu korttikuvien lataamistoteutus inputstreamiin
 15.02.2017 | 1h | Piirretty sekvenssikaavio korttien nostamisesta pakasta
 15.02.2017 | 1h | Refaktoroitu, testailtu ja korjailtu javadocia
+16.02.2017 | 1h | Tehty sekvenssikaavio kortin siirtämisestä
 ... | ... | ...
