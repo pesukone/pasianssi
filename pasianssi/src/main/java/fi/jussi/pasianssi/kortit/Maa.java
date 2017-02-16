@@ -5,8 +5,8 @@ package fi.jussi.pasianssi.kortit;
  * @see fi.jussi.pasianssi.kortit.Kortti
  */
 public enum Maa {
-    HERTTA,
-    RUUTU,
-    PATA,
-    RISTI;
+	HERTTA,
+	RUUTU,
+	PATA,
+	RISTI;
 }

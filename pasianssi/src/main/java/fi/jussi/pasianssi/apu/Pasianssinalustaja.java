@@ -17,9 +17,9 @@ public class Pasianssinalustaja {
 	 */
 	public static void alustaPinot(List<Korttipino> pinot) {
 		for (int i = 0; i < 10; i++) {
-            Korttipino pino = new Korttipino();
-            pinot.add(pino);
-        }
+			Korttipino pino = new Korttipino();
+			pinot.add(pino);
+		}
 	}
 	
 	/**
@@ -38,17 +38,17 @@ public class Pasianssinalustaja {
 	 */
 	public static void taytaPinot(List<Korttipino> pinot, Korttipakka pakka) {
 		for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 10; j++) {
+			for (int j = 0; j < 10; j++) {
 				pinot.get(j).lisaaKaannettyKortti(pakka.nosta());
-            }
+			}
 		}
 		
 		for (int i = 0; i < 4; i++) {
-            pinot.get(i).lisaaKaannettyKortti(pakka.nosta());
+			pinot.get(i).lisaaKaannettyKortti(pakka.nosta());
 		}
 		
 		for (int i = 0; i < 10; i++) {
-            pinot.get(i).lisaaNakyvaKortti(pakka.nosta());
+			pinot.get(i).lisaaNakyvaKortti(pakka.nosta());
 		}
 	}
 }

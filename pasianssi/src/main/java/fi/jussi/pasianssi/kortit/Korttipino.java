@@ -11,59 +11,59 @@ import java.util.Stack;
  * @see java.util.Stack
  */
 public class Korttipino {
-    private Stack<Kortti> kaannetytKortit;
-    private NakyvaKortti nakyvatKortit;
+	private Stack<Kortti> kaannetytKortit;
+	private NakyvaKortti nakyvatKortit;
     
 	/**
 	 * Konstruktori konstruktoi näkyvien korttien oletusarvoksi null.
 	 */
-    public Korttipino() {
-        this.kaannetytKortit = new Stack();
-    }
+	public Korttipino() {
+		this.kaannetytKortit = new Stack();
+	}
     
 	/**
-     * Metodi lisää korttipinoon kortin, jonka kuvapuoli on näkyvissä.
-     * @param kortti pinoon lisättävä kortti
-     */
-    public void lisaaNakyvaKortti(Kortti kortti) {
+	 * Metodi lisää korttipinoon kortin, jonka kuvapuoli on näkyvissä.
+	 * @param kortti pinoon lisättävä kortti
+	 */
+	public void lisaaNakyvaKortti(Kortti kortti) {
 		if (this.eiNakyviaKortteja()) {
-            this.nakyvatKortit = new NakyvaKortti(kortti);
+			this.nakyvatKortit = new NakyvaKortti(kortti);
 		} else {
 			this.nakyvatKortit.lisaa(kortti);
 		}
-    }
+	}
     
-    /**
-     * Metodi lisää korttipinoon kortin, jonka kuvapuoli on käännetty alaspäin.
-     * Kutsutaan pasianssipelin alustamisen yhteydessä.
-     * @param kortti	pinoon lisättävä kortti
-     */
-    public void lisaaKaannettyKortti(Kortti kortti) {
-        this.kaannetytKortit.push(kortti);
-    }
+	/**
+	 * Metodi lisää korttipinoon kortin, jonka kuvapuoli on käännetty alaspäin.
+	 * Kutsutaan pasianssipelin alustamisen yhteydessä.
+	 * @param kortti	pinoon lisättävä kortti
+	 */
+	public void lisaaKaannettyKortti(Kortti kortti) {
+		this.kaannetytKortit.push(kortti);
+	}
 	
-    /**
-     * Metodi siirtää pöydällä olevan näkyvän kortin ja sitä seuraavat kortit
-     * toiseen korttipinoon.
-     * @param kortti siirrettävä kortti
-     * @param kohde	korttipino, jonka perään kortti/kortit siirretään
-    */
-    public void siirraKortti(NakyvaKortti kortti, Korttipino kohde) {
-        if (kohde.eiNakyviaKortteja()) {
+	/**
+	 * Metodi siirtää pöydällä olevan näkyvän kortin ja sitä seuraavat kortit
+	 * toiseen korttipinoon.
+	 * @param kortti siirrettävä kortti
+	 * @param kohde	korttipino, jonka perään kortti/kortit siirretään
+	 */
+	public void siirraKortti(NakyvaKortti kortti, Korttipino kohde) {
+		if (kohde.eiNakyviaKortteja()) {
 			kohde.setNakyvat(kortti);
-            kortti.setEdellinen(null);
-        } else {
-            kortti.siirra(kohde.getNakyvat());
-        }
+			kortti.setEdellinen(null);
+		} else {
+			kortti.siirra(kohde.getNakyvat());
+		}
         
-        if (kortti.equals(this.nakyvatKortit)) {
-            this.nakyvatKortit = null;
-        }
+		if (kortti.equals(this.nakyvatKortit)) {
+			this.nakyvatKortit = null;
+		}
 	
-        if (this.eiNakyviaKortteja()) {
-            this.kaannaKorttiNakyviin();
-        }
-    }
+		if (this.eiNakyviaKortteja()) {
+			this.kaannaKorttiNakyviin();
+		}
+	}
 	
 	/**
 	 * Kertoo, onko korttipino tyhjä.
@@ -77,29 +77,29 @@ public class Korttipino {
 	 * Metodi, joka laskee korttipinon korttien yhteismäärän.
 	 * @return korttien määrä
 	 */
-    public int korttimaara() {
-        return this.kaannetytKortit.size() + this.nakyvatKortit.seuraaviaKortteja();
-    }
+	public int korttimaara() {
+		return this.kaannetytKortit.size() + this.nakyvatKortit.seuraaviaKortteja();
+	}
       	
 	public Stack<Kortti> getKaannetyt() {
 		return this.kaannetytKortit;
-    }
+	}
 	
-    public NakyvaKortti getNakyvat() {
+	public NakyvaKortti getNakyvat() {
 		return this.nakyvatKortit;
-    }
+	}
 	
-    public void setNakyvat(NakyvaKortti kortti) {
+	public void setNakyvat(NakyvaKortti kortti) {
 		this.nakyvatKortit = kortti;
-    }
+	}
 
 	private void kaannaKorttiNakyviin() {
 		if (!this.kaannetytKortit.isEmpty()) {
-            this.lisaaNakyvaKortti(this.kaannetytKortit.pop());
-        }
-    }
+			this.lisaaNakyvaKortti(this.kaannetytKortit.pop());
+		}
+	}
 	
 	private boolean eiNakyviaKortteja() {
-        return this.nakyvatKortit == null;
-    }
+		return this.nakyvatKortit == null;
+	}
 }

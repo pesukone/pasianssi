@@ -16,27 +16,27 @@ public class Pakantayttaja {
 	 * annetun pakan oletetaan olevan tyhjä.
 	 * @param pakka		alustettava pakka
 	 */
-    public static void alustaPeruskorttipakka(Korttipakka pakka) {
-        luoMaanKortit(pakka, Maa.HERTTA);
-        luoMaanKortit(pakka, Maa.PATA);
-        luoMaanKortit(pakka, Maa.RISTI);
-        luoMaanKortit(pakka, Maa.RUUTU);
-    }
+	public static void alustaPeruskorttipakka(Korttipakka pakka) {
+		luoMaanKortit(pakka, Maa.HERTTA);
+		luoMaanKortit(pakka, Maa.PATA);
+		luoMaanKortit(pakka, Maa.RISTI);
+		luoMaanKortit(pakka, Maa.RUUTU);
+	}
     
 	/**
 	 * Metodi, joka alustaa 104 kortin pakan, jota Spider-pasianssissa
 	 * käytetään. Parametrina annetun pakan oletetaan olevan tyhjä.
 	 * @param pakka		alustettava pakka
 	 */
-    public static void alustaTuplakorttipakka(Korttipakka pakka) {
-        alustaPeruskorttipakka(pakka);
-        alustaPeruskorttipakka(pakka);
-    }
+	public static void alustaTuplakorttipakka(Korttipakka pakka) {
+		alustaPeruskorttipakka(pakka);
+		alustaPeruskorttipakka(pakka);
+	}
     
-    private static void luoMaanKortit(Korttipakka pakka, Maa maa) {
-        for (int i = 1; i <= 13; i++) {
-            Kortti kortti = new Kortti(maa, i);
-            pakka.lisaaKortti(kortti);
-        }
-    }
+	private static void luoMaanKortit(Korttipakka pakka, Maa maa) {
+		for (int i = 1; i <= 13; i++) {
+			Kortti kortti = new Kortti(maa, i);
+			pakka.lisaaKortti(kortti);
+		}
+	}
 }
