@@ -121,4 +121,9 @@ public class NakyvaKortti {
 	public void setEdellinen(NakyvaKortti edellinen) {
 		this.edellinen = edellinen;
 	}
+	
+	@Override
+	public String toString() {
+		return this.kortti.toString();
+	}
 }

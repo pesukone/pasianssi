@@ -5,6 +5,7 @@ import fi.jussi.pasianssi.kortit.NakyvaKortti;
 import fi.jussi.pasianssi.kortit.Korttipino;
 import fi.jussi.pasianssi.kortit.Pasianssi;
 import java.util.List;
+import java.util.HashMap;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -14,10 +15,19 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.input.DragEvent;
+import javafx.scene.input.Dragboard;
+import javafx.scene.input.TransferMode;
+import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
+import javafx.event.EventHandler;
 
 public class Kayttoliittyma extends Application {
 	private static Pasianssi pasianssi;
+	private ImageView siirrettava;
+	private BorderPane juuri;
+	private HashMap<ImageView, NakyvaKortti> kortit = new HashMap();
     
 	@Override
 	public void start(Stage primaryStage) {
@@ -26,6 +36,7 @@ public class Kayttoliittyma extends Application {
 		Scene scene = new Scene(root, 1280, 720, Color.GREEN);
         
 		root.setTop(this.piirraKorttipinot());
+		juuri = root;
 		
 		primaryStage.setScene(scene);
 		primaryStage.show();
@@ -43,7 +54,18 @@ public class Kayttoliittyma extends Application {
 		palautettava.setImage(kortinKuva(kortti.getKortti()));
 		palautettava.setFitWidth(120);
 		palautettava.setPreserveRatio(true);
-        
+		palautettava.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				if (siirrettava == null) {
+					siirrettava = palautettava;
+					event.consume();
+				}
+			}
+		});
+		
+		kortit.put(palautettava, kortti);
+		
 		return palautettava;
 	}
 	
@@ -62,6 +84,22 @@ public class Kayttoliittyma extends Application {
 		for (int i = 0; i < pino.getKaannetyt().size(); i++) {
 			ImageView kortti = piirraKaannettyKortti();
 			pane.getChildren().add(kortti);
+			
+			pane.setOnMouseClicked(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent event) {
+					if (siirrettava != null) {
+						pino.siirraKortti(kortit.get(siirrettava), pino);
+						((AnchorPane) siirrettava.getParent()).getChildren().remove(siirrettava);
+						pane.getChildren().add(siirrettava);
+						AnchorPane.setTopAnchor(siirrettava, (pane.getChildren().size() - 1) * 35.0);
+						pane.getParent().requestLayout();
+						siirrettava.getParent().requestLayout();
+						siirrettava = null;
+						event.consume();
+					}
+				}
+			});
 			
 			AnchorPane.setTopAnchor(kortti, (pane.getChildren().size() - 1) * 35.0);
 		}
@@ -113,7 +151,7 @@ public class Kayttoliittyma extends Application {
         
 		return laatikko;
 	}
-    
+	
 	public static void setPasianssi(Pasianssi pasianssi) {
 		Kayttoliittyma.pasianssi = pasianssi;
 	}
