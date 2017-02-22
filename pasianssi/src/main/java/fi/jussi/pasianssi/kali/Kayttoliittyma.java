@@ -28,6 +28,7 @@ public class Kayttoliittyma extends Application {
 	private ImageView siirrettava;
 	private BorderPane juuri;
 	private HashMap<ImageView, NakyvaKortti> kortit = new HashMap();
+	private HashMap<NakyvaKortti, ImageView> kuvat = new HashMap();
     
 	@Override
 	public void start(Stage primaryStage) {
@@ -65,6 +66,7 @@ public class Kayttoliittyma extends Application {
 		});
 		
 		kortit.put(palautettava, kortti);
+		kuvat.put(kortti, palautettava);
 		
 		return palautettava;
 	}
@@ -90,11 +92,20 @@ public class Kayttoliittyma extends Application {
 				public void handle(MouseEvent event) {
 					if (siirrettava != null) {
 						pino.siirraKortti(kortit.get(siirrettava), pino);
-						((AnchorPane) siirrettava.getParent()).getChildren().remove(siirrettava);
-						pane.getChildren().add(siirrettava);
-						AnchorPane.setTopAnchor(siirrettava, (pane.getChildren().size() - 1) * 35.0);
-						pane.getParent().requestLayout();
-						siirrettava.getParent().requestLayout();
+						
+						while (true) {
+							((AnchorPane) siirrettava.getParent()).getChildren().remove(siirrettava);
+							pane.getChildren().add(siirrettava);
+							AnchorPane.setTopAnchor(siirrettava, (pane.getChildren().size() - 1) * 35.0);
+							pane.getParent().requestLayout();
+							siirrettava.getParent().requestLayout();
+							if (kortit.get(siirrettava).getSeuraava() != null) {
+								siirrettava = kuvat.get(kortit.get(siirrettava).getSeuraava());
+							} else {
+								break;
+							}
+						}
+						
 						siirrettava = null;
 						event.consume();
 					}
