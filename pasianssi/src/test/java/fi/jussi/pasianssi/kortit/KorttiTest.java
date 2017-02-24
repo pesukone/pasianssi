@@ -8,39 +8,37 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class KorttiTest {
-    Kortti kortti;
+	Kortti kortti;
     
-    public KorttiTest() {
-        
-    }
+	public KorttiTest() { 
+	}
     
-    @BeforeClass
-    public static void setUpClass() {
-        
-    }
+	@BeforeClass
+	public static void setUpClass() {    
+	}
     
-    @AfterClass
-    public static void tearDownClass() {
-    }
+	@AfterClass
+	public static void tearDownClass() {
+	}
     
-    @Before
-    public void setUp() {
-        kortti = new Kortti(Maa.HERTTA, 5);
-    }
+	@Before
+	public void setUp() {
+		kortti = new Kortti(Maa.HERTTA, 5);
+	}
     
-    @After
-    public void tearDown() {
-    }
+	@After
+	public void tearDown() {
+	}
 
-    @Test
-    public void kortillaMaa() {
-        assertEquals(kortti.getMaa(), Maa.HERTTA);
-    }
+	@Test
+	public void kortillaMaa() {
+		assertEquals(kortti.getMaa(), Maa.HERTTA);
+	}
     
-    @Test
-    public void kortillaArvo() {
-        assertEquals(kortti.getArvo(), 5);
-    }
+	@Test
+	public void kortillaArvo() {
+		assertEquals(kortti.getArvo(), 5);
+	}
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void liianSuuriArvoHeittaaPoikkeuksen() {

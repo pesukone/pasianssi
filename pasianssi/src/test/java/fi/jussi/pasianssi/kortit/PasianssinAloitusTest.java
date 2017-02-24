@@ -9,65 +9,65 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class PasianssinAloitusTest {
-    Pasianssi pasianssi;
+	Pasianssi pasianssi;
     
-    public PasianssinAloitusTest() {
-    }
+	public PasianssinAloitusTest() {
+	}
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
+	@BeforeClass
+	public static void setUpClass() {
+	}
     
-    @AfterClass
-    public static void tearDownClass() {
-    }
+	@AfterClass
+	public static void tearDownClass() {
+	}
     
-    @Before
-    public void setUp() {
-        pasianssi = new Pasianssi();
-    }
+	@Before
+	public void setUp() {
+		pasianssi = new Pasianssi();
+	}
     
-    @After
-    public void tearDown() {
-    }
+	@After
+	public void tearDown() {
+	}
 
-    @Test
-    public void pasianssissa10Pinoa() {
-        assertEquals(pasianssi.getPinot().size(), 10);
-    }
+	@Test
+	public void pasianssissa10Pinoa() {
+		assertEquals(pasianssi.getPinot().size(), 10);
+	}
     
-    @Test
-    public void pinoissa54Korttia() {
-        int kortteja = 0;
-        List<Korttipino> pinot = pasianssi.getPinot();
+	@Test
+	public void pinoissa54Korttia() {
+		int kortteja = 0;
+		List<Korttipino> pinot = pasianssi.getPinot();
         
-        for (Korttipino pino : pinot) {
-            kortteja += pino.korttimaara();
-        }
+		for (Korttipino pino : pinot) {
+			kortteja += pino.korttimaara();
+		}
 		
 		assertEquals(54, kortteja);
-    }
+	}
 	
-    @Test
-    public void pakassa50Korttia() {
+	@Test
+	public void pakassa50Korttia() {
 		int kortteja = 0;
 		Korttipakka pakka = pasianssi.getPakka();
 	
 		kortteja += pakka.korttimaara();
 	
 		assertEquals(50, kortteja);
-    }
+	}
     
-    @Test
-    public void pakkaSekoitettuPelinAlussa() {
-        Korttipakka ensimmainen = pasianssi.getPakka();
+	@Test
+	public void pakkaSekoitettuPelinAlussa() {
+		Korttipakka ensimmainen = pasianssi.getPakka();
         
-        pasianssi = new Pasianssi();
-        Korttipakka toinen = pasianssi.getPakka();
+		pasianssi = new Pasianssi();
+		Korttipakka toinen = pasianssi.getPakka();
         
-        // Ei huomioi tapausta, jossa päälimmäinen sekoitetaan uudestaan päälimmäiseksi
-        assertNotSame(ensimmainen.paalimmainen(), toinen.paalimmainen());
-    }
+		// Ei huomioi tapausta, jossa päälimmäinen sekoitetaan uudestaan päälimmäiseksi
+		assertNotSame(ensimmainen.paalimmainen(), toinen.paalimmainen());
+	}
 	
 	@Test
 	public void ensimmaisessaNeljassaPinossa5KaannettyaKorttia() {

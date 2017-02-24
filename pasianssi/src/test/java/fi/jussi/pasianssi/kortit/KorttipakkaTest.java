@@ -9,61 +9,61 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class KorttipakkaTest {
-    Korttipakka pakka;
+	Korttipakka pakka;
     
-    public KorttipakkaTest() {
-    }
+	public KorttipakkaTest() {
+	}
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
+	@BeforeClass
+	public static void setUpClass() {
+	}
     
-    @AfterClass
-    public static void tearDownClass() {
-    }
+	@AfterClass
+	public static void tearDownClass() {
+	}
     
-    @Before
-    public void setUp() {
-        pakka = new Korttipakka();
-        Pakantayttaja.alustaPeruskorttipakka(pakka);
-    }
+	@Before
+	public void setUp() {
+		pakka = new Korttipakka();
+		Pakantayttaja.alustaPeruskorttipakka(pakka);
+	}
     
-    @After
-    public void tearDown() {
-    }
+	@After
+	public void tearDown() {
+	}
 
-    @Test
-    public void korttiLisataanPakkaan() {
-        int koko = pakka.korttimaara();
-        Kortti lisattava = new Kortti(Maa.HERTTA, 4);
-        pakka.lisaaKortti(lisattava);
+	@Test
+	public void korttiLisataanPakkaan() {
+		int koko = pakka.korttimaara();
+		Kortti lisattava = new Kortti(Maa.HERTTA, 4);
+		pakka.lisaaKortti(lisattava);
         
-        assertEquals(pakka.korttimaara(), koko + 1);
-    }
+		assertEquals(pakka.korttimaara(), koko + 1);
+	}
     
-    @Test
-    public void nostettuKorttiPoistetaanPakasta() {
-        int koko = pakka.korttimaara();
-        Kortti paalimmainen = pakka.nosta();
+	@Test
+	public void nostettuKorttiPoistetaanPakasta() {
+		int koko = pakka.korttimaara();
+		Kortti paalimmainen = pakka.nosta();
         
-        assertEquals(pakka.korttimaara(), koko - 1);
-    }
+		assertEquals(pakka.korttimaara(), koko - 1);
+	}
     
-    @Test
-    public void pakkaSekoitetaan() {
-        Kortti paalimmainen = pakka.paalimmainen();
-        pakka.sekoita();
+	@Test
+	public void pakkaSekoitetaan() {
+		Kortti paalimmainen = pakka.paalimmainen();
+		pakka.sekoita();
         
-        // Ei huomioi tapausta, jossa päälimmäinen kortti päätyy taas päälimmäiseksi!
-        assertNotSame(pakka.paalimmainen(), paalimmainen);
-    }
+		// Ei huomioi tapausta, jossa päälimmäinen kortti päätyy taas päälimmäiseksi!
+		assertNotSame(pakka.paalimmainen(), paalimmainen);
+	}
     
-    @Test
-    public void luotuPakkaOnTyhja() {
-        pakka = new Korttipakka();
+	@Test
+	public void luotuPakkaOnTyhja() {
+		pakka = new Korttipakka();
         
-        assertTrue(pakka.tyhja());
-    }
+		assertTrue(pakka.tyhja());
+	}
 	
 	@Test
 	public void pakkaJossaOnKorttiEiOleTyhja() {

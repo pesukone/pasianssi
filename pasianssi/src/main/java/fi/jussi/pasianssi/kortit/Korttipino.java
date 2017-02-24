@@ -69,9 +69,9 @@ public class Korttipino {
 	 * Kertoo, onko korttipino tyhjä.
 	 * @return korttipino on tyhjä.
 	 */
-    public boolean tyhja() {
+	public boolean tyhja() {
 		return (this.kaannetytKortit.empty() && this.nakyvatKortit == null);
-    }
+	}
 	
 	/**
 	 * Metodi, joka laskee korttipinon korttien yhteismäärän.
