@@ -130,4 +130,16 @@ public class KorttipinoTest {
 	public void onPinossaEiHajoaTyhjaanPinoon() {
 		assertFalse(pino.onPinossa(new NakyvaKortti(new Kortti(Maa.HERTTA, 6))));
 	}
+	
+	@Test
+	public void onPinossaToimiiUseammallaSamallaKortilla() {
+		Kortti kortti = new Kortti(Maa.RISTI, 12);
+		NakyvaKortti sama = new NakyvaKortti(kortti);
+		NakyvaKortti myosSama = new NakyvaKortti(kortti);
+		
+		pino.setNakyvat(sama);
+		pino.getNakyvat().lisaa(myosSama);
+		
+		assertTrue(pino.onPinossa(sama));
+	}
 }

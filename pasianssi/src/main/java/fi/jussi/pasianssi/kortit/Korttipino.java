@@ -36,7 +36,7 @@ public class Korttipino {
 	/**
 	 * Metodi lisää korttipinoon kortin, jonka kuvapuoli on käännetty alaspäin.
 	 * Kutsutaan pasianssipelin alustamisen yhteydessä.
-	 * @param kortti	pinoon lisättävä kortti
+	 * @param kortti pinoon lisättävä kortti
 	 */
 	public void lisaaKaannettyKortti(Kortti kortti) {
 		this.kaannetytKortit.push(kortti);
@@ -81,6 +81,12 @@ public class Korttipino {
 		return this.kaannetytKortit.size() + this.nakyvatKortit.seuraaviaKortteja();
 	}
 	
+	/**
+	 * Metodi, joka selvittää, onko parametrinä annettu {@link fi.jussi.pasianssi.kortit.NakyvaKortti}
+	 * pakassa.
+	 * @param kortti kortti jota etsitään pinosta
+	 * @return palautetaan tosi, jos kortti on pinossa
+	 */
 	public boolean onPinossa(NakyvaKortti kortti) {
 		if (this.nakyvatKortit == null) {
 			return false;
