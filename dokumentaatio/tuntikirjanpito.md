@@ -29,4 +29,6 @@ Päivä | Tunnit | Kuvaus
 16.02.2017 | 2h | Korjattu käyttöliittymän pasianssioliomuuttuja, sekä tehty käyttöliittymämetodit näkyvien korttien piirtämiselle
 16.02.2017 | 1h | Tehty käyttöliittymämetodi käännetyn kortin piirtämiselle, sekä generoitu raportit
 20.02.2017 | 2h | Saatu näkyvä kortti siirtymään korttipinosta toiseen käyttöliittymässä
+22.02.2017 | 2h | Koitettu saada korttien kääntymistä toimimaan käyttöliittymässä
+24.02.2017 | 1h | Saatu kortit kääntymään käyttöliittymässä
 ... | ... | ...

@@ -59,7 +59,7 @@ public class Korttipino {
 		if (kortti.equals(this.nakyvatKortit)) {
 			this.nakyvatKortit = null;
 		}
-	
+		
 		if (this.eiNakyviaKortteja()) {
 			this.kaannaKorttiNakyviin();
 		}
@@ -80,6 +80,27 @@ public class Korttipino {
 	public int korttimaara() {
 		return this.kaannetytKortit.size() + this.nakyvatKortit.seuraaviaKortteja();
 	}
+	
+	public boolean onPinossa(NakyvaKortti kortti) {
+		if (this.nakyvatKortit == null) {
+			return false;
+		}
+		
+		if (this.nakyvatKortit.getSeuraava() == null) {
+			return this.nakyvatKortit.equals(kortti);
+		}
+		
+		NakyvaKortti iteroitava = this.nakyvatKortit;
+		
+		do {
+			if (iteroitava.equals(kortti)) {
+				return true;
+			}
+			iteroitava = iteroitava.getSeuraava();
+		} while (iteroitava != null);
+		
+		return false;
+	}
       	
 	public Stack<Kortti> getKaannetyt() {
 		return this.kaannetytKortit;
@@ -95,7 +116,7 @@ public class Korttipino {
 
 	private void kaannaKorttiNakyviin() {
 		if (!this.kaannetytKortit.isEmpty()) {
-			this.lisaaNakyvaKortti(this.kaannetytKortit.pop());
+			this.nakyvatKortit = new NakyvaKortti(this.kaannetytKortit.pop());
 		}
 	}
 	

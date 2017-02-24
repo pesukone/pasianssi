@@ -29,14 +29,17 @@ public class Kayttoliittyma extends Application {
 	private BorderPane juuri;
 	private HashMap<ImageView, NakyvaKortti> kortit = new HashMap();
 	private HashMap<NakyvaKortti, ImageView> kuvat = new HashMap();
-    
+	private HashMap<AnchorPane, Korttipino> pinot = new HashMap();
+	private HashMap<Korttipino, AnchorPane> pinokuvat = new HashMap();
+	private Korttipino lahde;
+	
 	@Override
 	public void start(Stage primaryStage) {
 		primaryStage.setTitle("Spider-pasianssi");
 		BorderPane root = new BorderPane();
 		Scene scene = new Scene(root, 1280, 720, Color.GREEN);
-        
-		root.setTop(this.piirraKorttipinot());
+		
+		root.setTop(piirraKorttipinot());
 		juuri = root;
 		
 		primaryStage.setScene(scene);
@@ -55,18 +58,28 @@ public class Kayttoliittyma extends Application {
 		palautettava.setImage(kortinKuva(kortti.getKortti()));
 		palautettava.setFitWidth(120);
 		palautettava.setPreserveRatio(true);
+		
+		kortit.put(palautettava, kortti);
+		kuvat.put(kortti, palautettava);
+		
 		palautettava.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
+				System.out.println(event);
 				if (siirrettava == null) {
 					siirrettava = palautettava;
+					
+					for (Korttipino pino : pasianssi.getPinot()) {
+						if (pino.onPinossa(kortti)) {
+							lahde = pino;
+							break;
+						}
+					}
+					
 					event.consume();
 				}
 			}
 		});
-		
-		kortit.put(palautettava, kortti);
-		kuvat.put(kortti, palautettava);
 		
 		return palautettava;
 	}
@@ -82,35 +95,12 @@ public class Kayttoliittyma extends Application {
     
 	private AnchorPane piirraKorttipino(Korttipino pino) {
 		AnchorPane pane = new AnchorPane();
+		pinot.put(pane, pino);
+		pinokuvat.put(pino, pane);
         
 		for (int i = 0; i < pino.getKaannetyt().size(); i++) {
 			ImageView kortti = piirraKaannettyKortti();
 			pane.getChildren().add(kortti);
-			
-			pane.setOnMouseClicked(new EventHandler<MouseEvent>() {
-				@Override
-				public void handle(MouseEvent event) {
-					if (siirrettava != null) {
-						pino.siirraKortti(kortit.get(siirrettava), pino);
-						
-						while (true) {
-							((AnchorPane) siirrettava.getParent()).getChildren().remove(siirrettava);
-							pane.getChildren().add(siirrettava);
-							AnchorPane.setTopAnchor(siirrettava, (pane.getChildren().size() - 1) * 35.0);
-							pane.getParent().requestLayout();
-							siirrettava.getParent().requestLayout();
-							if (kortit.get(siirrettava).getSeuraava() != null) {
-								siirrettava = kuvat.get(kortit.get(siirrettava).getSeuraava());
-							} else {
-								break;
-							}
-						}
-						
-						siirrettava = null;
-						event.consume();
-					}
-				}
-			});
 			
 			AnchorPane.setTopAnchor(kortti, (pane.getChildren().size() - 1) * 35.0);
 		}
@@ -125,6 +115,43 @@ public class Kayttoliittyma extends Application {
 			ImageView korttikuva = piirraNakyvaKortti(nakyva);
 			pane.getChildren().add(korttikuva);
 			AnchorPane.setTopAnchor(korttikuva, (pane.getChildren().size() - 1) * 35.0);
+			
+			pane.setOnMouseClicked(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent event) {
+					System.out.println(event);
+					if (siirrettava != null) {
+						lahde.siirraKortti(kortit.get(siirrettava), pino);
+						
+						while (true) {
+							((AnchorPane) siirrettava.getParent()).getChildren().remove(siirrettava);
+							pane.getChildren().add(siirrettava);
+							AnchorPane.setTopAnchor(siirrettava, (pane.getChildren().size() - 1) * 35.0);
+							pane.requestLayout();
+							siirrettava.getParent().requestLayout();
+							if (kortit.get(siirrettava).getSeuraava() != null) {
+								siirrettava = kuvat.get(kortit.get(siirrettava).getSeuraava());
+							} else {
+								break;
+							}
+						}
+						
+						if (lahde.getNakyvat().seuraaviaKortteja() == 1) {
+							ImageView kaannetty = piirraNakyvaKortti(lahde.getNakyvat());
+							AnchorPane lahdekuva = pinokuvat.get(lahde);
+							
+							lahdekuva.getChildren().remove(lahdekuva.getChildren().size() - 1);
+							lahdekuva.getChildren().add(kaannetty);
+							AnchorPane.setTopAnchor(kaannetty, (lahdekuva.getChildren().size() - 1) * 35.0);
+						}
+						
+						siirrettava = null;
+						lahde = null;
+						event.consume();
+					}
+				}
+			});
+			
 			nakyva = nakyva.getSeuraava();
 		}
         
