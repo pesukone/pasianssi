@@ -39,13 +39,6 @@ public class Kayttoliittyma extends Application {
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
-
-	/**
-	 * @param args the command line arguments
-	 */
-	public static void main(String[] args) {
-		launch(args);
-	}
     
 	private ImageView piirraNakyvaKortti(NakyvaKortti kortti) {
 		ImageView palautettava = new ImageView();
