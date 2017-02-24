@@ -16,17 +16,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.Dragboard;
-import javafx.scene.input.TransferMode;
-import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
 import javafx.event.EventHandler;
 
 public class Kayttoliittyma extends Application {
 	private static Pasianssi pasianssi;
 	private ImageView siirrettava;
-	private BorderPane juuri;
 	private HashMap<ImageView, NakyvaKortti> kortit = new HashMap();
 	private HashMap<NakyvaKortti, ImageView> kuvat = new HashMap();
 	private HashMap<AnchorPane, Korttipino> pinot = new HashMap();
@@ -40,7 +35,6 @@ public class Kayttoliittyma extends Application {
 		Scene scene = new Scene(root, 1280, 720, Color.GREEN);
 		
 		root.setTop(piirraKorttipinot());
-		juuri = root;
 		
 		primaryStage.setScene(scene);
 		primaryStage.show();
@@ -65,7 +59,6 @@ public class Kayttoliittyma extends Application {
 		palautettava.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				System.out.println(event);
 				if (siirrettava == null) {
 					siirrettava = palautettava;
 					
@@ -119,7 +112,6 @@ public class Kayttoliittyma extends Application {
 			pane.setOnMouseClicked(new EventHandler<MouseEvent>() {
 				@Override
 				public void handle(MouseEvent event) {
-					System.out.println(event);
 					if (siirrettava != null) {
 						lahde.siirraKortti(kortit.get(siirrettava), pino);
 						
@@ -136,7 +128,7 @@ public class Kayttoliittyma extends Application {
 							}
 						}
 						
-						if (lahde.getNakyvat().seuraaviaKortteja() == 1) {
+						if (!lahde.tyhja() && lahde.getNakyvat().seuraaviaKortteja() == 1) {
 							ImageView kaannetty = piirraNakyvaKortti(lahde.getNakyvat());
 							AnchorPane lahdekuva = pinokuvat.get(lahde);
 							
