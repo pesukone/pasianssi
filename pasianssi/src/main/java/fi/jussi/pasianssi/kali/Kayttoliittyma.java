@@ -130,10 +130,11 @@ public class Kayttoliittyma extends Application {
 								AnchorPane.setTopAnchor(kaannetty, (lahdekuva.getChildren().size() - 1) * 35.0);
 							}
 						
-							siirrettava = null;
-							lahde = null;
-							event.consume();
+							
 						}
+						siirrettava = null;
+						lahde = null;
+						event.consume();
 					}
 				}
 			});
