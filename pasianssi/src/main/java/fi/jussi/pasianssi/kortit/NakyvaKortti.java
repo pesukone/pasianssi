@@ -50,6 +50,7 @@ public class NakyvaKortti {
 	/**
 	 * Metodi siirtää listan solmun parametrina annetun korttilistan perälle.
 	 * @param kohde		lista, johon solmu siirretään
+	 * @return siirto on luvallinen
 	 */
 	public boolean siirra(NakyvaKortti kohde) {
 		if (!this.kortti.yhtaPienempi(kohde.getKortti())) {

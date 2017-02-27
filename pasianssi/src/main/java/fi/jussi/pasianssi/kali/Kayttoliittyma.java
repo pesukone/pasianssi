@@ -129,8 +129,6 @@ public class Kayttoliittyma extends Application {
 								lahdekuva.getChildren().add(kaannetty);
 								AnchorPane.setTopAnchor(kaannetty, (lahdekuva.getChildren().size() - 1) * 35.0);
 							}
-						
-							
 						}
 						siirrettava = null;
 						lahde = null;

@@ -24,8 +24,8 @@ public class NakyvaKorttiTest {
     
 	@Before
 	public void setUp() {
-		pino = new NakyvaKortti(new Kortti(Maa.HERTTA, 4));
-		toinen = new NakyvaKortti(new Kortti(Maa.RISTI, 12));
+		pino = new NakyvaKortti(new Kortti(Maa.RISTI, 12));
+		toinen = new NakyvaKortti(new Kortti(Maa.HERTTA, 4));
 	}
     
 	@After
@@ -89,7 +89,7 @@ public class NakyvaKorttiTest {
     
 	@Test
 	public void siirtaminenPoistaaViitteenEdellisestaKortista() {
-		pino.lisaa(new Kortti(Maa.RUUTU, 2));
+		pino.lisaa(new Kortti(Maa.RISTI, 3));
 		pino.hanta().siirra(toinen);
         
 		assertNull(pino.getSeuraava());
@@ -97,7 +97,7 @@ public class NakyvaKorttiTest {
     
 	@Test
 	public void siirrettyKorttiViittaaSiirrettyynPinoon() {
-		pino.lisaa(new Kortti(Maa.PATA, 8));
+		pino.lisaa(new Kortti(Maa.PATA, 3));
 		NakyvaKortti siirrettava = pino.hanta();
 		siirrettava.siirra(toinen);
         
@@ -106,12 +106,12 @@ public class NakyvaKorttiTest {
     
 	@Test
 	public void useanKortinVoiSiirtaaKerralla() {
-		Kortti ensimmainen = new Kortti(Maa.RUUTU, 7);
-		Kortti viimeinen = new Kortti(Maa.RISTI, 4);
+		Kortti ensimmainen = new Kortti(Maa.HERTTA, 3);
+		Kortti viimeinen = new Kortti(Maa.HERTTA, 2);
         
 		pino.lisaa(ensimmainen);
 		pino.lisaa(viimeinen);
-        
+		
 		pino = pino.getSeuraava();
 		pino.siirra(toinen);
         

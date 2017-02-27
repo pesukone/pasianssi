@@ -97,8 +97,8 @@ public class KorttipinoTest {
 	
 	@Test
 	public void josKaannetytKortitLoppuvatPinoOnTyhja() {
-		pino.lisaaKaannettyKortti(new Kortti(Maa.PATA, 13));
-		pino.lisaaNakyvaKortti(new Kortti(Maa.RISTI, 1));
+		pino.lisaaKaannettyKortti(new Kortti(Maa.PATA, 3));
+		pino.lisaaNakyvaKortti(new Kortti(Maa.RISTI, 4));
 		
 		pino.siirraKortti(pino.getNakyvat(), toinen);
 		pino.siirraKortti(pino.getNakyvat(), toinen);
