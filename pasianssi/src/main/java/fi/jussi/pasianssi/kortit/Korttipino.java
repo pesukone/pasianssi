@@ -1,5 +1,6 @@
 package fi.jussi.pasianssi.kortit;
 
+import fi.jussi.pasianssi.apu.Kortinsiirtaja;
 import java.util.Stack;
 
 /**
@@ -49,17 +50,7 @@ public class Korttipino {
 	 * @param kohde	korttipino, jonka perään kortti/kortit siirretään
 	 */
 	public boolean siirraKortti(NakyvaKortti kortti, Korttipino kohde) {
-		if (kohde.eiNakyviaKortteja()) {
-			siirraTyhjaan(kortti, kohde);
-		} else {
-			if (kortti.siirra(kohde.getNakyvat()) == false) {
-				return false;
-			}
-		}
-        
-		jalkisiivous(kortti);
-		
-		return true;
+		return Kortinsiirtaja.siirraKortti(this, kortti, kohde);
 	}
 	
 	/**

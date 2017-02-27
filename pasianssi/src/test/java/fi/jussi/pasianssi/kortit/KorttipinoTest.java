@@ -31,16 +31,6 @@ public class KorttipinoTest {
 	@After
 	public void tearDown() {
 	}
-    
-	@Test
-	public void korttiaVoiSiirtaaPinostaToiseen() {
-		pino.lisaaNakyvaKortti(new Kortti(Maa.RUUTU, 8));
-		pino.lisaaNakyvaKortti(new Kortti(Maa.RISTI, 4));
-        
-		pino.siirraKortti(pino.getNakyvat().hanta(), toinen);
-        
-		assertEquals(toinen.korttimaara(), 1);
-	}
 	
 	@Test
 	public void nakyvanKortinVoiLisata() {
@@ -73,40 +63,7 @@ public class KorttipinoTest {
 	public void pinoJossaNakyvaKorttiEiTyhja() {
 		pino.lisaaNakyvaKortti(new Kortti(Maa.RUUTU, 12));
 	}
-    
-	@Test
-	public void josAinoaKorttiSiirretaanNakyviaEiOle() {
-		Kortti siirrettava = new Kortti(Maa.PATA, 13);
-		pino.lisaaNakyvaKortti(siirrettava);
-		pino.siirraKortti(pino.getNakyvat(), toinen);
-        
-		assertEquals(pino.getNakyvat(), null);
-	}
-	
-	@Test
-	public void josNakyvatKortitLoppuvatKaannetaanKaannettyKortti() {
-		Kortti kaannetty = new Kortti(Maa.RISTI, 3);
-		pino.lisaaKaannettyKortti(kaannetty);
-		pino.lisaaNakyvaKortti(new Kortti(Maa.RUUTU, 4));
-	
-		pino.siirraKortti(pino.getNakyvat(), toinen);
-	
-		assertEquals(pino.getNakyvat().getKortti().getMaa(), kaannetty.getMaa());
-		assertEquals(pino.getNakyvat().getKortti().getArvo(), kaannetty.getArvo());
-	}
-	
-	@Test
-	public void josKaannetytKortitLoppuvatPinoOnTyhja() {
-		pino.lisaaKaannettyKortti(new Kortti(Maa.PATA, 3));
-		pino.lisaaNakyvaKortti(new Kortti(Maa.RISTI, 4));
-		
-		pino.siirraKortti(pino.getNakyvat(), toinen);
-		pino.siirraKortti(pino.getNakyvat(), toinen);
-		
-		assertEquals(pino.getNakyvat(), null);
-		assertEquals(pino.getKaannetyt().size(), 0);
-	}
-	
+
 	@Test
 	public void onPinossaToimii() {
 		NakyvaKortti kortti = new NakyvaKortti(new Kortti(Maa.PATA, 5));
