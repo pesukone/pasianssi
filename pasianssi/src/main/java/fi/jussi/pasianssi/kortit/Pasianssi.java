@@ -47,6 +47,20 @@ public class Pasianssi {
 		
 		return true;
 	}
+	
+	public boolean voitettu() {
+		if (!this.pakka.tyhja()) {
+			return false;
+		}
+		
+		for (Korttipino pino : this.pinot) {
+			if (!pino.tyhja()) {
+				return false;
+			}
+		}
+		
+		return true;
+	}
     
 	public List<Korttipino> getPinot() {
 		return this.pinot;
