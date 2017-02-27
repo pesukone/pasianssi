@@ -1,6 +1,7 @@
 package fi.jussi.pasianssi.kali;
 
 import fi.jussi.pasianssi.kortit.Kortti;
+import fi.jussi.pasianssi.kortit.Korttipakka;
 import fi.jussi.pasianssi.kortit.NakyvaKortti;
 import fi.jussi.pasianssi.kortit.Korttipino;
 import fi.jussi.pasianssi.kortit.Pasianssi;
@@ -35,9 +36,35 @@ public class Kayttoliittyma extends Application {
 		Scene scene = new Scene(root, 1280, 720, Color.GREEN);
 		
 		root.setTop(piirraKorttipinot());
+		root.setBottom(piirraPakka(pasianssi.getPakka()));
 		
 		primaryStage.setScene(scene);
 		primaryStage.show();
+	}
+	
+	private ImageView piirraPakka(Korttipakka pakka) {
+		ImageView pakkanappi = new ImageView();
+		pakkanappi.setImage(new Image(getClass().getClassLoader().getResourceAsStream("black_joker.png")));
+		pakkanappi.setFitWidth(120);
+		pakkanappi.setPreserveRatio(true);
+		BorderPane.setAlignment(pakkanappi, Pos.BOTTOM_RIGHT);
+		
+		pakkanappi.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				pasianssi.nosta10Korttia();
+				
+				for (Korttipino pino : pasianssi.getPinot()) {
+					ImageView uusi = piirraNakyvaKortti(pino.getNakyvat().hanta());
+					pinokuvat.get(pino).getChildren().add(uusi);
+					AnchorPane.setTopAnchor(uusi, (pinokuvat.get(pino).getChildren().size() - 1) * 35.0);
+					pinokuvat.get(pino).requestLayout();
+				}
+				event.consume();
+			}
+		});
+		
+		return pakkanappi;
 	}
     
 	private ImageView piirraNakyvaKortti(NakyvaKortti kortti) {
