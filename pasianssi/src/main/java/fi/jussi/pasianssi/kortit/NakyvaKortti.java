@@ -51,13 +51,18 @@ public class NakyvaKortti {
 	 * Metodi siirtää listan solmun parametrina annetun korttilistan perälle.
 	 * @param kohde		lista, johon solmu siirretään
 	 */
-	public void siirra(NakyvaKortti kohde) {
+	public boolean siirra(NakyvaKortti kohde) {
+		if (!this.kortti.yhtaPienempi(kohde.getKortti())) {
+			return false;
+		}
+		
 		if (this.getEdellinen() != null) {
 			this.getEdellinen().setSeuraava(null);
 			this.setEdellinen(null);
 		}
         
 		kohde.lisaa(this);
+		return true;
 	}
     
 	/**

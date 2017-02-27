@@ -48,12 +48,14 @@ public class Korttipino {
 	 * @param kortti siirrettävä kortti
 	 * @param kohde	korttipino, jonka perään kortti/kortit siirretään
 	 */
-	public void siirraKortti(NakyvaKortti kortti, Korttipino kohde) {
+	public boolean siirraKortti(NakyvaKortti kortti, Korttipino kohde) {
 		if (kohde.eiNakyviaKortteja()) {
 			kohde.setNakyvat(kortti);
 			kortti.setEdellinen(null);
 		} else {
-			kortti.siirra(kohde.getNakyvat());
+			if (kortti.siirra(kohde.getNakyvat()) == false) {
+				return false;
+			}
 		}
         
 		if (kortti.equals(this.nakyvatKortit)) {
@@ -63,6 +65,8 @@ public class Korttipino {
 		if (this.eiNakyviaKortteja()) {
 			this.kaannaKorttiNakyviin();
 		}
+		
+		return true;
 	}
 	
 	/**
