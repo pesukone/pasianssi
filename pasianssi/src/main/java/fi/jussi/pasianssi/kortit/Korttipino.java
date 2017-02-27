@@ -143,4 +143,51 @@ public class Korttipino {
 		
 		return false;
 	}
+	
+	private void etsiSarja() {
+		if (this.nakyvatKortit == null || this.nakyvatKortit.getSeuraava() == null) {
+			return;
+		}
+		
+		NakyvaKortti iteroitava = this.nakyvatKortit;
+		NakyvaKortti sarja = iteroitava;
+		
+		while (iteroitava.getSeuraava() != null) {
+			if (iteroitava.getSeuraava() == null) {
+				return;
+			}
+			
+			if (iteroitava.getKortti().getArvo() == 13) {
+				tutkiSarja(iteroitava);
+			}
+			
+			iteroitava = iteroitava.getSeuraava();
+		}
+	}
+	
+	private void tutkiSarja(NakyvaKortti kuningas) {
+		if (kuningas.getSeuraava() == null) {
+			return;
+		}
+		
+		NakyvaKortti iteroitava = kuningas.getSeuraava();
+		
+		do {
+			if (!iteroitava.getKortti().samaMaa(kuningas.getKortti()) || !iteroitava.getKortti().yhtaPienempi(iteroitava.getEdellinen().getKortti())) {
+				return;
+			}
+			
+			if (iteroitava.getKortti().getArvo() == 1 && iteroitava.getSeuraava() != null) {
+				poistaSarja(kuningas);
+			}
+		} while (iteroitava.getSeuraava() != null);
+	}
+	
+	private void poistaSarja(NakyvaKortti kuningas) {
+		if (kuningas.getEdellinen() != null) {
+			kuningas.getEdellinen().setSeuraava(null);
+		}
+		
+		kuningas.setEdellinen(null);
+	}
 }
