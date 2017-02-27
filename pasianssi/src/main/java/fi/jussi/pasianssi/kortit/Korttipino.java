@@ -85,7 +85,7 @@ public class Korttipino {
 	 * @return palautetaan tosi, jos kortti on pinossa
 	 */
 	public boolean onPinossa(NakyvaKortti kortti) {
-		if (this.nakyvatKortit == null) {
+		if (eiNakyviaKortteja()) {
 			return false;
 		}
 		
@@ -93,16 +93,7 @@ public class Korttipino {
 			return this.nakyvatKortit.equals(kortti);
 		}
 		
-		NakyvaKortti iteroitava = this.nakyvatKortit;
-		
-		do {
-			if (iteroitava.equals(kortti)) {
-				return true;
-			}
-			iteroitava = iteroitava.getSeuraava();
-		} while (iteroitava != null);
-		
-		return false;
+		return tutkiPino(this.nakyvatKortit, kortti);
 	}
       	
 	public Stack<Kortti> getKaannetyt() {
@@ -140,5 +131,16 @@ public class Korttipino {
 		if (this.eiNakyviaKortteja()) {
 			this.kaannaKorttiNakyviin();
 		}
+	}
+	
+	private boolean tutkiPino(NakyvaKortti iteroitava, NakyvaKortti verrattava) {
+		do {
+			if (iteroitava.equals(verrattava)) {
+				return true;
+			}
+			iteroitava = iteroitava.getSeuraava();
+		} while (iteroitava != null);
+		
+		return false;
 	}
 }
