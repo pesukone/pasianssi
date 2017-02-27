@@ -60,6 +60,10 @@ public class Kayttoliittyma extends Application {
 					AnchorPane.setTopAnchor(uusi, (pinokuvat.get(pino).getChildren().size() - 1) * 35.0);
 					pinokuvat.get(pino).requestLayout();
 				}
+				
+				if (pasianssi.getPakka().tyhja()) {
+					((BorderPane) pakkanappi.getParent()).getChildren().remove(pakkanappi);
+				}
 				event.consume();
 			}
 		});
