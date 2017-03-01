@@ -3,6 +3,7 @@ package fi.jussi.pasianssi.apu;
 import fi.jussi.pasianssi.kortit.Korttipino;
 import fi.jussi.pasianssi.kortit.Maa;
 import fi.jussi.pasianssi.kortit.Kortti;
+import fi.jussi.pasianssi.kortit.NakyvaKortti;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -45,5 +46,28 @@ public class KortinpoistoTest {
 		Kortinsiirtaja.siirraKortti(toinen, toinen.getNakyvat(), pino);
 		
 		assertNull(pino.getNakyvat());
+	}
+	
+	@Test
+	public void eriMaanKorttiEiAiheutaPoistamista() {
+		NakyvaKortti vaara = new NakyvaKortti(new Kortti(Maa.HERTTA, 1));
+		toinen.setNakyvat(vaara);
+		Kortinsiirtaja.siirraKortti(toinen, toinen.getNakyvat(), pino);
+		
+		assertEquals(pino.getNakyvat().hanta(), vaara);
+	}
+	
+	@Test
+	public void poistoaEiTapahduJosPinossaKorttiPoistettavienPaalla() {
+		NakyvaKortti assa = new NakyvaKortti(new Kortti(Maa.PATA, 1));
+		NakyvaKortti ylimaarainen = new NakyvaKortti(new Kortti(Maa.RUUTU, 4));
+		toinen.setNakyvat(assa);
+		ylimaarainen.setEdellinen(toinen.getNakyvat());
+		toinen.getNakyvat().setSeuraava(ylimaarainen);
+		
+		Kortinsiirtaja.siirraKortti(toinen, toinen.getNakyvat(), pino);
+		
+		assertEquals(pino.getNakyvat().hanta(), ylimaarainen);
+		assertEquals(pino.getNakyvat().hanta().getEdellinen(), assa);
 	}
 }
