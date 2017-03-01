@@ -44,7 +44,7 @@ public class Kayttoliittyma extends Application {
 	
 	private ImageView piirraPakka(Korttipakka pakka) {
 		ImageView pakkanappi = new ImageView();
-		pakkanappi.setImage(new Image(getClass().getClassLoader().getResourceAsStream("black_joker.png")));
+		pakkanappi.setImage(new Image(getClass().getClassLoader().getResourceAsStream("tausta.jpg")));
 		pakkanappi.setFitWidth(120);
 		pakkanappi.setPreserveRatio(true);
 		BorderPane.setAlignment(pakkanappi, Pos.BOTTOM_RIGHT);
@@ -103,7 +103,7 @@ public class Kayttoliittyma extends Application {
 	
 	private ImageView piirraKaannettyKortti() {
 		ImageView palautettava = new ImageView();
-		palautettava.setImage(new Image(getClass().getClassLoader().getResourceAsStream("black_joker.png")));
+		palautettava.setImage(new Image(getClass().getClassLoader().getResourceAsStream("tausta.jpg")));
 		palautettava.setFitWidth(120);
 		palautettava.setPreserveRatio(true);
 		

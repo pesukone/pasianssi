@@ -15,3 +15,5 @@ Javalla toteutettu Spider-pasianssi
 [käyttöohje](dokumentaatio/ohje.md)
 
 [pelikortit](https://code.google.com/archive/p/vector-playing-cards/)
+
+[pelikorttien taustapuoli](https://pixabay.com/en/playing-card-back-pattern-568200/)
