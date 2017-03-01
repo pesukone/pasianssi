@@ -73,6 +73,20 @@ public class KortinsiirtajaTest {
 	}
 	
 	@Test
+	public void vaaranArvoinenKorttiJatetaanSiirtamatta() {
+		NakyvaKortti kortti = new NakyvaKortti(new Kortti(Maa.RUUTU, 12));
+		NakyvaKortti toinenKortti = new NakyvaKortti(new Kortti(Maa.HERTTA, 3));
+		
+		pino.setNakyvat(kortti);
+		toinen.setNakyvat(toinenKortti);
+		
+		Kortinsiirtaja.siirraKortti(toinen, toinen.getNakyvat(), pino);
+		
+		assertEquals(pino.getNakyvat().hanta(), kortti);
+		assertEquals(toinen.getNakyvat().hanta(), toinenKortti);
+	}
+	
+	@Test
 	public void josAinoaKorttiSiirretaanNakyviaEiOle() {
 		Kortti siirrettava = new Kortti(Maa.PATA, 13);
 		pino.lisaaNakyvaKortti(siirrettava);
@@ -103,19 +117,5 @@ public class KortinsiirtajaTest {
 		
 		assertEquals(pino.getNakyvat(), null);
 		assertEquals(pino.getKaannetyt().size(), 0);
-	}
-	
-	@Test
-	public void vaaranArvoinenKorttiJatetaanSiirtamatta() {
-		NakyvaKortti kortti = new NakyvaKortti(new Kortti(Maa.RUUTU, 12));
-		NakyvaKortti toinenKortti = new NakyvaKortti(new Kortti(Maa.HERTTA, 3));
-		
-		pino.setNakyvat(kortti);
-		toinen.setNakyvat(toinenKortti);
-		
-		Kortinsiirtaja.siirraKortti(toinen, toinen.getNakyvat(), pino);
-		
-		assertEquals(pino.getNakyvat().hanta(), kortti);
-		assertEquals(toinen.getNakyvat().hanta(), toinenKortti);
 	}
 }

@@ -13,7 +13,7 @@ public class Kortinsiirtaja {
 				return false;
 			}
 		}
-        
+		
 		jalkisiivous(lahde, kortti, kohde);
 		
 		return true;
@@ -67,15 +67,18 @@ public class Kortinsiirtaja {
 			return;
 		}
 		
-		NakyvaKortti iteroitava = kuningas.getSeuraava();
+		NakyvaKortti iteroitava = kuningas;
 		
 		do {
+			iteroitava = iteroitava.getSeuraava();
+			
 			if (!samaaMaataJaYhdenEro(iteroitava.getEdellinen(), iteroitava)) {
 				return;
 			}
 			
-			if (iteroitava.getKortti().getArvo() == 1 && iteroitava.getSeuraava() != null) {
+			if (iteroitava.getKortti().getArvo() == 1 && iteroitava.getSeuraava() == null) {
 				poistaSarja(pino, kuningas);
+				return;
 			}
 		} while (iteroitava.getSeuraava() != null);
 	}

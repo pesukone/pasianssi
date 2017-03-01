@@ -53,7 +53,7 @@ public class NakyvaKortti {
 	 * @return siirto on luvallinen
 	 */
 	public boolean siirra(NakyvaKortti kohde) {
-		if (!this.kortti.yhtaPienempi(kohde.getKortti())) {
+		if (!this.kortti.yhtaPienempi(kohde.hanta().getKortti())) {
 			return false;
 		}
 		
