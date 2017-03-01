@@ -109,21 +109,6 @@ public class Korttipino {
 		return this.nakyvatKortit == null;
 	}
 	
-	private static void siirraTyhjaan(NakyvaKortti kortti, Korttipino kohde) {
-		kohde.setNakyvat(kortti);
-		kortti.setEdellinen(null);
-	}
-	
-	private void jalkisiivous(NakyvaKortti kortti) {
-		if (kortti.equals(this.nakyvatKortit)) {
-			this.nakyvatKortit = null;
-		}
-		
-		if (this.eiNakyviaKortteja()) {
-			this.kaannaKorttiNakyviin();
-		}
-	}
-	
 	private boolean tutkiPino(NakyvaKortti iteroitava, NakyvaKortti verrattava) {
 		do {
 			if (iteroitava.equals(verrattava)) {
@@ -133,52 +118,5 @@ public class Korttipino {
 		} while (iteroitava != null);
 		
 		return false;
-	}
-	
-	private void etsiSarja() {
-		if (this.nakyvatKortit == null || this.nakyvatKortit.getSeuraava() == null) {
-			return;
-		}
-		
-		NakyvaKortti iteroitava = this.nakyvatKortit;
-		NakyvaKortti sarja = iteroitava;
-		
-		while (iteroitava.getSeuraava() != null) {
-			if (iteroitava.getSeuraava() == null) {
-				return;
-			}
-			
-			if (iteroitava.getKortti().getArvo() == 13) {
-				tutkiSarja(iteroitava);
-			}
-			
-			iteroitava = iteroitava.getSeuraava();
-		}
-	}
-	
-	private void tutkiSarja(NakyvaKortti kuningas) {
-		if (kuningas.getSeuraava() == null) {
-			return;
-		}
-		
-		NakyvaKortti iteroitava = kuningas.getSeuraava();
-		
-		do {
-			if (!iteroitava.getKortti().samaMaa(kuningas.getKortti()) || !iteroitava.getKortti().yhtaPienempi(iteroitava.getEdellinen().getKortti())) {
-				return;
-			}
-			
-			if (iteroitava.getKortti().getArvo() == 1 && iteroitava.getSeuraava() != null) {
-				poistaSarja(kuningas);
-			}
-		} while (iteroitava.getSeuraava() != null);
-	}
-	
-	private void poistaSarja(NakyvaKortti kuningas) {
-		if (kuningas.getEdellinen() != null) {
-			kuningas.getEdellinen().setSeuraava(null);
-		}
-		
-		kuningas.setEdellinen(null);
 	}
 }

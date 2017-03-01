@@ -48,6 +48,31 @@ public class KortinsiirtajaTest {
 	}
 	
 	@Test
+	public void yhdenKortinSiirtaminenToimii() {
+		toinen.lisaaNakyvaKortti(new Kortti(Maa.RISTI, 4));
+		NakyvaKortti siirrettava = new NakyvaKortti(new Kortti(Maa.RISTI, 3));
+		pino.setNakyvat(siirrettava);
+		
+		assertTrue(Kortinsiirtaja.siirraKortti(pino, pino.getNakyvat(), toinen));
+		
+		assertEquals(toinen.getNakyvat().hanta(), siirrettava);
+	}
+	
+	@Test
+	public void monenKortinSiirtaminenToimii() {
+		toinen.lisaaNakyvaKortti(new Kortti(Maa.RUUTU, 7));
+		NakyvaKortti siirrettava = new NakyvaKortti(new Kortti(Maa.RUUTU, 6));
+		pino.setNakyvat(siirrettava);
+		pino.lisaaNakyvaKortti(new Kortti(Maa.RUUTU, 5));
+		
+		assertTrue(Kortinsiirtaja.siirraKortti(pino, pino.getNakyvat(), toinen));
+		
+		assertEquals(toinen.getNakyvat().getSeuraava(), siirrettava);
+		assertEquals(toinen.getNakyvat().hanta().getKortti().getMaa(), Maa.RUUTU);
+		assertEquals(toinen.getNakyvat().hanta().getKortti().getArvo(), 5);
+	}
+	
+	@Test
 	public void josAinoaKorttiSiirretaanNakyviaEiOle() {
 		Kortti siirrettava = new Kortti(Maa.PATA, 13);
 		pino.lisaaNakyvaKortti(siirrettava);
