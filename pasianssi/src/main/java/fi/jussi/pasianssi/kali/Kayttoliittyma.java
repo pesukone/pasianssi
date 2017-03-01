@@ -137,6 +137,12 @@ public class Kayttoliittyma extends Application {
 				@Override
 				public void handle(MouseEvent event) {
 					if (siirrettava != null) {
+						if (pino.onPinossa(kortit.get(siirrettava))) {
+							siirrettava = null;
+							event.consume();
+							return;
+						}
+						
 						if (lahde.siirraKortti(kortit.get(siirrettava), pino)) {
 						
 							while (true) {
