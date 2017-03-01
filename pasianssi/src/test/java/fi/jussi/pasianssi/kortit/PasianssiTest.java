@@ -34,7 +34,7 @@ public class PasianssiTest {
 	
 	@Test
 	public void nostaminenLisaaNakyviaKorttejaYhdellaJokaPinossa() {
-		pasianssi.nosta10Korttia();
+		assertTrue(pasianssi.nosta10Korttia());
 		
 		for (int i = 0; i < 10; i++) {
 			assertEquals(pasianssi.getPinot().get(i).getNakyvat().seuraaviaKortteja(), 2);
@@ -48,5 +48,36 @@ public class PasianssiTest {
 		}
 		
 		assertFalse(pasianssi.nosta10Korttia());
+	}
+	
+	@Test
+	public void keskeneraistaPeliaEiOleVoitettu() {
+		assertFalse(pasianssi.voitettu());
+	}
+	
+	@Test
+	public void josPakassaOnKorttejaPeliaEiOleVoitettu() {
+		for (Korttipino pino : pasianssi.getPinot()) {
+			while (!pino.getKaannetyt().empty()) {
+				pino.lisaaNakyvaKortti(pino.getKaannetyt().pop());
+			}
+			pino.setNakyvat(null);
+		}
+		
+		assertFalse(pasianssi.voitettu());
+	}
+	
+	@Test
+	public void josPinotJaPakkaTyhjiaPeliVoitettu() {
+		while (pasianssi.nosta10Korttia());
+		
+		for (Korttipino pino : pasianssi.getPinot()) {
+			while (!pino.getKaannetyt().empty()) {
+				pino.lisaaNakyvaKortti(pino.getKaannetyt().pop());
+			}
+			pino.setNakyvat(null);
+		}
+		
+		assertTrue(pasianssi.voitettu());
 	}
 }
