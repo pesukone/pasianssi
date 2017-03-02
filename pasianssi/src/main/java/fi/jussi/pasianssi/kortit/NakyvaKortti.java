@@ -1,5 +1,7 @@
 package fi.jussi.pasianssi.kortit;
 
+import fi.jussi.pasianssi.apu.Kortinvertailija;
+
 /**
  * Linkitettynä listana toteutettu joukko kortteja. Kortin ja kaikki siitä
  * seuraavat kortit voi siirtää toisen korttilistan perälle.
@@ -53,14 +55,14 @@ public class NakyvaKortti {
 	 * @return siirto on luvallinen
 	 */
 	public boolean siirra(NakyvaKortti kohde) {
-		if (!this.kortti.yhtaPienempi(kohde.hanta().getKortti())) {
+		if (!Kortinvertailija.yhdenEro(this.kortti, kohde.hanta().getKortti())) {
 			return false;
 		}
 		
 		NakyvaKortti iteroitava = this;
 		
 		while (iteroitava.getSeuraava() != null) {
-			if (!iteroitava.kortti.samaMaa(iteroitava.getSeuraava().getKortti())) {
+			if (!Kortinvertailija.samaMaa(iteroitava.getKortti(), iteroitava.getSeuraava().getKortti())) {
 				return false;
 			}
 			

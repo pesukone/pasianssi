@@ -22,13 +22,13 @@ public class Kortti {
 		this.arvo = arvo;
 	}
 	
-	public boolean samaMaa(Kortti kortti) {
+	/*public boolean samaMaa(Kortti kortti) {
 		return this.maa.equals(kortti.getMaa());
 	}
 	
 	public boolean yhtaPienempi(Kortti kortti) {
 		return this.arvo == (kortti.getArvo() - 1);
-	}
+	}*/
     
 	public Maa getMaa() {
 		return this.maa;

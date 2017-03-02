@@ -72,7 +72,7 @@ public class Kortinsiirtaja {
 		do {
 			iteroitava = iteroitava.getSeuraava();
 			
-			if (!samaaMaataJaYhdenEro(iteroitava.getEdellinen(), iteroitava)) {
+			if (!Kortinvertailija.samaaMaataJaYhdenEro(iteroitava.getKortti(), iteroitava.getEdellinen().getKortti())) {
 				return;
 			}
 			
@@ -93,17 +93,5 @@ public class Kortinsiirtaja {
 		}
 		
 		kuningas.setEdellinen(null);
-	}
-	
-	private static boolean samaaMaataJaYhdenEro(NakyvaKortti suurempi, NakyvaKortti pienempi) {
-		if (!suurempi.getKortti().samaMaa(pienempi.getKortti())) {
-			return false;
-		}
-		
-		if (!pienempi.getKortti().yhtaPienempi(suurempi.getKortti())) {
-			return false;
-		}
-		
-		return true;
 	}
 }
