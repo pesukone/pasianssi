@@ -60,7 +60,7 @@ public class NakyvaKortti {
 		NakyvaKortti iteroitava = this;
 		
 		while (iteroitava.getSeuraava() != null) {
-			if (!iteroitava.kortti.samaMaa(kohde.getKortti())) {
+			if (!iteroitava.kortti.samaMaa(iteroitava.getSeuraava().getKortti())) {
 				return false;
 			}
 			

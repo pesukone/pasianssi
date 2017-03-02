@@ -32,6 +32,13 @@ public class Pakantayttaja {
 		alustaPeruskorttipakka(pakka);
 		alustaPeruskorttipakka(pakka);
 	}
+	
+	/*public static void alustaKahdenMaanTuplapakka(Korttipakka pakka) {
+		luoMaanKortit(pakka, Maa.HERTTA);
+		luoMaanKortit(pakka, Maa.HERTTA);
+		luoMaanKortit(pakka, Maa.PATA);
+		luoMaanKortit(pakka, Maa.PATA);
+	}*/
     
 	private static void luoMaanKortit(Korttipakka pakka, Maa maa) {
 		for (int i = 1; i <= 13; i++) {

@@ -28,6 +28,7 @@ public class Pasianssinalustaja {
 	 */
 	public static void alustaPakka(Korttipakka pakka) {
 		Pakantayttaja.alustaTuplakorttipakka(pakka);
+		//Pakantayttaja.alustaKahdenMaanTuplapakka(pakka);
 		pakka.sekoita();
 	}
 	

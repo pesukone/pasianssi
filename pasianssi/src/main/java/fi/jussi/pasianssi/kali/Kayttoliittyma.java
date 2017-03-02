@@ -147,7 +147,12 @@ public class Kayttoliittyma extends Application {
 							return;
 						}
 						
-						int kohteenKorttimaara = pino.getNakyvat().seuraaviaKortteja();
+						int kohteenKorttimaara;
+						if (pino.getNakyvat() == null) {
+							kohteenKorttimaara = 0;
+						} else {
+							kohteenKorttimaara = pino.getNakyvat().seuraaviaKortteja();
+						}
 						
 						if (lahde.siirraKortti(kortit.get(siirrettava), pino)) {
 						
