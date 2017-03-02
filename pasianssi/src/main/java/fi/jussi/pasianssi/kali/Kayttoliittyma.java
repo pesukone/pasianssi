@@ -143,6 +143,8 @@ public class Kayttoliittyma extends Application {
 							return;
 						}
 						
+						int kohteenKorttimaara = pino.getNakyvat().seuraaviaKortteja();
+						
 						if (lahde.siirraKortti(kortit.get(siirrettava), pino)) {
 						
 							while (true) {
@@ -155,6 +157,12 @@ public class Kayttoliittyma extends Application {
 									siirrettava = kuvat.get(kortit.get(siirrettava).getSeuraava());
 								} else {
 									break;
+								}
+							}
+							
+							if (kohteenKorttimaara > pino.getNakyvat().seuraaviaKortteja()) {
+								for (int i = 1; i <= 13; i++) {
+									pane.getChildren().remove(pane.getChildren().size() - i);
 								}
 							}
 						
