@@ -19,8 +19,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
 import javafx.event.EventHandler;
+import javafx.event.EventType;
+import javafx.event.ActionEvent;
 
 public class Kayttoliittyma extends Application {
 	private static Pasianssi pasianssi;
@@ -30,17 +35,24 @@ public class Kayttoliittyma extends Application {
 	private HashMap<AnchorPane, Korttipino> pinot = new HashMap();
 	private HashMap<Korttipino, AnchorPane> pinokuvat = new HashMap();
 	private Korttipino lahde;
-	private BorderPane juuri;
+	private BorderPane poyta;
 	
 	@Override
 	public void start(Stage primaryStage) {
 		primaryStage.setTitle("Spider-pasianssi");
-		juuri = new BorderPane();
-		Scene scene = new Scene(juuri, 1280, 720, Color.GREEN);
+		BorderPane juuri = new BorderPane();
+		poyta = new BorderPane();
+		poyta.setStyle("-fx-background-color: green");
+		juuri.setCenter(poyta);
+		Scene scene = new Scene(juuri, 1280, 720);
 		
-		juuri.setTop(piirraKorttipinot());
-		juuri.setBottom(piirraPakka(pasianssi.getPakka()));
-		juuri.setLeft(uusiPeliNappi(primaryStage));
+		poyta.setTop(piirraKorttipinot());
+		poyta.setBottom(piirraPakka(pasianssi.getPakka()));
+		
+		MenuBar valikko = new MenuBar();
+		Menu aloitaAlusta = piirraValikko(primaryStage);
+		valikko.getMenus().add(aloitaAlusta);
+		juuri.setTop(valikko);
 		
 		primaryStage.setScene(scene);
 		primaryStage.show();
@@ -75,25 +87,22 @@ public class Kayttoliittyma extends Application {
 		return pakkanappi;
 	}
 	
-	private ImageView uusiPeliNappi(Stage primaryStage) {
-		ImageView nappi = new ImageView();
-		nappi.setImage(new Image(getClass().getClassLoader().getResourceAsStream("black_joker.png")));
-		nappi.setFitWidth(120);
-		nappi.setPreserveRatio(true);
-		BorderPane.setAlignment(nappi, Pos.BOTTOM_LEFT);
-		
-		nappi.setOnMouseClicked(new EventHandler<MouseEvent>() {
+	private Menu piirraValikko(Stage primaryStage) {
+		Menu valikko = new Menu("Valikko");
+		MenuItem uusi = new MenuItem("Uusi peli");
+		uusi.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
-			public void handle(MouseEvent event) {
+			public void handle(ActionEvent event) {
 				setPasianssi(new Pasianssi());
-				juuri.setTop(piirraKorttipinot());
-				juuri.setBottom(piirraPakka(pasianssi.getPakka()));
-				juuri.requestLayout();
-				event.consume();
+				poyta.setTop(piirraKorttipinot());
+				poyta.setBottom(piirraPakka(pasianssi.getPakka()));
+				poyta.requestLayout();
 			}
 		});
 		
-		return nappi;
+		valikko.getItems().add(uusi);
+		
+		return valikko;
 	}
     
 	private ImageView piirraNakyvaKortti(NakyvaKortti kortti) {
