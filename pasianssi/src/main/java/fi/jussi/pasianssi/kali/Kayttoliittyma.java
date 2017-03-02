@@ -17,6 +17,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.event.EventHandler;
 
@@ -57,7 +58,7 @@ public class Kayttoliittyma extends Application {
 				for (Korttipino pino : pasianssi.getPinot()) {
 					ImageView uusi = piirraNakyvaKortti(pino.getNakyvat().hanta());
 					pinokuvat.get(pino).getChildren().add(uusi);
-					AnchorPane.setTopAnchor(uusi, (pinokuvat.get(pino).getChildren().size() - 1) * 35.0);
+					asetaVali(uusi);
 					pinokuvat.get(pino).requestLayout();
 				}
 				
@@ -115,11 +116,14 @@ public class Kayttoliittyma extends Application {
 		pinot.put(pane, pino);
 		pinokuvat.put(pino, pane);
         
+		Rectangle nakymaton = new Rectangle(120, 120, Color.TRANSPARENT);
+		pane.getChildren().add(nakymaton);
+		
 		for (int i = 0; i < pino.getKaannetyt().size(); i++) {
 			ImageView kortti = piirraKaannettyKortti();
 			pane.getChildren().add(kortti);
 			
-			AnchorPane.setTopAnchor(kortti, (pane.getChildren().size() - 1) * 35.0);
+			asetaVali(kortti);
 		}
 
 		NakyvaKortti nakyva = pino.getNakyvat();
@@ -131,7 +135,7 @@ public class Kayttoliittyma extends Application {
 		while (nakyva != null) {
 			ImageView korttikuva = piirraNakyvaKortti(nakyva);
 			pane.getChildren().add(korttikuva);
-			AnchorPane.setTopAnchor(korttikuva, (pane.getChildren().size() - 1) * 35.0);
+			asetaVali(korttikuva);
 			
 			pane.setOnMouseClicked(new EventHandler<MouseEvent>() {
 				@Override
@@ -150,7 +154,7 @@ public class Kayttoliittyma extends Application {
 							while (true) {
 								((AnchorPane) siirrettava.getParent()).getChildren().remove(siirrettava);
 								pane.getChildren().add(siirrettava);
-								AnchorPane.setTopAnchor(siirrettava, (pane.getChildren().size() - 1) * 35.0);
+								asetaVali(siirrettava);
 								pane.requestLayout();
 								siirrettava.getParent().requestLayout();
 								if (kortit.get(siirrettava).getSeuraava() != null) {
@@ -172,7 +176,7 @@ public class Kayttoliittyma extends Application {
 							
 								lahdekuva.getChildren().remove(lahdekuva.getChildren().size() - 1);
 								lahdekuva.getChildren().add(kaannetty);
-								AnchorPane.setTopAnchor(kaannetty, (lahdekuva.getChildren().size() - 1) * 35.0);
+								asetaVali(kaannetty);
 							}
 						}
 						siirrettava = null;
@@ -218,6 +222,10 @@ public class Kayttoliittyma extends Application {
 		}
         
 		return laatikko;
+	}
+	
+	private void asetaVali(ImageView kortti) {
+		AnchorPane.setTopAnchor(kortti, (((AnchorPane) kortti.getParent()).getChildren().size() - 2) * 35.0);
 	}
 	
 	public static void setPasianssi(Pasianssi pasianssi) {
