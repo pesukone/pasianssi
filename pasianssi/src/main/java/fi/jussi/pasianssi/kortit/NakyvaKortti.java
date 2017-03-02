@@ -57,6 +57,16 @@ public class NakyvaKortti {
 			return false;
 		}
 		
+		NakyvaKortti iteroitava = this;
+		
+		while (iteroitava.getSeuraava() != null) {
+			if (!iteroitava.kortti.samaMaa(kohde.getKortti())) {
+				return false;
+			}
+			
+			iteroitava = iteroitava.getSeuraava();
+		}
+		
 		if (this.getEdellinen() != null) {
 			this.getEdellinen().setSeuraava(null);
 			this.setEdellinen(null);
