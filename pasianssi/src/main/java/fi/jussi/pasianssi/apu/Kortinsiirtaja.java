@@ -2,6 +2,7 @@ package fi.jussi.pasianssi.apu;
 
 import fi.jussi.pasianssi.kortit.Korttipino;
 import fi.jussi.pasianssi.kortit.NakyvaKortti;
+import java.util.ArrayList;
 
 public class Kortinsiirtaja {
 	
@@ -17,6 +18,35 @@ public class Kortinsiirtaja {
 		jalkisiivous(lahde, kortti, kohde);
 		
 		return true;
+	}
+	
+	public static boolean voiSiirtaa(ArrayList<Korttipino> pinot, NakyvaKortti kortti) {
+		for (Korttipino pino : pinot) {
+			if (pino.onPinossa(kortti)) {
+				continue;
+			}
+			
+			NakyvaKortti iteroitava = kortti;
+			while (iteroitava.getEdellinen() != null) {
+				if (!Kortinvertailija.samaMaa(iteroitava.getKortti(), kortti.getKortti())) {
+					return false;
+				}
+				
+				iteroitava = iteroitava.getEdellinen();
+			}
+			
+			if (Kortinvertailija.yhdenEro(kortti.getKortti(), pino.getNakyvat().hanta().getKortti())) {
+				return true;
+			}
+		}
+		
+		if (kortti.getEdellinen() != null) {
+			if (voiSiirtaa(pinot, kortti.getEdellinen())) {
+				return true;
+			}
+		}
+		
+		return false;
 	}
 	
 	private static boolean eiNakyviaKortteja(Korttipino pino) {
