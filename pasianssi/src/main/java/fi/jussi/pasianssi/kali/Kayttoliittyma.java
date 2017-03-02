@@ -30,16 +30,17 @@ public class Kayttoliittyma extends Application {
 	private HashMap<AnchorPane, Korttipino> pinot = new HashMap();
 	private HashMap<Korttipino, AnchorPane> pinokuvat = new HashMap();
 	private Korttipino lahde;
+	private BorderPane juuri;
 	
 	@Override
 	public void start(Stage primaryStage) {
 		primaryStage.setTitle("Spider-pasianssi");
-		BorderPane root = new BorderPane();
-		Scene scene = new Scene(root, 1280, 720, Color.GREEN);
+		juuri = new BorderPane();
+		Scene scene = new Scene(juuri, 1280, 720, Color.GREEN);
 		
-		root.setTop(piirraKorttipinot());
-		root.setBottom(piirraPakka(pasianssi.getPakka()));
-		root.setLeft(uusiPeliNappi(primaryStage));
+		juuri.setTop(piirraKorttipinot());
+		juuri.setBottom(piirraPakka(pasianssi.getPakka()));
+		juuri.setLeft(uusiPeliNappi(primaryStage));
 		
 		primaryStage.setScene(scene);
 		primaryStage.show();
@@ -84,8 +85,10 @@ public class Kayttoliittyma extends Application {
 		nappi.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				primaryStage.close();
-				Platform.runLater(() -> new Kayttoliittyma().start( new Stage()));
+				setPasianssi(new Pasianssi());
+				juuri.setTop(piirraKorttipinot());
+				juuri.setBottom(piirraPakka(pasianssi.getPakka()));
+				juuri.requestLayout();
 				event.consume();
 			}
 		});
