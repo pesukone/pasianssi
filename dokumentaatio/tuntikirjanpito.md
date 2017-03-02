@@ -36,4 +36,5 @@ Päivä | Tunnit | Kuvaus
 27.02.2017 | 1h | Toteutettu metodit korttien poistamiselle
 27.02.2017 | 2h | Refaktoroitu siirtokoodia omaan luokkaan, kirjoitettu testejä
 01.03.2017 | 2h | Tehty testejä, korjattu korttien poistaminen ja vähennetty käyttöliittymän jumittumista
+02.03.2017 | 3h | Tehty korttien poistaminen käyttöliittymästä, korjattu bugeja ja lisätty nappi, jolla pelin voi aloittaa alusta
 ... | ... | ...

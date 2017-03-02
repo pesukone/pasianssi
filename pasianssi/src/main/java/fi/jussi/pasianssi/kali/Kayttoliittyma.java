@@ -8,6 +8,7 @@ import fi.jussi.pasianssi.kortit.Pasianssi;
 import java.util.List;
 import java.util.HashMap;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -38,6 +39,7 @@ public class Kayttoliittyma extends Application {
 		
 		root.setTop(piirraKorttipinot());
 		root.setBottom(piirraPakka(pasianssi.getPakka()));
+		root.setLeft(uusiPeliNappi(primaryStage));
 		
 		primaryStage.setScene(scene);
 		primaryStage.show();
@@ -70,6 +72,25 @@ public class Kayttoliittyma extends Application {
 		});
 		
 		return pakkanappi;
+	}
+	
+	private ImageView uusiPeliNappi(Stage primaryStage) {
+		ImageView nappi = new ImageView();
+		nappi.setImage(new Image(getClass().getClassLoader().getResourceAsStream("black_joker.png")));
+		nappi.setFitWidth(120);
+		nappi.setPreserveRatio(true);
+		BorderPane.setAlignment(nappi, Pos.BOTTOM_LEFT);
+		
+		nappi.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				primaryStage.close();
+				Platform.runLater(() -> new Kayttoliittyma().start( new Stage()));
+				event.consume();
+			}
+		});
+		
+		return nappi;
 	}
     
 	private ImageView piirraNakyvaKortti(NakyvaKortti kortti) {
