@@ -51,7 +51,7 @@ public class NakyvaKortti {
     
 	/**
 	 * Metodi siirtää listan solmun parametrina annetun korttilistan perälle.
-	 * @param kohde		lista, johon solmu siirretään
+	 * @param kohde	lista, johon solmu siirretään
 	 * @return siirto on luvallinen
 	 */
 	public boolean siirra(NakyvaKortti kohde) {
@@ -62,7 +62,7 @@ public class NakyvaKortti {
 		NakyvaKortti iteroitava = this;
 		
 		while (iteroitava.getSeuraava() != null) {
-			if (!Kortinvertailija.samaMaa(iteroitava.getKortti(), iteroitava.getSeuraava().getKortti())) {
+			if (!Kortinvertailija.samaaMaataJaYhdenEro(iteroitava.getSeuraava().getKortti(), iteroitava.getKortti())) {
 				return false;
 			}
 			

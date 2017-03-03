@@ -45,6 +45,8 @@ public class KortinsiirtajaTest {
 		assertTrue(Kortinsiirtaja.siirraKortti(pino, pino.getNakyvat().hanta(), toinen));
         
 		assertEquals(toinen.getNakyvat(), siirrettava);
+		assertNull(toinen.getNakyvat().getEdellinen());
+		assertNull(toinen.getNakyvat().getSeuraava());
 	}
 	
 	@Test
@@ -98,6 +100,17 @@ public class KortinsiirtajaTest {
 		
 		assertEquals(pino.getNakyvat().hanta(), kortti);
 		assertEquals(toinen.getNakyvat().hanta(), toinenKortti);
+	}
+	
+	@Test
+	public void josPaallaVaaranArvoinenKorttiSiirtoEiOnnistu() {
+		NakyvaKortti siirrettava = new NakyvaKortti(new Kortti(Maa.PATA, 2));
+		
+		pino.setNakyvat(siirrettava);
+		pino.lisaaNakyvaKortti(new Kortti(Maa.PATA, 5));
+		toinen.lisaaNakyvaKortti(new Kortti(Maa.PATA, 3));
+		
+		assertFalse(Kortinsiirtaja.siirraKortti(pino, pino.getNakyvat(), toinen));
 	}
 	
 	@Test
