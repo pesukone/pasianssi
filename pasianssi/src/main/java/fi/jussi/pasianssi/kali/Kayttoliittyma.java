@@ -22,6 +22,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.Dialog;
 import javafx.stage.Stage;
 import javafx.event.EventHandler;
@@ -30,6 +31,7 @@ import javafx.event.ActionEvent;
 
 public class Kayttoliittyma extends Application {
 	private static Pasianssi pasianssi;
+	private static int maita;
 	private ImageView siirrettava;
 	private HashMap<ImageView, NakyvaKortti> kortit = new HashMap();
 	private HashMap<NakyvaKortti, ImageView> kuvat = new HashMap();
@@ -90,18 +92,43 @@ public class Kayttoliittyma extends Application {
 	
 	private Menu piirraValikko(Stage primaryStage) {
 		Menu valikko = new Menu("Valikko");
-		MenuItem uusi = new MenuItem("Uusi peli");
-		uusi.setOnAction(new EventHandler<ActionEvent>(){
+		MenuItem nelja = new MenuItem("Neljä maata");
+		MenuItem kaksi = new MenuItem("Kaksi maata");
+		MenuItem yksi = new MenuItem("Yksi maa");
+		
+		nelja.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				setPasianssi(new Pasianssi(pasianssi.getMaita()));
+				setPasianssi(new Pasianssi(4));
 				poyta.setTop(piirraKorttipinot());
 				poyta.setBottom(piirraPakka(pasianssi.getPakka()));
 				poyta.requestLayout();
 			}
 		});
 		
-		valikko.getItems().add(uusi);
+		kaksi.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				setPasianssi(new Pasianssi(2));
+				poyta.setTop(piirraKorttipinot());
+				poyta.setBottom(piirraPakka(pasianssi.getPakka()));
+				poyta.requestLayout();
+			}
+		});
+		
+		yksi.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				setPasianssi(new Pasianssi(1));
+				poyta.setTop(piirraKorttipinot());
+				poyta.setBottom(piirraPakka(pasianssi.getPakka()));
+				poyta.requestLayout();
+			}
+		});
+		
+		valikko.getItems().add(nelja);
+		valikko.getItems().add(kaksi);
+		valikko.getItems().add(yksi);
 		
 		return valikko;
 	}
@@ -282,5 +309,6 @@ public class Kayttoliittyma extends Application {
 	
 	public static void setPasianssi(Pasianssi pasianssi) {
 		Kayttoliittyma.pasianssi = pasianssi;
+		Kayttoliittyma.maita = pasianssi.getMaita();
 	}
 }
