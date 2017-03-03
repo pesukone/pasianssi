@@ -4,8 +4,21 @@ import fi.jussi.pasianssi.kortit.Korttipino;
 import fi.jussi.pasianssi.kortit.NakyvaKortti;
 import java.util.ArrayList;
 
+/**
+ * Luokka, joka tarjoaa korttien siirtämiseen liittyviä metodeja.
+ * @see fi.jussi.pasianssi.kortit.NakyvaKortti;
+ * @see fi.jussi.pasianssi.kortit.Korttipino;
+ */
 public class Kortinsiirtaja {
 	
+	/**
+	 * Metodi siirtää kortin lähdepinosta kohdepinoon ja poistaa kortit pakasta,
+	 * jos 13 kortin sarja täyttyy.
+	 * @param lahde pino, josta kortti siirretään
+	 * @param kortti siirrettävä kortti, jonka oletetaan olevan lähdepinossa
+	 * @param kohde pino, jonne kortti siirretään
+	 * @return tosi, jos siirto onnistui
+	 */
 	public static boolean siirraKortti(Korttipino lahde, NakyvaKortti kortti, Korttipino kohde) {
 		if (eiNakyviaKortteja(kohde)) {
 			siirraTyhjaan(kortti, kohde);
@@ -20,6 +33,15 @@ public class Kortinsiirtaja {
 		return true;
 	}
 	
+	/**
+	 * Metodi selvittää, voiko jotakin korttipinon korttia siirtää toiseen pinoon.
+	 * Kortit käydään läpi käänteisessä järjestyksessä, eli pinon päälimmäinen
+	 * kortti tutkitaan ensin.
+	 * @param pinot {@link fi.jussi.pasianssi.kortit.Pasianssi}n korttipinot
+	 * @param kortti {@link fi.jussi.pasianssi.kortit.Korttipino}n häntä
+	 * @return tosi, jos jonkun korttipinon kortin voi siirtää johonkin toiseen
+	 * pinoon
+	 */
 	public static boolean voiSiirtaa(ArrayList<Korttipino> pinot, NakyvaKortti kortti) {
 		for (Korttipino pino : pinot) {
 			if (pino.onPinossa(kortti)) {

@@ -48,6 +48,11 @@ public class Pasianssi {
 		return true;
 	}
 	
+	/**
+	 * Metodi, joka kertoo, onko pasianssi voitettu. Peli on voitettu, jos
+	 * pakka ja kaikki korttipinot ovat tyhjiä.
+	 * @return tosi, jos pasianssi on voitettu
+	 */
 	public boolean voitettu() {
 		if (!this.pakka.tyhja()) {
 			return false;
