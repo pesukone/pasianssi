@@ -43,7 +43,7 @@ public class KortinpoistoTest {
 	@Test
 	public void korttienPoistaminenToimii() {
 		toinen.lisaaNakyvaKortti(new Kortti(Maa.PATA, 1));
-		Kortinsiirtaja.siirraKortti(toinen, toinen.getNakyvat(), pino);
+		assertTrue(Kortinsiirtaja.siirraKortti(toinen, toinen.getNakyvat(), pino));
 		
 		assertNull(pino.getNakyvat());
 	}
@@ -52,22 +52,19 @@ public class KortinpoistoTest {
 	public void eriMaanKorttiEiAiheutaPoistamista() {
 		NakyvaKortti vaara = new NakyvaKortti(new Kortti(Maa.HERTTA, 1));
 		toinen.setNakyvat(vaara);
-		Kortinsiirtaja.siirraKortti(toinen, toinen.getNakyvat(), pino);
+		assertTrue(Kortinsiirtaja.siirraKortti(toinen, toinen.getNakyvat(), pino));
 		
 		assertEquals(pino.getNakyvat().hanta(), vaara);
 	}
 	
-	/*@Test
-	public void poistoaEiTapahduJosPinossaKorttiPoistettavienPaalla() {
-		NakyvaKortti assa = new NakyvaKortti(new Kortti(Maa.PATA, 1));
-		NakyvaKortti ylimaarainen = new NakyvaKortti(new Kortti(Maa.RUUTU, 4));
-		toinen.setNakyvat(assa);
-		ylimaarainen.setEdellinen(toinen.getNakyvat());
-		toinen.getNakyvat().setSeuraava(ylimaarainen);
+	@Test
+	public void korttiKaannetaanNakyviinPoistonJalkeen() {
+		pino.lisaaKaannettyKortti(new Kortti(Maa.HERTTA, 5));
+		toinen.lisaaNakyvaKortti(new Kortti(Maa.PATA, 1));
 		
-		Kortinsiirtaja.siirraKortti(toinen, toinen.getNakyvat(), pino);
+		assertTrue(Kortinsiirtaja.siirraKortti(toinen, toinen.getNakyvat(), pino));
 		
-		assertEquals(pino.getNakyvat().hanta(), ylimaarainen);
-		assertEquals(pino.getNakyvat().hanta().getEdellinen(), assa);
-	}*/
+		assertEquals(pino.getNakyvat().getKortti().getMaa(), Maa.HERTTA);
+		assertEquals(pino.getNakyvat().getKortti().getArvo(), 5);
+	}
 }

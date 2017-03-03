@@ -41,4 +41,5 @@ Päivä | Tunnit | Kuvaus
 02.03.2017 | 1h | Tehty metodia, jolla voi selvittää, onko peli hävitty
 03.03.2017 | 1h | Päivitetty dokumentaatiota ja luokkakaaviota
 03.03.2017 | 2h | Lisätty logiikka yhden ja kahden maan pasiansseille
+03.03.2017 | 1h | Korjattu bugeja
 ... | ... | ...

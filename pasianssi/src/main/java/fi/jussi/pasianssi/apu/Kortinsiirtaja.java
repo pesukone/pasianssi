@@ -90,6 +90,10 @@ public class Kortinsiirtaja {
 		if (eiNakyviaKortteja(lahde)) {
 			kaannaKorttiNakyviin(lahde);
 		}
+		
+		if (eiNakyviaKortteja(kohde)) {
+			kaannaKorttiNakyviin(kohde);
+		}
 	}
 	
 	private static void kaannaKorttiNakyviin(Korttipino pino) {

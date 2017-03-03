@@ -22,6 +22,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Dialog;
 import javafx.stage.Stage;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
@@ -206,6 +207,13 @@ public class Kayttoliittyma extends Application {
 								for (int i = 1; i <= 13; i++) {
 									pane.getChildren().remove(pane.getChildren().size() - 1);
 								}
+								
+								if (pino.getNakyvat() != null && pino.getNakyvat().korttimaara() == 1) {
+									pane.getChildren().remove(pane.getChildren().size() - 1);
+									ImageView kaannetty = piirraNakyvaKortti(pino.getNakyvat());
+									asetaVali(kaannetty);
+									pane.getChildren().add(kaannetty);
+								}
 							}
 						
 							if (!lahde.tyhja() && lahde.getNakyvat().korttimaara() == 1) {
@@ -215,6 +223,11 @@ public class Kayttoliittyma extends Application {
 								lahdekuva.getChildren().remove(lahdekuva.getChildren().size() - 1);
 								lahdekuva.getChildren().add(kaannetty);
 								asetaVali(kaannetty);
+							}
+							
+							if (pasianssi.voitettu()) {
+								Dialog dialog = new Dialog();
+								dialog.showAndWait();
 							}
 						}
 						siirrettava = null;
