@@ -39,4 +39,5 @@ Päivä | Tunnit | Kuvaus
 02.03.2017 | 3h | Tehty korttien poistaminen käyttöliittymästä, korjattu bugeja ja lisätty nappi, jolla pelin voi aloittaa alusta
 02.03.2017 | 1h | Siirretty uusi peli -nappi valikkoon, refaktorointia
 02.03.2017 | 1h | Tehty metodia, jolla voi selvittää, onko peli hävitty
+03.03.2017 | 1h | Kirjoitettu javadocia, täydennetty käyttöohjetta, päivitetty luokkakaavio
 ... | ... | ...

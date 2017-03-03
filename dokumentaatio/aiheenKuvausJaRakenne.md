@@ -28,7 +28,7 @@
 	- pelaajalle mahdollisilla siirroilla ei ole mahdollista tyhjentää pöytää korteista
 
 
-![Alt text](luokkakaavio.png "Määrittelyvaiheen luokkakaavio")
+![Alt text](luokkakaavio.png "Luokkakaavio")
 ![Alt text](pelaajaNostaa.png "Pelaaja nostaa 10 korttia pinosta")
 ![Alt text](pelaajaSiirtaaKortinPinostaToiseen.png "Pelaaja siirtää kortin pinosta toiseen")
 

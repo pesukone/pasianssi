@@ -48,6 +48,7 @@ public class Korttipino {
 	 * toiseen korttipinoon.
 	 * @param kortti siirrettävä kortti
 	 * @param kohde	korttipino, jonka perään kortti/kortit siirretään
+	 * @return tosi, jos siirto on luvallinen
 	 */
 	public boolean siirraKortti(NakyvaKortti kortti, Korttipino kohde) {
 		return Kortinsiirtaja.siirraKortti(this, kortti, kohde);
@@ -97,12 +98,6 @@ public class Korttipino {
 	
 	public void setNakyvat(NakyvaKortti kortti) {
 		this.nakyvatKortit = kortti;
-	}
-
-	private void kaannaKorttiNakyviin() {
-		if (!this.kaannetytKortit.isEmpty()) {
-			this.nakyvatKortit = new NakyvaKortti(this.kaannetytKortit.pop());
-		}
 	}
 	
 	private boolean eiNakyviaKortteja() {
