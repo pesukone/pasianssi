@@ -202,7 +202,7 @@ public class Kayttoliittyma extends Application {
 								}
 							}
 							
-							if (kohteenKorttimaara > pino.getNakyvat().korttimaara()) {
+							if (pino.getNakyvat() == null || kohteenKorttimaara > pino.getNakyvat().korttimaara()) {
 								for (int i = 1; i <= 13; i++) {
 									pane.getChildren().remove(pane.getChildren().size() - 1);
 								}
@@ -263,7 +263,7 @@ public class Kayttoliittyma extends Application {
 	}
 	
 	private void asetaVali(ImageView kortti) {
-		AnchorPane.setTopAnchor(kortti, (((AnchorPane) kortti.getParent()).getChildren().size() - 2) * 35.0);
+		AnchorPane.setTopAnchor(kortti, (((AnchorPane) kortti.getParent()).getChildren().size() - 2) * 23.0);
 	}
 	
 	public static void setPasianssi(Pasianssi pasianssi) {
