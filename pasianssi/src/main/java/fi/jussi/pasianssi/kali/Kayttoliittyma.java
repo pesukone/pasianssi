@@ -93,7 +93,7 @@ public class Kayttoliittyma extends Application {
 		uusi.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent event) {
-				setPasianssi(new Pasianssi());
+				setPasianssi(new Pasianssi(pasianssi.getMaita()));
 				poyta.setTop(piirraKorttipinot());
 				poyta.setBottom(piirraPakka(pasianssi.getPakka()));
 				poyta.requestLayout();
@@ -184,7 +184,7 @@ public class Kayttoliittyma extends Application {
 						if (pino.getNakyvat() == null) {
 							kohteenKorttimaara = 0;
 						} else {
-							kohteenKorttimaara = pino.getNakyvat().seuraaviaKortteja();
+							kohteenKorttimaara = pino.getNakyvat().korttimaara();
 						}
 						
 						if (lahde.siirraKortti(kortit.get(siirrettava), pino)) {
@@ -202,13 +202,13 @@ public class Kayttoliittyma extends Application {
 								}
 							}
 							
-							if (kohteenKorttimaara > pino.getNakyvat().seuraaviaKortteja()) {
+							if (kohteenKorttimaara > pino.getNakyvat().korttimaara()) {
 								for (int i = 1; i <= 13; i++) {
 									pane.getChildren().remove(pane.getChildren().size() - 1);
 								}
 							}
 						
-							if (!lahde.tyhja() && lahde.getNakyvat().seuraaviaKortteja() == 1) {
+							if (!lahde.tyhja() && lahde.getNakyvat().korttimaara() == 1) {
 								ImageView kaannetty = piirraNakyvaKortti(lahde.getNakyvat());
 								AnchorPane lahdekuva = pinokuvat.get(lahde);
 							

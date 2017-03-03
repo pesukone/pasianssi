@@ -116,7 +116,7 @@ public class KortinsiirtajaTest {
 		pino.lisaaNakyvaKortti(new Kortti(Maa.RUUTU, 4));
 		
 		Kortinsiirtaja.siirraKortti(pino, pino.getNakyvat(), toinen);
-	
+		
 		assertEquals(pino.getNakyvat().getKortti().getMaa(), kaannetty.getMaa());
 		assertEquals(pino.getNakyvat().getKortti().getArvo(), kaannetty.getArvo());
 	}

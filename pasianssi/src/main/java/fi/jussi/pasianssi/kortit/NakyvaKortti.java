@@ -108,11 +108,11 @@ public class NakyvaKortti {
 	 * Metodi kertoo, kuinka monta korttia listalla on nykyisen solmun jälkeen.
 	 * @return	korttien määrä
 	 */
-	public int seuraaviaKortteja() {
-		int maara = 0;
+	public int korttimaara() {
+		int maara = 1;
 		NakyvaKortti iteroitava = this;
 		
-		while (iteroitava != null) {
+		while (iteroitava.seuraava != null) {
 			iteroitava = iteroitava.seuraava;
 			maara++;
 		}

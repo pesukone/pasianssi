@@ -14,15 +14,18 @@ import java.util.EmptyStackException;
 public class Pasianssi {
 	private Korttipakka pakka;
 	private List<Korttipino> pinot;
+	private int maita;
    
 	/**
 	 * Konstruktori konstruktoi.
+	 * @param maita maiden lukumäärä, mahdolliset arvot 1, 2 tai 4
 	 */
-	public Pasianssi() {
+	public Pasianssi(int maita) {
 		this.pakka = new Korttipakka();
 		this.pinot = new ArrayList();
+		this.maita = maita;
 		Pasianssinalustaja.alustaPinot(this.pinot);
-		Pasianssinalustaja.alustaPakka(this.pakka);
+		Pasianssinalustaja.alustaPakka(this.pakka, maita);
 		Pasianssinalustaja.taytaPinot(this.pinot, this.pakka);
 	}
     
@@ -73,5 +76,9 @@ public class Pasianssi {
 	
 	public Korttipakka getPakka() {
 		return this.pakka;
+	}
+	
+	public int getMaita() {
+		return this.maita;
 	}
 }

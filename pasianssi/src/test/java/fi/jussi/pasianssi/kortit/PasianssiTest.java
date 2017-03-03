@@ -25,7 +25,7 @@ public class PasianssiTest {
 	
 	@Before
 	public void setUp() {
-		pasianssi = new Pasianssi();
+		pasianssi = new Pasianssi(4);
 	}
 	
 	@After
@@ -37,7 +37,7 @@ public class PasianssiTest {
 		assertTrue(pasianssi.nosta10Korttia());
 		
 		for (int i = 0; i < 10; i++) {
-			assertEquals(pasianssi.getPinot().get(i).getNakyvat().seuraaviaKortteja(), 2);
+			assertEquals(pasianssi.getPinot().get(i).getNakyvat().korttimaara(), 2);
 		}
 	}
 	

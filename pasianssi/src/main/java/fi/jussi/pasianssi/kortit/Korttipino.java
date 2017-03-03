@@ -67,7 +67,7 @@ public class Korttipino {
 	 * @return korttien määrä
 	 */
 	public int korttimaara() {
-		return this.kaannetytKortit.size() + this.nakyvatKortit.seuraaviaKortteja();
+		return this.kaannetytKortit.size() + this.nakyvatKortit.korttimaara();
 	}
 	
 	/**

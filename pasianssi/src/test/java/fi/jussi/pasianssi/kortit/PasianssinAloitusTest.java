@@ -24,7 +24,7 @@ public class PasianssinAloitusTest {
     
 	@Before
 	public void setUp() {
-		pasianssi = new Pasianssi();
+		pasianssi = new Pasianssi(4);
 	}
     
 	@After
@@ -62,7 +62,7 @@ public class PasianssinAloitusTest {
 	public void pakkaSekoitettuPelinAlussa() {
 		Korttipakka ensimmainen = pasianssi.getPakka();
         
-		pasianssi = new Pasianssi();
+		pasianssi = new Pasianssi(4);
 		Korttipakka toinen = pasianssi.getPakka();
         
 		// Ei huomioi tapausta, jossa päälimmäinen sekoitetaan uudestaan päälimmäiseksi
@@ -86,7 +86,7 @@ public class PasianssinAloitusTest {
 	@Test
 	public void jokaPinossaYksiNakyvaKortti() {
 		for (int i = 0; i < 10; i++) {
-			assertEquals(pasianssi.getPinot().get(i).getNakyvat().seuraaviaKortteja(), 1);
+			assertEquals(pasianssi.getPinot().get(i).getNakyvat().korttimaara(), 1);
 		}
 	}
 }

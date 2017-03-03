@@ -25,10 +25,19 @@ public class Pasianssinalustaja {
 	/**
 	 * Metodi täyttää pasianssin pakan 104 kortilla ja sekoittaa sen.
 	 * @param pakka	pasianssin korttipakka
+	 * @param maita maiden määrä, mahdolliset arvot 1, 2 tai 4
 	 */
-	public static void alustaPakka(Korttipakka pakka) {
-		//Pakantayttaja.alustaTuplakorttipakka(pakka);
-		Pakantayttaja.alustaKahdenMaanTuplapakka(pakka);
+	public static void alustaPakka(Korttipakka pakka, int maita) {
+		if (maita == 4) {
+			Pakantayttaja.alustaTuplakorttipakka(pakka);
+		} else if (maita == 2) {
+			Pakantayttaja.alustaKahdenMaanPakka(pakka);
+		} else if (maita == 1) {
+			Pakantayttaja.alustaYhdenMaanPakka(pakka);
+		} else {
+			throw new IllegalArgumentException();
+		}
+		
 		pakka.sekoita();
 	}
 	

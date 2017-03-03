@@ -7,7 +7,7 @@ import javafx.application.Application;
 public class Main {
     
 	public static void main(String[] args) {
-		Pasianssi pasianssi = new Pasianssi();
+		Pasianssi pasianssi = new Pasianssi(1);
 		Kayttoliittyma kali = new Kayttoliittyma();
 		Kayttoliittyma.setPasianssi(pasianssi);
 		Application.launch(Kayttoliittyma.class, args);
