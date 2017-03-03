@@ -8,7 +8,6 @@ import fi.jussi.pasianssi.kortit.Pasianssi;
 import java.util.List;
 import java.util.HashMap;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -22,16 +21,13 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.Dialog;
 import javafx.stage.Stage;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.event.ActionEvent;
 
 public class Kayttoliittyma extends Application {
 	private static Pasianssi pasianssi;
-	private static int maita;
 	private ImageView siirrettava;
 	private HashMap<ImageView, NakyvaKortti> kortit = new HashMap();
 	private HashMap<NakyvaKortti, ImageView> kuvat = new HashMap();
@@ -48,17 +44,22 @@ public class Kayttoliittyma extends Application {
 		poyta.setStyle("-fx-background-color: green");
 		juuri.setCenter(poyta);
 		Scene scene = new Scene(juuri, 1280, 720);
+
+		alustaPoyta();
 		
-		poyta.setTop(piirraKorttipinot());
-		poyta.setBottom(piirraPakka(pasianssi.getPakka()));
-		
-		MenuBar valikko = new MenuBar();
-		Menu aloitaAlusta = piirraValikko(primaryStage);
-		valikko.getMenus().add(aloitaAlusta);
-		juuri.setTop(valikko);
+		MenuBar valikkopalkki = new MenuBar();
+		Menu valikko = piirraValikko(primaryStage);
+		valikkopalkki.getMenus().add(valikko);
+		juuri.setTop(valikkopalkki);
 		
 		primaryStage.setScene(scene);
 		primaryStage.show();
+	}
+	
+	private void alustaPoyta() {
+		poyta.setTop(piirraKorttipinot());
+		poyta.setBottom(piirraPakka(pasianssi.getPakka()));
+		poyta.requestLayout();
 	}
 	
 	private ImageView piirraPakka(Korttipakka pakka) {
@@ -100,9 +101,7 @@ public class Kayttoliittyma extends Application {
 			@Override
 			public void handle(ActionEvent event) {
 				setPasianssi(new Pasianssi(4));
-				poyta.setTop(piirraKorttipinot());
-				poyta.setBottom(piirraPakka(pasianssi.getPakka()));
-				poyta.requestLayout();
+				alustaPoyta();
 			}
 		});
 		
@@ -110,9 +109,7 @@ public class Kayttoliittyma extends Application {
 			@Override
 			public void handle(ActionEvent event) {
 				setPasianssi(new Pasianssi(2));
-				poyta.setTop(piirraKorttipinot());
-				poyta.setBottom(piirraPakka(pasianssi.getPakka()));
-				poyta.requestLayout();
+				alustaPoyta();
 			}
 		});
 		
@@ -120,9 +117,7 @@ public class Kayttoliittyma extends Application {
 			@Override
 			public void handle(ActionEvent event) {
 				setPasianssi(new Pasianssi(1));
-				poyta.setTop(piirraKorttipinot());
-				poyta.setBottom(piirraPakka(pasianssi.getPakka()));
-				poyta.requestLayout();
+				alustaPoyta();
 			}
 		});
 		
@@ -309,6 +304,5 @@ public class Kayttoliittyma extends Application {
 	
 	public static void setPasianssi(Pasianssi pasianssi) {
 		Kayttoliittyma.pasianssi = pasianssi;
-		Kayttoliittyma.maita = pasianssi.getMaita();
 	}
 }
