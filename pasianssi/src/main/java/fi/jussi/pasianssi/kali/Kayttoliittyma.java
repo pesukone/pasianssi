@@ -204,7 +204,7 @@ public class Kayttoliittyma extends Application {
 							
 							if (kohteenKorttimaara > pino.getNakyvat().seuraaviaKortteja()) {
 								for (int i = 1; i <= 13; i++) {
-									pane.getChildren().remove(pane.getChildren().size() - i);
+									pane.getChildren().remove(pane.getChildren().size() - 1);
 								}
 							}
 						
