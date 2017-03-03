@@ -211,9 +211,10 @@ public class Kayttoliittyma extends Application {
 								if (pino.getNakyvat() != null && pino.getNakyvat().korttimaara() == 1) {
 									pane.getChildren().remove(pane.getChildren().size() - 1);
 									ImageView kaannetty = piirraNakyvaKortti(pino.getNakyvat());
-									asetaVali(kaannetty);
 									pane.getChildren().add(kaannetty);
+									asetaVali(kaannetty);
 								}
+								pane.requestLayout();
 							}
 						
 							if (!lahde.tyhja() && lahde.getNakyvat().korttimaara() == 1) {
