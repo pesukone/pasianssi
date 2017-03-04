@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package fi.jussi.pasianssi.kortit;
 
 import org.junit.After;
@@ -12,11 +7,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author jussi
- */
 public class HavioTest {
+	Pasianssi pasianssi;
 	
 	public HavioTest() {
 	}
@@ -31,15 +23,28 @@ public class HavioTest {
 	
 	@Before
 	public void setUp() {
+		pasianssi = new Pasianssi(4);
+		
+		while (!pasianssi.getPakka().tyhja()) {
+			pasianssi.nosta10Korttia();
+		}
 	}
 	
 	@After
 	public void tearDown() {
 	}
-
-	// TODO add test methods here.
-	// The methods must be annotated with annotation @Test. For example:
-	//
-	// @Test
-	// public void hello() {}
+	
+	@Test
+	public void josPakkaEiOleTyhjaPeliaEiOleHavitty() {
+		pasianssi.getPakka().lisaaKortti(new Kortti(Maa.RUUTU, 12));
+		
+		assertFalse(pasianssi.havitty());
+	}
+	
+	@Test
+	public void josJokuKorttipinoistaOnTyhjaPeliaEiOleHavitty() {
+		pasianssi.getPinot().set(0, new Korttipino());
+		
+		assertFalse(pasianssi.havitty());
+	}
 }

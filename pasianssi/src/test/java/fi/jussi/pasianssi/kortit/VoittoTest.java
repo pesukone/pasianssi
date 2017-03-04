@@ -1,9 +1,5 @@
 package fi.jussi.pasianssi.kortit;
 
-import fi.jussi.pasianssi.kortit.Pasianssi;
-import fi.jussi.pasianssi.kortit.Korttipino;
-import fi.jussi.pasianssi.kortit.Kortti;
-import fi.jussi.pasianssi.kortit.Maa;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
