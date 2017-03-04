@@ -129,6 +129,16 @@ public class KortinsiirtajaTest {
 	}
 	
 	@Test
+	public void tyhjaanSiirtaminenNoudattaaSaantoja() {
+		NakyvaKortti siirrettava = new NakyvaKortti(new Kortti(Maa.RUUTU, 5));
+		pino.setNakyvat(siirrettava);
+		pino.lisaaNakyvaKortti(new Kortti(Maa.RUUTU, 4));
+		pino.lisaaNakyvaKortti(new Kortti(Maa.RUUTU, 3));
+		
+		assertFalse(Kortinsiirtaja.siirraKortti(pino, pino.getNakyvat(), new Korttipino()));
+	}
+	
+	@Test
 	public void josAinoaKorttiSiirretaanNakyviaEiOle() {
 		Kortti siirrettava = new Kortti(Maa.PATA, 13);
 		pino.lisaaNakyvaKortti(siirrettava);
