@@ -64,25 +64,42 @@ public class Kortinsiirtaja {
 			}
 			
 			if (Kortinvertailija.yhdenEro(kortti.getKortti(), pino.getNakyvat().hanta().getKortti())) {
-				/*int lahdesarja = 1;
+				int lahdesarja = 1;
+				int siirrettavaSarja = 1;
 				int kohdesarja = 1;
 				
 				iteroitava = kortti;
 				while (iteroitava.getSeuraava() != null) {
+					siirrettavaSarja++;
 					lahdesarja++;
 					iteroitava = iteroitava.getSeuraava();
 				}
 				
+				iteroitava = kortti;
+				while (iteroitava.getEdellinen() != null) {
+					if (!Kortinvertailija.samaaMaataJaYhdenEro(iteroitava.getKortti(), iteroitava.getEdellinen().getKortti())) {
+						break;
+					}
+					
+					lahdesarja++;
+					iteroitava = iteroitava.getEdellinen();
+				}
+				
 				iteroitava = pino.getNakyvat().hanta();
 				while (iteroitava.getEdellinen() != null) {
+					if (!Kortinvertailija.samaaMaataJaYhdenEro(iteroitava.getKortti(), iteroitava.getEdellinen().getKortti())) {
+						break;
+					}
+					
 					kohdesarja++;
 					iteroitava = iteroitava.getEdellinen();
 				}
 				
-				if (kohdesarja > lahdesarja) {
+				if (kohdesarja + siirrettavaSarja > lahdesarja) {
 					return true;
-				}*/
-				return true;
+				}
+				
+				//return true;
 			}
 		}
 		

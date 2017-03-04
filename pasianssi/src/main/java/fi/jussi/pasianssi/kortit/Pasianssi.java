@@ -77,6 +77,9 @@ public class Pasianssi {
 		}
 		
 		for (Korttipino pino : this.pinot) {
+			if (pino.getNakyvat() == null) {
+				return false;
+			}
 			if (Kortinsiirtaja.voiSiirtaa(this.pinot, pino.getNakyvat().hanta())) {
 				return false;
 			}
