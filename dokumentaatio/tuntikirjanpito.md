@@ -44,4 +44,5 @@ Päivä | Tunnit | Kuvaus
 03.03.2017 | 1h | Korjattu bugeja
 03.03.2017 | 1h | Lisätty valikkoon napit, joilla voi valita, monenko maan peliä pelataan
 04.03.2017 | 1h | Korjattu bugi, joka esti kortin siirtämisen, jos seuraava kortti oli siirretty tyhjään pinoon
+04.03.2017 | 1h | Lisätty käyttöliittymään "voitit pelin" -ikkuna, testattu peliä
 ... | ... | ...

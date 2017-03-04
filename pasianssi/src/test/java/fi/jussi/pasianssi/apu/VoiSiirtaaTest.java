@@ -71,4 +71,46 @@ public class VoiSiirtaaTest {
 		
 		assertFalse(Kortinsiirtaja.voiSiirtaa(pinot, pinot.get(0).getNakyvat().hanta()));
 	}
+	
+	@Test
+	public void metodiToimiiMonellaMahdollisellaKohteella() {
+		pinot.get(0).lisaaNakyvaKortti(new Kortti(Maa.PATA, 4));
+		pinot.get(1).lisaaNakyvaKortti(new Kortti(Maa.RISTI, 5));
+		pinot.get(2).lisaaNakyvaKortti(new Kortti(Maa.PATA, 5));
+		
+		assertTrue(Kortinsiirtaja.voiSiirtaa(pinot, pinot.get(0).getNakyvat().hanta()));
+	}
+	
+	@Test
+	public void metodiToimiiSuuremmallaLahdepinolla() {
+		pinot.get(0).lisaaNakyvaKortti(new Kortti(Maa.PATA, 4));
+		pinot.get(0).lisaaNakyvaKortti(new Kortti(Maa.PATA, 3));
+		pinot.get(0).lisaaNakyvaKortti(new Kortti(Maa.PATA, 2));
+		pinot.get(1).lisaaNakyvaKortti(new Kortti(Maa.RISTI, 5));
+		pinot.get(2).lisaaNakyvaKortti(new Kortti(Maa.RUUTU, 12));
+		
+		assertTrue(Kortinsiirtaja.voiSiirtaa(pinot, pinot.get(0).getNakyvat().hanta()));
+	}
+	
+	@Test
+	public void metodiToimiiSuuremmallaKohdepinolla() {
+		pinot.get(0).lisaaNakyvaKortti(new Kortti(Maa.PATA, 4));
+		pinot.get(1).lisaaNakyvaKortti(new Kortti(Maa.PATA, 7));
+		pinot.get(1).lisaaNakyvaKortti(new Kortti(Maa.PATA, 6));
+		pinot.get(1).lisaaNakyvaKortti(new Kortti(Maa.PATA, 5));
+		pinot.get(2).lisaaNakyvaKortti(new Kortti(Maa.HERTTA, 12));
+		
+		assertTrue(Kortinsiirtaja.voiSiirtaa(pinot, pinot.get(0).getNakyvat().hanta()));
+	}
+	
+	@Test
+	public void metodiHuomioiMaanLahdepinossa() {
+		pinot.get(0).lisaaNakyvaKortti(new Kortti(Maa.PATA, 4));
+		pinot.get(0).lisaaNakyvaKortti(new Kortti(Maa.HERTTA, 3));
+		pinot.get(0).lisaaNakyvaKortti(new Kortti(Maa.PATA, 2));
+		pinot.get(1).lisaaNakyvaKortti(new Kortti(Maa.PATA, 5));
+		pinot.get(2).lisaaNakyvaKortti(new Kortti(Maa.HERTTA, 12));
+		
+		assertFalse(Kortinsiirtaja.voiSiirtaa(pinot, pinot.get(0).getNakyvat().hanta()));
+	}
 }
