@@ -49,14 +49,8 @@ public class Kortinsiirtaja {
 			return false;
 		}
 		
-		for (Korttipino pino : pinot) {
-			if (pino.onPinossa(kortti)) {
-				continue;
-			}
-			
-			if (pino.getNakyvat() == null || siirtoKannattaa(pino, kortti)) {
-				return true;
-			}
+		if (kannattaaSiirtaa(pinot, kortti)) {
+			return true;
 		}
 		
 		if (kortti.getEdellinen() != null) {
@@ -172,7 +166,7 @@ public class Kortinsiirtaja {
 		return korttimaara;
 	}
 	
-	private static boolean siirtoKannattaa(Korttipino pino, NakyvaKortti kortti) {
+	private static boolean tutkiKannattavuus(Korttipino pino, NakyvaKortti kortti) {
 		if (Kortinvertailija.yhdenEro(kortti.getKortti(), pino.getNakyvat().hanta().getKortti())) {
 			int lahdesarja = 1;
 			int siirrettavaSarja = 1;
@@ -189,6 +183,20 @@ public class Kortinsiirtaja {
 			kohdesarja += laskeSarja(pino.getNakyvat().hanta());
 				
 			if (kohdesarja + siirrettavaSarja > lahdesarja) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	private static boolean kannattaaSiirtaa(List<Korttipino> pinot, NakyvaKortti kortti) {
+		for (Korttipino pino : pinot) {
+			if (pino.onPinossa(kortti)) {
+				continue;
+			}
+			
+			if (pino.getNakyvat() == null || tutkiKannattavuus(pino, kortti)) {
 				return true;
 			}
 		}
