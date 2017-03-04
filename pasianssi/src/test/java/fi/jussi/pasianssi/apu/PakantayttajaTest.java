@@ -59,7 +59,7 @@ public class PakantayttajaTest {
 					risteja++;
 					break;
 				default:
-					break;
+					fail();
 			}
 		}
 		
@@ -95,7 +95,7 @@ public class PakantayttajaTest {
 					risteja++;
 					break;
 				default:
-					break;
+					fail();
 			}
 		}
 		
@@ -103,5 +103,48 @@ public class PakantayttajaTest {
 		assertEquals(ruutuja, patoja);
 		assertEquals(patoja, risteja);
 		assertEquals(risteja, 26);
+	}
+	
+	@Test
+	public void kahdenMaanPakassaHerttojaJaPatoja52() {
+		Pakantayttaja.alustaKahdenMaanPakka(pakka);
+		
+		int herttoja = 0;
+		int patoja = 0;
+		
+		while (!pakka.tyhja()) {
+			Maa maa = pakka.nosta().getMaa();
+			
+			switch (maa) {
+				case HERTTA:
+					herttoja++;
+					break;
+				case PATA:
+					patoja++;
+					break;
+				default:
+					fail();
+			}
+		}
+		
+		assertEquals(herttoja, patoja);
+		assertEquals(patoja, 52);
+	}
+	
+	@Test
+	public void yhdenMaanPakassa104Pataa() {
+		Pakantayttaja.alustaYhdenMaanPakka(pakka);
+		
+		int patoja = 0;
+		
+		while (!pakka.tyhja()) {
+			if (pakka.nosta().getMaa() == Maa.PATA) {
+				patoja++;
+			} else {
+				fail();
+			}
+		}
+		
+		assertEquals(patoja, 104);
 	}
 }
