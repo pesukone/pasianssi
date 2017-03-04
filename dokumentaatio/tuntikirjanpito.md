@@ -46,4 +46,5 @@ Päivä | Tunnit | Kuvaus
 04.03.2017 | 1h | Korjattu bugi, joka esti kortin siirtämisen, jos seuraava kortti oli siirretty tyhjään pinoon
 04.03.2017 | 1h | Lisätty käyttöliittymään "voitit pelin" -ikkuna, testattu peliä
 04.03.2017 | 1h | Testausta ja refaktorointia
+04.03.2017 | 1h | Javadocia ja lisää refaktorointia
 ... | ... | ...
