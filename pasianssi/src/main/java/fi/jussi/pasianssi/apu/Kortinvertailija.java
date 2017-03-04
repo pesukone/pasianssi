@@ -5,7 +5,7 @@ import fi.jussi.pasianssi.kortit.Kortti;
 /**
  * Luokka tarjoaa {@link fi.jussi.pasianssi.kortit.Kortti}-olioiden
  * vertailemisessa käytettäviä apumetodeja.
- * @see fi.jussi.pasianssi.kortit.Kortti;
+ * @see fi.jussi.pasianssi.kortit.Kortti
  */
 public class Kortinvertailija {
 	

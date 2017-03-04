@@ -6,8 +6,8 @@ import java.util.List;
 
 /**
  * Luokka, joka tarjoaa korttien siirtämiseen liittyviä metodeja.
- * @see fi.jussi.pasianssi.kortit.NakyvaKortti;
- * @see fi.jussi.pasianssi.kortit.Korttipino;
+ * @see fi.jussi.pasianssi.kortit.NakyvaKortti
+ * @see fi.jussi.pasianssi.kortit.Korttipino
  */
 public class Kortinsiirtaja {
 	

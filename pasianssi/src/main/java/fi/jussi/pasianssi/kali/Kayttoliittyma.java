@@ -61,7 +61,7 @@ public class Kayttoliittyma extends Application {
 	
 	private void alustaPoyta() {
 		poyta.setTop(piirraKorttipinot());
-		poyta.setBottom(piirraPakka(pasianssi.getPakka()));
+		poyta.setRight(piirraPakka(pasianssi.getPakka()));
 		poyta.requestLayout();
 	}
 	
