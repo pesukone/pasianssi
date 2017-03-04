@@ -113,4 +113,14 @@ public class VoiSiirtaaTest {
 		
 		assertFalse(Kortinsiirtaja.voiSiirtaa(pinot, pinot.get(0).getNakyvat().hanta()));
 	}
+	
+	@Test
+	public void siirtoHuomioidaanVainJosUusiSarjaOnSuurempiKuinKumpikaanVahnoista() {
+		pinot.get(0).lisaaNakyvaKortti(new Kortti(Maa.PATA, 5));
+		pinot.get(0).lisaaNakyvaKortti(new Kortti(Maa.PATA, 4));
+		pinot.get(1).lisaaNakyvaKortti(new Kortti(Maa.PATA, 5));
+		pinot.get(2).lisaaNakyvaKortti(new Kortti(Maa.HERTTA, 12));
+		
+		assertFalse(Kortinsiirtaja.voiSiirtaa(pinot, pinot.get(0).getNakyvat().hanta()));
+	}
 }

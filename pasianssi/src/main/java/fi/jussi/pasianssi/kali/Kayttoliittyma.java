@@ -96,9 +96,18 @@ public class Kayttoliittyma extends Application {
 	
 	private Menu piirraValikko(Stage primaryStage) {
 		Menu valikko = new Menu("Valikko");
+		MenuItem uusi = new MenuItem("Uusi peli");
 		MenuItem nelja = new MenuItem("Neljä maata");
 		MenuItem kaksi = new MenuItem("Kaksi maata");
 		MenuItem yksi = new MenuItem("Yksi maa");
+		
+		uusi.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				setPasianssi(new Pasianssi(pasianssi.getMaita()));
+				alustaPoyta();
+			}
+		});
 		
 		nelja.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
@@ -124,6 +133,7 @@ public class Kayttoliittyma extends Application {
 			}
 		});
 		
+		valikko.getItems().add(uusi);
 		valikko.getItems().add(nelja);
 		valikko.getItems().add(kaksi);
 		valikko.getItems().add(yksi);
@@ -255,7 +265,21 @@ public class Kayttoliittyma extends Application {
 								Dialog dialog = new Dialog();
 								dialog.setContentText("Voitit pelin!");
 								
-								ButtonType uusi = new ButtonType("uusi peli", ButtonData.OK_DONE);
+								ButtonType uusi = new ButtonType("Uusi peli", ButtonData.OK_DONE);
+								dialog.getDialogPane().getButtonTypes().add(uusi);
+								
+								Optional<ButtonType> result = dialog.showAndWait();
+								if (result.isPresent() && result.get().getButtonData() == ButtonData.OK_DONE) {
+									setPasianssi(new Pasianssi(pasianssi.getMaita()));
+									alustaPoyta();
+								}
+							}
+							
+							if (pasianssi.havitty()) {
+								Dialog dialog = new Dialog();
+								dialog.setContentText("Hävisit pelin");
+								
+								ButtonType uusi = new ButtonType("Uusi peli", ButtonData.OK_DONE);
 								dialog.getDialogPane().getButtonTypes().add(uusi);
 								
 								Optional<ButtonType> result = dialog.showAndWait();

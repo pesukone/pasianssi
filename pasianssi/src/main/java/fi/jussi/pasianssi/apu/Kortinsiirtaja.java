@@ -63,16 +63,25 @@ public class Kortinsiirtaja {
 				return true;
 			}
 			
-			/*iteroitava = kortti;
-			while (iteroitava.getEdellinen() != null) {
-				if (!Kortinvertailija.samaaMaataJaYhdenEro(iteroitava.getKortti(), iteroitava.getEdellinen().getKortti())) {
-					break;
+			if (Kortinvertailija.yhdenEro(kortti.getKortti(), pino.getNakyvat().hanta().getKortti())) {
+				/*int lahdesarja = 1;
+				int kohdesarja = 1;
+				
+				iteroitava = kortti;
+				while (iteroitava.getSeuraava() != null) {
+					lahdesarja++;
+					iteroitava = iteroitava.getSeuraava();
 				}
 				
-				iteroitava = iteroitava.getEdellinen();
-			}*/
-			
-			if (Kortinvertailija.yhdenEro(kortti.getKortti(), pino.getNakyvat().hanta().getKortti())) {
+				iteroitava = pino.getNakyvat().hanta();
+				while (iteroitava.getEdellinen() != null) {
+					kohdesarja++;
+					iteroitava = iteroitava.getEdellinen();
+				}
+				
+				if (kohdesarja > lahdesarja) {
+					return true;
+				}*/
 				return true;
 			}
 		}
@@ -91,12 +100,8 @@ public class Kortinsiirtaja {
 	}
 	
 	private static boolean siirraTyhjaan(NakyvaKortti kortti, Korttipino kohde) {
-		NakyvaKortti iteroitava = kortti;
-		while (iteroitava.getSeuraava() != null) {
-			if (!Kortinvertailija.samaaMaataJaYhdenEro(iteroitava.getSeuraava().getKortti(), iteroitava.getKortti())) {
-				return false;
-			}
-			iteroitava = iteroitava.getSeuraava();
+		if (!kortti.voiSiirtaa()) {
+			return false;
 		}
 		
 		if (kortti.getEdellinen() != null) {

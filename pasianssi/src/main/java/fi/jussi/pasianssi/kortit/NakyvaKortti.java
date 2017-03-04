@@ -55,18 +55,12 @@ public class NakyvaKortti {
 	 * @return siirto on luvallinen
 	 */
 	public boolean siirra(NakyvaKortti kohde) {
-		if (!Kortinvertailija.yhdenEro(this.kortti, kohde.hanta().getKortti())) {
+		if (!this.voiSiirtaa()) {
 			return false;
 		}
 		
-		NakyvaKortti iteroitava = this;
-		
-		while (iteroitava.getSeuraava() != null) {
-			if (!Kortinvertailija.samaaMaataJaYhdenEro(iteroitava.getSeuraava().getKortti(), iteroitava.getKortti())) {
-				return false;
-			}
-			
-			iteroitava = iteroitava.getSeuraava();
+		if (!Kortinvertailija.yhdenEro(this.kortti, kohde.hanta().getKortti())) {
+			return false;
 		}
 		
 		if (this.getEdellinen() != null) {
@@ -118,6 +112,20 @@ public class NakyvaKortti {
 		}
 		
 		return maara;
+	}
+	
+	public boolean voiSiirtaa() {
+		NakyvaKortti iteroitava = this;
+		
+		while (iteroitava.getSeuraava() != null) {
+			if (!Kortinvertailija.samaaMaataJaYhdenEro(iteroitava.getSeuraava().getKortti(), iteroitava.getKortti())) {
+				return false;
+			}
+			
+			iteroitava = iteroitava.getSeuraava();
+		}
+		
+		return true;
 	}
     
 	public NakyvaKortti getSeuraava() {

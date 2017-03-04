@@ -1,5 +1,6 @@
 package fi.jussi.pasianssi.kortit;
 
+import fi.jussi.pasianssi.apu.Kortinsiirtaja;
 import fi.jussi.pasianssi.apu.Pasianssinalustaja;
 import java.util.List;
 import java.util.ArrayList;
@@ -63,6 +64,20 @@ public class Pasianssi {
 		
 		for (Korttipino pino : this.pinot) {
 			if (!pino.tyhja()) {
+				return false;
+			}
+		}
+		
+		return true;
+	}
+	
+	public boolean havitty() {
+		if (!this.pakka.tyhja()) {
+			return false;
+		}
+		
+		for (Korttipino pino : this.pinot) {
+			if (Kortinsiirtaja.voiSiirtaa(this.pinot, pino.getNakyvat().hanta())) {
 				return false;
 			}
 		}
