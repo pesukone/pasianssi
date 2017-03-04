@@ -47,4 +47,5 @@ Päivä | Tunnit | Kuvaus
 04.03.2017 | 1h | Lisätty käyttöliittymään "voitit pelin" -ikkuna, testattu peliä
 04.03.2017 | 1h | Testausta ja refaktorointia
 04.03.2017 | 1h | Javadocia ja lisää refaktorointia
+04.03.2017 | 1h | Generoitu javadoc ja lisätty linkki siihen
 ... | ... | ...
