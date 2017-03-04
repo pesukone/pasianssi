@@ -134,6 +134,7 @@ public class KortinsiirtajaTest {
 		pino.setNakyvat(siirrettava);
 		pino.lisaaNakyvaKortti(new Kortti(Maa.RUUTU, 4));
 		pino.lisaaNakyvaKortti(new Kortti(Maa.RUUTU, 3));
+		pino.lisaaNakyvaKortti(new Kortti(Maa.RUUTU, 3));
 		
 		assertFalse(Kortinsiirtaja.siirraKortti(pino, pino.getNakyvat(), new Korttipino()));
 	}

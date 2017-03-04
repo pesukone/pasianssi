@@ -2,7 +2,7 @@ package fi.jussi.pasianssi.apu;
 
 import fi.jussi.pasianssi.kortit.Korttipino;
 import fi.jussi.pasianssi.kortit.NakyvaKortti;
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Luokka, joka tarjoaa korttien siirtämiseen liittyviä metodeja.
@@ -21,9 +21,11 @@ public class Kortinsiirtaja {
 	 */
 	public static boolean siirraKortti(Korttipino lahde, NakyvaKortti kortti, Korttipino kohde) {
 		if (eiNakyviaKortteja(kohde)) {
-			siirraTyhjaan(kortti, kohde);
+			if (!siirraTyhjaan(kortti, kohde)) {
+				return false;
+			}
 		} else {
-			if (kortti.siirra(kohde.getNakyvat()) == false) {
+			if (!kortti.siirra(kohde.getNakyvat())) {
 				return false;
 			}
 		}
@@ -42,22 +44,26 @@ public class Kortinsiirtaja {
 	 * @return tosi, jos jonkun korttipinon kortin voi siirtää johonkin toiseen
 	 * pinoon
 	 */
-	public static boolean voiSiirtaa(ArrayList<Korttipino> pinot, NakyvaKortti kortti) {
+	public static boolean voiSiirtaa(List<Korttipino> pinot, NakyvaKortti kortti) {
 		for (Korttipino pino : pinot) {
 			if (pino.onPinossa(kortti)) {
 				continue;
 			}
 			
+			if (pino.getNakyvat() == null) {
+				return true;
+			}
+			
 			NakyvaKortti iteroitava = kortti;
 			while (iteroitava.getEdellinen() != null) {
 				if (!Kortinvertailija.samaMaa(iteroitava.getKortti(), kortti.getKortti())) {
-					return false;
+					break;
 				}
 				
 				iteroitava = iteroitava.getEdellinen();
 			}
 			
-			if (Kortinvertailija.yhdenEro(kortti.getKortti(), pino.getNakyvat().hanta().getKortti())) {
+			if (Kortinvertailija.yhdenEro(iteroitava.getKortti(), pino.getNakyvat().hanta().getKortti())) {
 				return true;
 			}
 		}
@@ -75,12 +81,22 @@ public class Kortinsiirtaja {
 		return pino.getNakyvat() == null;
 	}
 	
-	private static void siirraTyhjaan(NakyvaKortti kortti, Korttipino kohde) {
+	private static boolean siirraTyhjaan(NakyvaKortti kortti, Korttipino kohde) {
+		NakyvaKortti iteroitava = kortti;
+		while (iteroitava.getSeuraava() != null) {
+			if (!Kortinvertailija.samaaMaataJaYhdenEro(iteroitava.getSeuraava().getKortti(), iteroitava.getKortti())) {
+				return false;
+			}
+			iteroitava = iteroitava.getSeuraava();
+		}
+		
 		if (kortti.getEdellinen() != null) {
 			kortti.getEdellinen().setSeuraava(null);
 		}
 		kohde.setNakyvat(kortti);
 		kortti.setEdellinen(null);
+		
+		return true;
 	}
 	
 	private static void jalkisiivous(Korttipino lahde, NakyvaKortti kortti, Korttipino kohde) {
