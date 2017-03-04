@@ -123,4 +123,15 @@ public class VoiSiirtaaTest {
 		
 		assertFalse(Kortinsiirtaja.voiSiirtaa(pinot, pinot.get(0).getNakyvat().hanta()));
 	}
+	
+	@Test
+	public void toisenMaanKortinPaalleMahdollista() {
+		pinot.get(0).lisaaNakyvaKortti(new Kortti(Maa.PATA, 4));
+		pinot.get(0).lisaaNakyvaKortti(new Kortti(Maa.PATA, 3));
+		pinot.get(0).lisaaNakyvaKortti(new Kortti(Maa.PATA, 2));
+		pinot.get(1).lisaaNakyvaKortti(new Kortti(Maa.RUUTU, 5));
+		pinot.get(2).lisaaNakyvaKortti(new Kortti(Maa.HERTTA, 12));
+		
+		assertTrue(Kortinsiirtaja.voiSiirtaa(pinot, pinot.get(0).getNakyvat().hanta()));
+	}
 }

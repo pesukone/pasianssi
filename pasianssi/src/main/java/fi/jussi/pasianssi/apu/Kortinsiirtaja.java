@@ -45,13 +45,8 @@ public class Kortinsiirtaja {
 	 * pinoon
 	 */
 	public static boolean voiSiirtaa(List<Korttipino> pinot, NakyvaKortti kortti) {
-		NakyvaKortti iteroitava = kortti;
-		while (iteroitava.getSeuraava() != null) {
-			if (!Kortinvertailija.samaaMaataJaYhdenEro(iteroitava.getSeuraava().getKortti(), iteroitava.getKortti())) {
-				return false;
-			}
-			
-			iteroitava = iteroitava.getSeuraava();
+		if (!kortti.voiSiirtaa()) {
+			return false;
 		}
 		
 		for (Korttipino pino : pinot) {
@@ -59,47 +54,8 @@ public class Kortinsiirtaja {
 				continue;
 			}
 			
-			if (pino.getNakyvat() == null) {
+			if (pino.getNakyvat() == null || siirtoKannattaa(pino, kortti)) {
 				return true;
-			}
-			
-			if (Kortinvertailija.yhdenEro(kortti.getKortti(), pino.getNakyvat().hanta().getKortti())) {
-				int lahdesarja = 1;
-				int siirrettavaSarja = 1;
-				int kohdesarja = 1;
-				
-				iteroitava = kortti;
-				while (iteroitava.getSeuraava() != null) {
-					siirrettavaSarja++;
-					lahdesarja++;
-					iteroitava = iteroitava.getSeuraava();
-				}
-				
-				iteroitava = kortti;
-				while (iteroitava.getEdellinen() != null) {
-					if (!Kortinvertailija.samaaMaataJaYhdenEro(iteroitava.getKortti(), iteroitava.getEdellinen().getKortti())) {
-						break;
-					}
-					
-					lahdesarja++;
-					iteroitava = iteroitava.getEdellinen();
-				}
-				
-				iteroitava = pino.getNakyvat().hanta();
-				while (iteroitava.getEdellinen() != null) {
-					if (!Kortinvertailija.samaaMaataJaYhdenEro(iteroitava.getKortti(), iteroitava.getEdellinen().getKortti())) {
-						break;
-					}
-					
-					kohdesarja++;
-					iteroitava = iteroitava.getEdellinen();
-				}
-				
-				if (kohdesarja + siirrettavaSarja > lahdesarja) {
-					return true;
-				}
-				
-				//return true;
 			}
 		}
 		
@@ -199,5 +155,44 @@ public class Kortinsiirtaja {
 		}
 		
 		kuningas.setEdellinen(null);
+	}
+	
+	private static int laskeSarja(NakyvaKortti hanta) {
+		int korttimaara = 0;
+		NakyvaKortti iteroitava = hanta;
+		while (iteroitava.getEdellinen() != null) {
+			if (!Kortinvertailija.samaaMaataJaYhdenEro(iteroitava.getKortti(), iteroitava.getEdellinen().getKortti())) {
+				break;
+			}
+			
+			korttimaara++;
+			iteroitava = iteroitava.getEdellinen();
+		}
+		
+		return korttimaara;
+	}
+	
+	private static boolean siirtoKannattaa(Korttipino pino, NakyvaKortti kortti) {
+		if (Kortinvertailija.yhdenEro(kortti.getKortti(), pino.getNakyvat().hanta().getKortti())) {
+			int lahdesarja = 1;
+			int siirrettavaSarja = 1;
+			int kohdesarja = 1;
+			
+			NakyvaKortti iteroitava = kortti;
+			while (iteroitava.getSeuraava() != null) {
+				siirrettavaSarja++;
+				lahdesarja++;
+				iteroitava = iteroitava.getSeuraava();
+			}
+				
+			lahdesarja += laskeSarja(kortti);
+			kohdesarja += laskeSarja(pino.getNakyvat().hanta());
+				
+			if (kohdesarja + siirrettavaSarja > lahdesarja) {
+				return true;
+			}
+		}
+		
+		return false;
 	}
 }

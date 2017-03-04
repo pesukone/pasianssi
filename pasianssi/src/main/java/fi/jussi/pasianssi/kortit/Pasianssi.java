@@ -53,7 +53,7 @@ public class Pasianssi {
 	}
 	
 	/**
-	 * Metodi, joka kertoo, onko pasianssi voitettu. Peli on voitettu, jos
+	 * Metodi kertoo, onko pasianssi voitettu. Peli on voitettu, jos
 	 * pakka ja kaikki korttipinot ovat tyhjiä.
 	 * @return tosi, jos pasianssi on voitettu
 	 */
@@ -71,6 +71,12 @@ public class Pasianssi {
 		return true;
 	}
 	
+	/**
+	 * Metodi kertoo, onko pasianssi hävitty. Peli tulkitaan hävityksi, jos
+	 * yhtäkään korttia ei voi siirtää toiseen pinoon siten, että pinoon
+	 * muodostuisi sarja, joka olisi suurempi kuin lähtöpinossa.
+	 * @return tosi, jos pasianssi on hävitty
+	 */
 	public boolean havitty() {
 		if (!this.pakka.tyhja()) {
 			return false;

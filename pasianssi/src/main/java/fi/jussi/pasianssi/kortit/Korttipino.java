@@ -45,7 +45,8 @@ public class Korttipino {
 	
 	/**
 	 * Metodi siirtää pöydällä olevan näkyvän kortin ja sitä seuraavat kortit
-	 * toiseen korttipinoon.
+	 * toiseen korttipinoon. Metodi käyttää 
+	 * {@link fi.jussi.pasianssi.apu.Kortinsiirtaja}-luokan apumetodia.
 	 * @param kortti siirrettävä kortti
 	 * @param kohde	korttipino, jonka perään kortti/kortit siirretään
 	 * @return tosi, jos siirto on luvallinen

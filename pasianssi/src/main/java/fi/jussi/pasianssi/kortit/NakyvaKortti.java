@@ -63,10 +63,7 @@ public class NakyvaKortti {
 			return false;
 		}
 		
-		if (this.getEdellinen() != null) {
-			this.getEdellinen().setSeuraava(null);
-			this.setEdellinen(null);
-		}
+		katkaiseLinkkiEdelliseen();
         
 		kohde.lisaa(this);
 		return true;
@@ -114,6 +111,10 @@ public class NakyvaKortti {
 		return maara;
 	}
 	
+	/**
+	 * Metodi kertoo, voiko kortin siirtää pois pinosta.
+	 * @return tosi, jos kortin voi siirtää
+	 */
 	public boolean voiSiirtaa() {
 		NakyvaKortti iteroitava = this;
 		
@@ -151,5 +152,12 @@ public class NakyvaKortti {
 	@Override
 	public String toString() {
 		return this.kortti.toString();
+	}
+	
+	private void katkaiseLinkkiEdelliseen() {
+		if (this.edellinen != null) {
+			this.edellinen.setSeuraava(null);
+			this.setEdellinen(null);
+		}
 	}
 }

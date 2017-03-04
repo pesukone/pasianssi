@@ -28,14 +28,18 @@ public class Pasianssinalustaja {
 	 * @param maita maiden määrä, mahdolliset arvot 1, 2 tai 4
 	 */
 	public static void alustaPakka(Korttipakka pakka, int maita) {
-		if (maita == 4) {
-			Pakantayttaja.alustaTuplakorttipakka(pakka);
-		} else if (maita == 2) {
-			Pakantayttaja.alustaKahdenMaanPakka(pakka);
-		} else if (maita == 1) {
-			Pakantayttaja.alustaYhdenMaanPakka(pakka);
-		} else {
-			throw new IllegalArgumentException();
+		switch (maita) {
+			case 4:
+				Pakantayttaja.alustaTuplakorttipakka(pakka);
+				break;
+			case 2:
+				Pakantayttaja.alustaKahdenMaanPakka(pakka);
+				break;
+			case 1:
+				Pakantayttaja.alustaYhdenMaanPakka(pakka);
+				break;
+			default:
+				throw new IllegalArgumentException();
 		}
 		
 		pakka.sekoita();

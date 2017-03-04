@@ -12,9 +12,9 @@ import fi.jussi.pasianssi.kortit.Maa;
 public class Pakantayttaja {
     
 	/**
-	 * Metodi, joka alustaa tavallisen 52 kortin korttipakan. Parametrina
+	 * Metodi alustaa tavallisen 52 kortin korttipakan. Parametrina
 	 * annetun pakan oletetaan olevan tyhjä.
-	 * @param pakka		alustettava pakka
+	 * @param pakka	alustettava pakka
 	 */
 	public static void alustaPeruskorttipakka(Korttipakka pakka) {
 		luoMaanKortit(pakka, Maa.HERTTA);
@@ -24,15 +24,20 @@ public class Pakantayttaja {
 	}
     
 	/**
-	 * Metodi, joka alustaa 104 kortin pakan, jota Spider-pasianssissa
+	 * Metodi alustaa 104 kortin pakan, jota Spider-pasianssissa
 	 * käytetään. Parametrina annetun pakan oletetaan olevan tyhjä.
-	 * @param pakka		alustettava pakka
+	 * @param pakka	alustettava pakka
 	 */
 	public static void alustaTuplakorttipakka(Korttipakka pakka) {
 		alustaPeruskorttipakka(pakka);
 		alustaPeruskorttipakka(pakka);
 	}
 	
+	/**
+	 * Metodi alustaa kahden maan pasianssin pakan. Parametrina annettavaan
+	 * pakkaan lisätään 52 pataa ja 52 herttaa.
+	 * @param pakka  alustettava pakka
+	 */
 	public static void alustaKahdenMaanPakka(Korttipakka pakka) {
 		for (int i = 0; i < 4; i++) {
 			luoMaanKortit(pakka, Maa.HERTTA);
@@ -40,6 +45,11 @@ public class Pakantayttaja {
 		}
 	}
 	
+	/**
+	 * Metodi alustaa yhden maan pasianssin pakan. Parametrina annettava pakka
+	 * täytetään padoilla.
+	 * @param pakka alustettava pakka
+	 */
 	public static void alustaYhdenMaanPakka(Korttipakka pakka) {
 		for (int i = 0; i < 8; i++) {
 			luoMaanKortit(pakka, Maa.PATA);
