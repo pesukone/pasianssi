@@ -45,6 +45,15 @@ public class Kortinsiirtaja {
 	 * pinoon
 	 */
 	public static boolean voiSiirtaa(List<Korttipino> pinot, NakyvaKortti kortti) {
+		NakyvaKortti iteroitava = kortti;
+		while (iteroitava.getSeuraava() != null) {
+			if (!Kortinvertailija.samaaMaataJaYhdenEro(iteroitava.getSeuraava().getKortti(), iteroitava.getKortti())) {
+				return false;
+			}
+			
+			iteroitava = iteroitava.getSeuraava();
+		}
+		
 		for (Korttipino pino : pinot) {
 			if (pino.onPinossa(kortti)) {
 				continue;
@@ -54,16 +63,16 @@ public class Kortinsiirtaja {
 				return true;
 			}
 			
-			NakyvaKortti iteroitava = kortti;
+			/*iteroitava = kortti;
 			while (iteroitava.getEdellinen() != null) {
-				if (!Kortinvertailija.samaMaa(iteroitava.getKortti(), kortti.getKortti())) {
+				if (!Kortinvertailija.samaaMaataJaYhdenEro(iteroitava.getKortti(), iteroitava.getEdellinen().getKortti())) {
 					break;
 				}
 				
 				iteroitava = iteroitava.getEdellinen();
-			}
+			}*/
 			
-			if (Kortinvertailija.yhdenEro(iteroitava.getKortti(), pino.getNakyvat().hanta().getKortti())) {
+			if (Kortinvertailija.yhdenEro(kortti.getKortti(), pino.getNakyvat().hanta().getKortti())) {
 				return true;
 			}
 		}
