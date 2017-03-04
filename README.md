@@ -14,6 +14,8 @@ Javalla toteutettu Spider-pasianssi
 
 [käyttöohje](dokumentaatio/ohje.md)
 
+[javadoc](https://htmlpreview.github.io/?https://github.com/pesukone/pasianssi/blob/master/javadoc/index.html)
+
 [pelikortit](https://code.google.com/archive/p/vector-playing-cards/)
 
 [pelikorttien taustapuoli](https://pixabay.com/en/playing-card-back-pattern-568200/)
