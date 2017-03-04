@@ -76,6 +76,9 @@ public class Kortinsiirtaja {
 	}
 	
 	private static void siirraTyhjaan(NakyvaKortti kortti, Korttipino kohde) {
+		if (kortti.getEdellinen() != null) {
+			kortti.getEdellinen().setSeuraava(null);
+		}
 		kohde.setNakyvat(kortti);
 		kortti.setEdellinen(null);
 	}

@@ -7,6 +7,7 @@ import fi.jussi.pasianssi.kortit.Korttipino;
 import fi.jussi.pasianssi.kortit.Pasianssi;
 import java.util.List;
 import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -211,7 +212,7 @@ public class Kayttoliittyma extends Application {
 						}
 						
 						if (lahde.siirraKortti(kortit.get(siirrettava), pino)) {
-						
+							System.out.println("siirretty");
 							while (true) {
 								((AnchorPane) siirrettava.getParent()).getChildren().remove(siirrettava);
 								pane.getChildren().add(siirrettava);
