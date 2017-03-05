@@ -46,7 +46,6 @@
 		        <param>fi.jussi.pasianssi.apu.*</param>
                     </targetClasses>
                     <targetTests>
-                        <param>fi.jussi.pasianssi.kortit*</param>
 		        <param>fi.jussi.pasianssi.*</param>
                     </targetTests>
                 </configuration>
