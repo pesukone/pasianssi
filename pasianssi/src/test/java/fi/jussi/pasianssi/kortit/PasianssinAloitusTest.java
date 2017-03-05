@@ -10,6 +10,8 @@ import static org.junit.Assert.*;
 
 public class PasianssinAloitusTest {
 	Pasianssi pasianssi;
+	Pasianssi kaksiMaata;
+	Pasianssi yksiMaa;
     
 	public PasianssinAloitusTest() {
 	}
@@ -25,6 +27,8 @@ public class PasianssinAloitusTest {
 	@Before
 	public void setUp() {
 		pasianssi = new Pasianssi(4);
+		kaksiMaata = new Pasianssi(2);
+		yksiMaa = new Pasianssi(1);
 	}
     
 	@After
@@ -34,14 +38,28 @@ public class PasianssinAloitusTest {
 	@Test
 	public void pasianssissa10Pinoa() {
 		assertEquals(pasianssi.getPinot().size(), 10);
+		assertEquals(kaksiMaata.getPinot().size(), 10);
+		assertEquals(yksiMaa.getPinot().size(), 10);
 	}
     
 	@Test
 	public void pinoissa54Korttia() {
 		int kortteja = 0;
-		List<Korttipino> pinot = pasianssi.getPinot();
-        
-		for (Korttipino pino : pinot) {
+		for (Korttipino pino : pasianssi.getPinot()) {
+			kortteja += pino.korttimaara();
+		}
+		
+		assertEquals(54, kortteja);
+		
+		kortteja = 0;
+		for (Korttipino pino : kaksiMaata.getPinot()) {
+			kortteja += pino.korttimaara();
+		}
+		
+		assertEquals(54, kortteja);
+		
+		kortteja = 0;
+		for (Korttipino pino : yksiMaa.getPinot()) {
 			kortteja += pino.korttimaara();
 		}
 		
@@ -50,12 +68,9 @@ public class PasianssinAloitusTest {
 	
 	@Test
 	public void pakassa50Korttia() {
-		int kortteja = 0;
-		Korttipakka pakka = pasianssi.getPakka();
-	
-		kortteja += pakka.korttimaara();
-	
-		assertEquals(50, kortteja);
+		assertEquals(pasianssi.getPakka().korttimaara(), 50);
+		assertEquals(kaksiMaata.getPakka().korttimaara(), 50);
+		assertEquals(yksiMaa.getPakka().korttimaara(), 50);
 	}
     
 	@Test
@@ -73,6 +88,8 @@ public class PasianssinAloitusTest {
 	public void ensimmaisessaNeljassaPinossa5KaannettyaKorttia() {
 		for (int i = 0; i < 4; i++) {
 			assertEquals(pasianssi.getPinot().get(i).getKaannetyt().size(), 5);
+			assertEquals(kaksiMaata.getPinot().get(i).getKaannetyt().size(), 5);
+			assertEquals(yksiMaa.getPinot().get(i).getKaannetyt().size(), 5);
 		}
 	}
 	
@@ -80,6 +97,8 @@ public class PasianssinAloitusTest {
 	public void lopuissaKuudessaPinossa4KaannettyaKorttia() {
 		for (int i = 4; i < 10; i++) {
 			assertEquals(pasianssi.getPinot().get(i).getKaannetyt().size(), 4);
+			assertEquals(kaksiMaata.getPinot().get(i).getKaannetyt().size(), 4);
+			assertEquals(yksiMaa.getPinot().get(i).getKaannetyt().size(), 4);
 		}
 	}
 	
@@ -87,6 +106,8 @@ public class PasianssinAloitusTest {
 	public void jokaPinossaYksiNakyvaKortti() {
 		for (int i = 0; i < 10; i++) {
 			assertEquals(pasianssi.getPinot().get(i).getNakyvat().korttimaara(), 1);
+			assertEquals(kaksiMaata.getPinot().get(i).getNakyvat().korttimaara(), 1);
+			assertEquals(yksiMaa.getPinot().get(i).getNakyvat().korttimaara(), 1);
 		}
 	}
 }
