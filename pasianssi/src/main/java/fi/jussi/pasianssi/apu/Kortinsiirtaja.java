@@ -85,7 +85,7 @@ public class Kortinsiirtaja {
 			lahde.setNakyvat(null);
 		}
 		
-		etsiSarja(kohde);
+		Kortinpoistaja.etsiJaPoistaSarja(kohde);
 		
 		if (eiNakyviaKortteja(lahde)) {
 			kaannaKorttiNakyviin(lahde);
@@ -100,55 +100,6 @@ public class Kortinsiirtaja {
 		if (!pino.getKaannetyt().isEmpty()) {
 			pino.setNakyvat(new NakyvaKortti(pino.getKaannetyt().pop()));
 		}
-	}
-	
-	private static void etsiSarja(Korttipino pino) {
-		if (pino.getNakyvat() == null || pino.getNakyvat().getSeuraava() == null) {
-			return;
-		}
-		
-		NakyvaKortti iteroitava = pino.getNakyvat();
-		
-		while (iteroitava.getSeuraava() != null) {
-			if (iteroitava.getKortti().getArvo() == 13) {
-				tutkiSarja(pino, iteroitava);
-			}
-			
-			iteroitava = iteroitava.getSeuraava();
-		}
-	}
-	
-	private static void tutkiSarja(Korttipino pino, NakyvaKortti kuningas) {
-		if (kuningas.getSeuraava() == null) {
-			return;
-		}
-		
-		NakyvaKortti iteroitava = kuningas;
-		
-		do {
-			iteroitava = iteroitava.getSeuraava();
-			
-			if (!Kortinvertailija.samaaMaataJaYhdenEro(iteroitava.getKortti(), iteroitava.getEdellinen().getKortti())) {
-				return;
-			}
-			
-			if (iteroitava.getKortti().getArvo() == 1 && iteroitava.getSeuraava() == null) {
-				poistaSarja(pino, kuningas);
-				return;
-			}
-		} while (iteroitava.getSeuraava() != null);
-	}
-	
-	private static void poistaSarja(Korttipino pino, NakyvaKortti kuningas) {
-		if (kuningas.equals(pino.getNakyvat())) {
-			pino.setNakyvat(null);
-		}
-		
-		if (kuningas.getEdellinen() != null) {
-			kuningas.getEdellinen().setSeuraava(null);
-		}
-		
-		kuningas.setEdellinen(null);
 	}
 	
 	private static int laskeSarja(NakyvaKortti hanta) {
